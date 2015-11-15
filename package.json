@@ -1,0 +1,23 @@
+{
+  "name": "OmicronClient",
+  "version": "0.1.1",
+  "description": "The front end for the Omicron Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichalKononenko/OmicronClient.git"
+  },
+  "author": "Michal Kononenko",
+  "license": "GNU GPL v3",
+  "bugs": {
+    "url": "https://github.com/MichalKononenko/OmicronClient/issues"
+  },
+  "homepage": "https://github.com/MichalKononenko/OmicronClient",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.0"
+  }
+}
