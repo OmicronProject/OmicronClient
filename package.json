@@ -2,7 +2,7 @@
   "name": "OmicronClient",
   "version": "0.1.1",
   "description": "The front end for the Omicron Project",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,13 +11,21 @@
     "url": "https://github.com/MichalKononenko/OmicronClient.git"
   },
   "author": "Michal Kononenko",
-  "license": "GNU GPL v3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/MichalKononenko/OmicronClient/issues"
   },
   "homepage": "https://github.com/MichalKononenko/OmicronClient",
-  "devDependencies": {
+  "dependencies": {
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
     "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.0"
+    "jsdoc": "^3.3.3",
+    "react": "^0.14.2",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18"
   }
 }
