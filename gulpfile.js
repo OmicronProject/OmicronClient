@@ -15,7 +15,7 @@ gulp.task('build', function () {
             presets: ["es2015", "react"]
         }))
         .bundle()
-        .pipe(source('bundle.js'))
+        .pipe(source('main.js'))
         .pipe(gulp.dest('dist'));
 });
 

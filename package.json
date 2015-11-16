@@ -22,6 +22,7 @@
     "gulp": "^3.9.0",
     "jsdoc": "^3.3.3",
     "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
