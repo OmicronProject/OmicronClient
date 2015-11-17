@@ -1,8 +1,8 @@
 import React from 'react';
 
 class HelloWorld extends React.Component {
-    static render() {
-        return (<p>Hello, World!</p>);
+    render() {
+        return <p>Hello, {this.props.name}!</p>;
     }
 }
 

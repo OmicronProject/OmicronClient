@@ -1,15 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-var HelloWorld = React.createClass({
-    render: function() {
-        return(
-            <p>Hello, world!</p>
-        );
-    }
-});
+import HelloWorld from './src/hello_world';
 
 ReactDOM.render(
-    <HelloWorld />,
+    <HelloWorld name="World" />,
     document.getElementById('app-container')
 );

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/MichalKononenko/OmicronClient",
   "dependencies": {
+  },
+  "devDependencies": {
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
@@ -25,9 +27,7 @@
     "jsdoc": "^3.3.3",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "devDependencies": {
+    "vinyl-source-stream": "^1.1.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18"
   }
