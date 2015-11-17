@@ -28,4 +28,20 @@ gulp.task('compress', function(){
         .pipe(gulp.dest('dist'))
 });
 
+gulp.task('transpile', function() {
+    browserify({
+        entries: 'src/test/start_tests.js',
+        extensions: ['.js', '.jsx'],
+        debug: true
+    })
+        .transform(babelify.configure({
+            presets: ['es2015', 'react']
+        }))
+        .bundle()
+        .pipe(source('tests.js'))
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('default', ['build', 'compress']);
+
+gulp.task('test', ['transpile']);
