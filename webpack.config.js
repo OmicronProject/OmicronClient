@@ -7,7 +7,7 @@ var path = require('path');
 var build_directory = path.join(__dirname, 'dist');
 
 module.exports = {
-    entry: './src/hello_render-test.js',
+    entry: './src/test_hello_render.js',
     output: { path: build_directory, filename: 'bundle.js' },
     module: {
         loaders: [
