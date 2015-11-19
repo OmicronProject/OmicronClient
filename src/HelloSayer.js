@@ -4,6 +4,10 @@
 import React from 'react';
 
 class HelloSayer extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
     render() {
         return <p>Hello {this.props.name}!</p>;
     }

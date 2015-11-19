@@ -1,9 +1,8 @@
 /**
  * Created by Michal on 2015-11-17.
  */
-
-var HelloSayer = require('./HelloSayer');
-var React = require('react');
+import HelloSayer from './HelloSayer';
+import React from 'react';
 
 class HelloForm extends React.Component{
     constructor(props) {
@@ -12,7 +11,8 @@ class HelloForm extends React.Component{
     }
 
     render(){
-        return(<div className="hello-form">
+        return(
+            <div className="hello-form">
                 <input type="text" onChange={this.onChange.bind(this)} />
                 <HelloSayer name={this.state.name} />
             </div>);

@@ -2,10 +2,12 @@
  * Created by Michal on 2015-11-17.
  */
 
-var HelloForm = require('./HelloForm');
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import HelloForm from './HelloForm';
 
-ReactDOM.render(
-    <HelloForm />,
-    document.getElementById("app-container"));
+function render_app (target) {
+    ReactDOM.render(<HelloForm />, target);
+}
+
+export default render_app;
