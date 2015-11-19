@@ -1,6 +1,9 @@
 /**
  * Created by Michal on 2015-11-17.
  */
+
+'use strict';
+
 import HelloSayer from './HelloSayer';
 import React from 'react';
 

@@ -1,6 +1,7 @@
 /**
  * Created by Michal on 2015-11-18.
  */
+'use strict';
 
 var path = require('path');
 
