@@ -5,13 +5,14 @@ var webpack = require('webpack');
 module.exports = function (config) {
     config.set({
 
-        browsers: [ process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'Chrome' ],
+        browsers: [ 'PhantomJS' ],
 
         singleRun: true,
 
         frameworks: [ 'mocha' ],
 
         files: [
+            'tests.polyfill.js',
             'tests.webpack.js'
         ],
 
