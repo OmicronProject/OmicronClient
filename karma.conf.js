@@ -20,7 +20,15 @@ module.exports = function (config) {
             'tests.webpack.js': [ 'webpack', 'sourcemap' ]
         },
 
-        reporters: [ 'dots' ],
+        reporters: [ 'dots', 'coverage' ],
+
+        coverageReporter: {
+            dir: 'coverage/',
+            reporters: [
+                { type: 'lcovonly', subdir: '.', file: 'lcov.info' },
+                { type: 'html', subdir: 'html' }
+            ]
+        },
 
         webpack: {
             devtool: 'inline-source-map',
