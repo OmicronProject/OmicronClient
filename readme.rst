@@ -22,3 +22,7 @@ Badges
 .. image:: https://david-dm.org/MichalKononenko/OmicronClient/dev-status.svg
     :target: https://david-dm.org/MichalKononenko/OmicronClient#info=devDependencies&view=table
     :alt: devDependencies Status
+
+.. image:: https://codeclimate.com/github/MichalKononenko/OmicronClient/badges/gpa.svg
+    :target: https://codeclimate.com/github/MichalKononenko/OmicronClient
+    :alt: Code Climate
