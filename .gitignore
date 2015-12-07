@@ -27,3 +27,6 @@ build/Release
 node_modules
 dist
 .idea
+
+# Sphinx Documentation
+docs/build
