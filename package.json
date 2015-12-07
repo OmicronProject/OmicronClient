@@ -23,7 +23,7 @@
     "url": "https://github.com/MichalKononenko/OmicronClient/issues"
   },
   "homepage": "https://github.com/MichalKononenko/OmicronClient#readme",
-  "devDependencies": {
+  "dependencies": {
     "babel": "^6.1.18",
     "babel-core": "^6.1.21",
     "babel-loader": "^6.2.0",
@@ -52,5 +52,5 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.6"
   },
-  "dependencies": {}
+  "devDependencies": {}
 }
