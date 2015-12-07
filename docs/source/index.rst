@@ -13,6 +13,10 @@ Contents:
 
 .. include:: ../../readme.rst
 
+.. autoanysrc:: foo
+   :src: ../../src/*.js
+   :analyzer: js
+
 .. autoanysrc:: blabla
    :src: ../../src/**/*.js
    :analyzer: js

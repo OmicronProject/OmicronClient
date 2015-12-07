@@ -14,6 +14,9 @@ class HelloForm extends React.Component{
     }
 
     render(){
+        /**
+         * Renders stuff
+         */
         return(
             <div className="hello-form">
                 <input type="text" onChange={this.onChange.bind(this)} />

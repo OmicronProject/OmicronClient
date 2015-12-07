@@ -3,6 +3,10 @@ sudo: false
 notifications:
   email: false
 
+addons:
+    code_climate:
+        repo_token: 8a865bc474c488e8f16c2622ba5a57e041f96e3d75867f73b8db9cf716211ef5
+
 language: node_js
 node_js:
   - "node"
@@ -12,3 +16,4 @@ node_js:
 
 after_success:
   -  npm run coveralls
+  -  npm run report_codeclimate
