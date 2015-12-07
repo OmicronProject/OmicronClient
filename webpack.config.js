@@ -8,7 +8,7 @@ var path = require('path');
 var build_directory = path.join(__dirname, 'dist');
 
 module.exports = {
-    entry: './src/test_hello_render.js',
+    entry: './index.js',
     output: { path: build_directory, filename: 'bundle.js' },
     module: {
         loaders: [
@@ -19,6 +19,9 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react']
                 }
+            },
+            {
+                test: /\.css$/, loader: "style!css"
             }
         ]
     }
