@@ -11,7 +11,7 @@
     "test": "karma start karma.conf.js",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "postinstall": "node ./node_modules/webpack/bin/webpack.js",
-    "start": "nf start"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port $PORT"
   },
   "repository": {
     "type": "git",
