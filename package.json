@@ -2,6 +2,10 @@
   "name": "omicron-client",
   "version": "0.1.1",
   "description": "The front end for the Omicron system",
+  "engines": {
+    "node": "5.0.0",
+    "npm": "3.3.4"
+  },
   "main": "index.js",
   "scripts": {
     "test": "karma start karma.conf.js",
