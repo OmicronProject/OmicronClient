@@ -4,12 +4,13 @@
 'use strict';
 
 var path = require('path');
+var webpack = require('webpack');
 
 var build_directory = path.join(__dirname, 'dist');
 
 module.exports = {
     entry: './index.js',
-    output: { path: build_directory, filename: 'bundle.js' },
+    output: { path: build_directory, filename: 'bundle.min.js' },
     module: {
         loaders: [
             {
@@ -24,5 +25,8 @@ module.exports = {
                 test: /\.css$/, loader: "style!css"
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({minimize: true})
+    ]
 };
