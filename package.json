@@ -2,12 +2,16 @@
   "name": "omicron-client",
   "version": "0.1.1",
   "description": "The front end for the Omicron system",
+  "engines": {
+    "node": "5.0.0",
+    "npm": "3.3.4"
+  },
   "main": "index.js",
   "scripts": {
     "test": "karma start karma.conf.js",
     "coveralls": "cat coverage/lcov.info | coveralls",
-    "postinstall": "webpack",
-    "start": "nf start"
+    "postinstall": "node ./node_modules/webpack/bin/webpack.js",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port $PORT"
   },
   "repository": {
     "type": "git",
@@ -19,7 +23,7 @@
     "url": "https://github.com/MichalKononenko/OmicronClient/issues"
   },
   "homepage": "https://github.com/MichalKononenko/OmicronClient#readme",
-  "devDependencies": {
+  "dependencies": {
     "babel": "^6.1.18",
     "babel-core": "^6.1.21",
     "babel-loader": "^6.2.0",
@@ -46,7 +50,8 @@
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.6"
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.14.0"
   },
-  "dependencies": {}
+  "devDependencies": {}
 }
