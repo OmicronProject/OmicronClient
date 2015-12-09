@@ -50,6 +50,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
     "phantomjs": "^1.9.18",
+    "promise": "^7.0.4",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "style-loader": "^0.13.0",
