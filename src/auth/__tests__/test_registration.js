@@ -17,10 +17,10 @@ describe('Test the LoginForm for the front page', () => {
                 constructor_call_args.push(props)
             };
 
-            var props = {name: 'foo'};
+            let props = {name: 'foo'};
 
-            new LoginForm(props);
+            let form = new LoginForm(props);
+
+            expect(form.props).toEqual(props)
         });
-
-    it('')
 });
