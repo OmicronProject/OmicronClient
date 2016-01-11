@@ -1,13 +1,13 @@
 /**
- * Bootstraps the application
- *
- * Created by Michal on 2015-12-19.
+ * Created by Michal on 2016-01-11.
  */
+import React from 'react';
+import {react_dom} from 'react-dom';
 
-import ReactDOM from 'react-dom';
-import App from './components/App';
+class App extends React.Component {
+    render() {
+        return <div>Hello World</div>
+    }
+}
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('app-container')
-);
+export default App;
