@@ -1,3 +1,6 @@
+.. image:: https://badge.waffle.io/MichalKononenko/OmicronClient.png?label=ready&title=Ready 
+ :target: https://waffle.io/MichalKononenko/OmicronClient
+ :alt: 'Stories in Ready'
 Omicron Client
 ==============
 The front end for the Omicron Project
