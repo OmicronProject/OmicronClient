@@ -26,3 +26,7 @@ Badges
 .. image:: https://codeclimate.com/github/MichalKononenko/OmicronClient/badges/gpa.svg
     :target: https://codeclimate.com/github/MichalKononenko/OmicronClient
     :alt: Code Climate
+
+.. image:: https://badge.waffle.io/MichalKononenko/OmicronClient.png?label=ready&title=Ready
+    :target: https://waffle.io/MichalKononenko/OmicronClient
+    :alt: 'Stories in Ready'
