@@ -14,7 +14,7 @@ describe('Test Login Form', ()=> {
 
         expect(form.name).toEqual('LoginForm');
         expect(form.state).toEqual({
-            username: 'Username', password: 'Password'
+            username: undefined, password: undefined
         });
     });
 
