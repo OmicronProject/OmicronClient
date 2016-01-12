@@ -6,6 +6,7 @@
 import React from 'react';
 import {react_dom} from 'react-dom';
 import Logo from './components/logo';
+import LoginForm from './components/LoginForm';
 
 class App extends React.Component {
     constructor(className, props, state){
@@ -35,7 +36,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Logo source="https://avatars3.githubusercontent.com/u/8391612?v=3&s=460"/>
+                <LoginForm />
             </div>
         )
     }

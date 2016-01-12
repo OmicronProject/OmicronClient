@@ -12,7 +12,10 @@ describe('Test Login Form', ()=> {
     it('should set the name for the component', () => {
         let form = new LoginForm();
 
-        expect(form.name).toEqual('LoginForm')
+        expect(form.name).toEqual('LoginForm');
+        expect(form.state).toEqual({
+            username: 'Username', password: 'Password'
+        });
     });
 
     it('should render into the DOM', () => {
@@ -20,5 +23,5 @@ describe('Test Login Form', ()=> {
 
         let root = TestUtils.renderIntoDocument(<form />);
         expect(root).toExist();
-    })
+    });
 });

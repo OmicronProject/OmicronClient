@@ -10,14 +10,28 @@ class LoginForm extends React.Component {
     constructor() {
         super();
         this.name = 'LoginForm';
-    }
 
-    static getInitialState(){
-        return {username: 'Username', password: 'Password'}
+        this.state = {username:'Username', password: 'Password'};
+
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(){
-        console.log(String(this.state.username) + String(this.state.password))
+
+    }
+
+    handleUsernameChange(event) {
+        this.setState(
+            {username: event.target.value}
+        )
+    }
+
+    handlePasswordChange(event) {
+        this.setState({
+            password: event.target.value
+        })
     }
 
     render() {
@@ -25,24 +39,26 @@ class LoginForm extends React.Component {
             <form>
                 <div id={this.name} className="loginForm">
                     <div className="form-group">
-                        <label for="username_entry">Username</label>
+                        <label>Username</label>
                         <input type="text"
                                className="form-control"
                                id="username_entry"
+                               onChange={this.handleUsernameChange}
                                value={this.state.username}
                         />
                     </div>
                     <div className="form-group">
-                        <label for="password_entry">Password</label>
+                        <label>Password</label>
                         <input type="password"
                                className="form-control"
                                id="password_entry"
-                               placeholder="Password"
+                               onChange={this.handlePasswordChange}
                                value={this.state.password}
                        />
                     </div>
                     <button type="submit" className="btn btn-default" onclick={this.handleSubmit}>Submit</button>
                 </div>
+                <div>username={this.state.username}, password={this.state.password}</div>
             </form>
         )
     }
