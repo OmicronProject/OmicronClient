@@ -1,5 +1,8 @@
 /**
  * Created by Michal on 2015-12-07.
  */
-require('./src/hello_render');
-require('!style!css!./static/css/cover.css');
+import App from './src/app';
+import React from 'react';
+import React_DOM from 'react-dom';
+
+React_DOM.render(<App />, document.getElementById('app-container'));

@@ -1,60 +1,59 @@
 {
   "name": "omicron-client",
   "version": "0.1.1",
-  "description": "The front end for the Omicron system",
-  "engines": {
-    "node": "5.0.0",
-    "npm": "3.3.4"
-  },
+  "description": "The front end for the Omicron site",
   "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "test": "karma start karma.conf.js",
     "coveralls": "cat coverage/lcov.info | coveralls",
-    "postinstall": "node ./node_modules/webpack/bin/webpack.js",
+    "postinstall": "npm run compile",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port $PORT",
-    "report_codeclimate": "CODECLIMATE_REPO_TOKEN=8a865bc474c488e8f16c2622ba5a57e041f96e3d75867f73b8db9cf716211ef5 ; node ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info"
+    "report_codeclimate": "CODECLIMATE_REPO_TOKEN=8a865bc474c488e8f16c2622ba5a57e041f96e3d75867f73b8db9cf716211ef5 ; node ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
+    "compile": "node ./node_modules/webpack/bin/webpack.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MichalKononenko/OmicronClient.git"
   },
-  "author": "Michal Kononenko <mkononen@uwaterloo.ca> (https://github.com/MichalKononenko)",
+  "author": "Michal Kononenko <mkononen@uwaterloo.ca>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/MichalKononenko/OmicronClient/issues"
   },
   "homepage": "https://github.com/MichalKononenko/OmicronClient#readme",
   "dependencies": {
-    "babel": "^6.1.18",
-    "babel-core": "^6.1.21",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
-    "bootstrap": "^3.3.5",
+    "babel": "^6.3.26",
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "bootstrap": "^3.3.6",
     "codeclimate-test-reporter": "^0.1.1",
-    "coveralls": "^2.11.4",
-    "css-loader": "^0.23.0",
-    "expect": "^1.13.0",
-    "istanbul": "^0.4.0",
+    "coveralls": "^2.11.6",
+    "css-loader": "^0.23.1",
+    "expect": "^1.13.4",
+    "istanbul": "^0.4.2",
     "istanbul-instrumenter-loader": "^0.1.3",
-    "jquery": "^2.1.4",
-    "karma": "^0.13.15",
+    "jquery": "^2.2.0",
+    "karma": "^0.13.19",
     "karma-babel-preprocessor": "^6.0.1",
-    "karma-chrome-launcher": "^0.2.1",
-    "karma-cli": "^0.1.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-cli": "^0.1.2",
     "karma-coverage": "^0.5.3",
     "karma-firefox-launcher": "^0.1.7",
     "karma-mocha": "^0.2.1",
-    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-phantomjs-launcher": "^0.2.3",
     "karma-sourcemap-loader": "^0.3.6",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
-    "phantomjs": "^1.9.18",
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2",
+    "phantomjs": "^1.9.19",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.6",
+    "webpack": "^1.12.10",
     "webpack-dev-server": "^1.14.0"
-  },
-  "devDependencies": {}
+  }
 }
