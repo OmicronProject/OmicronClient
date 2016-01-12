@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
         super();
         this.name = 'LoginForm';
 
-        this.state = {username:'Username', password: 'Password'};
+        this.state = {username:undefined, password:undefined};
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -44,6 +44,7 @@ class LoginForm extends React.Component {
                                className="form-control"
                                id="username_entry"
                                onChange={this.handleUsernameChange}
+                               placeholder="Username"
                                value={this.state.username}
                         />
                     </div>
@@ -53,6 +54,7 @@ class LoginForm extends React.Component {
                                className="form-control"
                                id="password_entry"
                                onChange={this.handlePasswordChange}
+                               placeholder="Password"
                                value={this.state.password}
                        />
                     </div>
