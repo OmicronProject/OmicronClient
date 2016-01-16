@@ -2,10 +2,14 @@
  * Contains a model class for an action
  */
 class Action extends Object {
-    constructor(name, callback, payload){
+    constructor(action_type, payload){
         super();
-        this.name = name;
-        this.callback = callback;
+        if (action_type === undefined) {
+            throw Error('Attempted to launch action without a name for action type')
+        }
+        this.action_type = action_type;
         this.payload = payload;
     }
 }
+
+export default Action;
