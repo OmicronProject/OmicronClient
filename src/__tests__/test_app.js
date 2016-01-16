@@ -1,5 +1,5 @@
 /**
- * Created by Michal on 2016-01-11.
+ * Contains tests for the "./src" directory
  */
 'use strict';
 
