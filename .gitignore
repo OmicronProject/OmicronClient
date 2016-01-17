@@ -28,5 +28,5 @@ node_modules
 dist
 .idea
 
-# Sphinx Documentation
-docs/build
+# Documentation builds
+esdoc_build

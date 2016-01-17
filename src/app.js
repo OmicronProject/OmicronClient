@@ -1,5 +1,5 @@
 /**
- * Created by Michal on 2016-01-11.
+ * Contains the base class of the front end.
  */
 'use strict';
 
@@ -8,7 +8,18 @@ import {react_dom} from 'react-dom';
 import Logo from './components/logo';
 import LoginForm from './components/LoginForm';
 
+/**
+ * class responsible for creating the first-rendered React component
+ */
 class App extends React.Component {
+    /**
+     * Constructs the base method, takes in a unique name for the
+     * app component, and sets the props and state for the component
+     *
+     * @param {string} className The name of the instance of this component
+     * @param {object} props The properties of this component
+     * @param {object} state The set of variables making up this component's state
+     */
     constructor(className, props, state){
         super(props, state);
         if (className === undefined) {
@@ -33,6 +44,9 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * @returns {XML} The component to be rendered
+     */
     render() {
         return (
             <div>
