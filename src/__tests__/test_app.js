@@ -8,9 +8,10 @@ import App from '../app';
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
 
-
+/** @test {App} */
 describe('Test the App', () => {
 
+    /** @test {App#constructor} */
     it('Should set its props and state to {} if no props are supplied', () => {
         let app = new App('Test Class', undefined, undefined);
         expect(app.props).toEqual({});
