@@ -4,6 +4,6 @@
  */
 import Flux from 'flux';
 
-let dispatch = new Dispatcher();
+let dispatch = new Flux.Dispatcher();
 
 export default dispatch;
