@@ -20,6 +20,6 @@ describe('Test Dispatcher', () => {
         test_dispatcher.register(callback);
         test_dispatcher.dispatch();
 
-        expect(callback_list).toEqual(['hello'])
+        expect(callback_list).toEqual(['hello']);
     })
 });
