@@ -4,12 +4,12 @@
  */
 import React from 'react';
 import 'jquery';
-import Flux from 'flux';
+import {Store} from 'flux/utils';
 import Dispatcher from '../dispatcher/Dispatcher';
 
 
-class HTTPStore extends Flux.FluxStore {
-    constructor(dispatcher:Dispatcher, initialState, live_update) {
+class HTTPStore extends Store {
+    constructor(dispatcher:Dispatcher, initialState, jquery=$) {
         super(dispatcher);
         this.state = {
             url: initialState.url,
@@ -18,14 +18,13 @@ class HTTPStore extends Flux.FluxStore {
             body: initialState.body,
             response: {}
         };
-        this.live_update = live_update;
-
-        this.edit_request.bind(this);
+        this.jquery = jquery;
+        this.send_request.bind(this);
     }
 
     send_request() {
         return(
-            $.ajax({
+            this.jquery.ajax(this.state.url, {
                 headers: this.state.headers,
                 url: this.state.url,
                 type: this.state.http_method,
@@ -35,6 +34,10 @@ class HTTPStore extends Flux.FluxStore {
         )
     }
 
+    handle_response() {
+
+    }
+
     __onDispatch(action) {
         switch (action.action_type) {
             case 'EDIT_REQUEST':
@@ -42,3 +45,5 @@ class HTTPStore extends Flux.FluxStore {
         }
     }
 }
+
+export default HTTPStore
