@@ -16,9 +16,11 @@ class HeaderBar extends React.Component {
 
     render() {
         return(
-            <nav className="navbar-fixed-top">
-                {this.props.buttons.map(this.make_button)}
-            </nav>
+            <div class="container">
+                <nav className="navbar-fixed-top">
+                    {this.props.buttons.map(this.make_button)}
+                </nav>
+            </div>
         )
     }
 }

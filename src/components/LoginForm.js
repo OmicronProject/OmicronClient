@@ -36,6 +36,7 @@ class LoginForm extends React.Component {
 
     render() {
         return(
+            <div className="container">
             <form>
                 <div id={this.name} className="loginForm">
                     <div className="form-group">
@@ -62,6 +63,7 @@ class LoginForm extends React.Component {
                 </div>
                 <div>username={this.state.username}, password={this.state.password}</div>
             </form>
+            </div>
         )
     }
 }
