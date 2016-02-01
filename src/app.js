@@ -52,7 +52,14 @@ class App extends React.Component {
         return (
 
             <div>
-                <HeaderBar buttons={[{name: "dashboard", link: "#"}]}/>
+                <HeaderBar
+                    buttons={
+                    [
+                        {name: "Home", link: "#"},
+                        {name: "Dashboard", link: "#"},
+                        {name: "Login", link: "#"}
+                    ]
+                    }/>
                 <LoginForm />
             </div>
         )

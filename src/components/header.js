@@ -11,16 +11,18 @@ class HeaderBar extends React.Component {
     }
 
     make_button(button) {
-        return(<a href={button.link}>{button.name}</a>)
+        return(
+            <li role="presentation">
+                <a href={button.link}>{button.name}</a>
+            </li>
+        )
     }
 
     render() {
         return(
-            <div class="container">
-                <nav className="navbar-fixed-top">
-                    {this.props.buttons.map(this.make_button)}
-                </nav>
-            </div>
+            <ul className="nav nav-pills">
+                {this.props.buttons.map(this.make_button)}
+            </ul>
         )
     }
 }
