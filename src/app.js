@@ -7,6 +7,7 @@ import React from 'react';
 import {react_dom} from 'react-dom';
 import Logo from './components/logo';
 import LoginForm from './components/LoginForm';
+import HeaderBar from './components/header';
 
 /**
  * class responsible for creating the first-rendered React component
@@ -49,7 +50,9 @@ class App extends React.Component {
      */
     render() {
         return (
+
             <div>
+                <HeaderBar buttons={[{name: "dashboard", link: "#"}]}/>
                 <LoginForm />
             </div>
         )
