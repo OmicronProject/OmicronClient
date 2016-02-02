@@ -29,7 +29,7 @@ class HeaderBar extends React.Component {
 
     make_button(button) {
         return(
-            <li role="presentation" key={button.key}>
+            <li key={button.key} role="presentation">
                 <a href={button.link}>{button.name}</a>
             </li>
         )
