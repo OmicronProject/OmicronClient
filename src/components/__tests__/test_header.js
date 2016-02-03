@@ -16,15 +16,19 @@ describe('Test header bar', () => {
     });
 
     it('Should make a JSX button', () => {
-        let props = {buttons:[{name: 'foo', link: "#"}]};
+        let props = {buttons:[{name: 'foo', link: "#", key: "key"}]};
         let bar = new HeaderBar(props);
 
-        let button = bar.make_button(props.buttons[0]);
+        let button = bar._make_button(props.buttons[0]);
 
         let button_name = props.buttons[0].name;
         let button_link = props.buttons[0].link;
+        let button_key = props.buttons[0].key;
 
-        expect(button).toEqual(<a href={button_link}>{button_name}</a>);
+        expect(button).toEqual(
+            <li role="presentation" key={button_key}>
+                <a href={button_link}>{button_name}</a>
+            </li>);
     });
 
     it('Should render into the DOM', () => {

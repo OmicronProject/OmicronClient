@@ -50,9 +50,15 @@ class App extends React.Component {
      */
     render() {
         return (
-
             <div>
-                <HeaderBar buttons={[{name: "dashboard", link: "#"}]}/>
+                <HeaderBar
+                    buttons={
+                    [
+                        {name: "Home", link: "#", key: "header_button1"},
+                        {name: "Dashboard", link: "#", key: "header_button2"},
+                        {name: "Login", link: "#", key: "header_button3"}
+                    ]
+                    }/>
                 <LoginForm />
             </div>
         )
