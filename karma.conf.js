@@ -17,7 +17,8 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'tests.webpack.js': [ 'webpack', 'sourcemap' ]
+            'tests.webpack.js': [ 'webpack', 'sourcemap' ],
+            'src/*.js': ['coverage']
         },
 
         reporters: [ 'dots', 'coverage' ],
@@ -35,7 +36,12 @@ module.exports = function (config) {
             module: {
                 loaders: [
                     { test: /\.js$/, loader: 'babel-loader' }
-                ]
+                ],
+                postLoaders: [{
+                    test: /\.js?$/,
+                    exclude: /(test|node_modules)/,
+                    loader: 'istanbul-instrumenter'
+                }]
             }
         },
 
