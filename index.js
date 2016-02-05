@@ -6,4 +6,3 @@ import React from 'react';
 import React_DOM from 'react-dom';
 
 React_DOM.render(<App />, document.getElementById('app-container'));
-document.write("<div>I want copy</div>");
