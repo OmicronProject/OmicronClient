@@ -13,6 +13,6 @@ describe('Tests Action', () => {
         let action = new Action(name, payload);
 
         expect(action.payload).toEqual(payload);
-        expect(action.action_type).toEqual(name);
+        expect(action.type).toEqual(name);
     })
 });
