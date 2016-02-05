@@ -1,4 +1,6 @@
 /**
+ * Contains a class for making top-level navigation bars in the web page
+ *
  * Created by Michal on 2016-02-01.
  */
 import React from 'react';
@@ -24,10 +26,19 @@ class HeaderBar extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
-        this.make_button.bind(this);
+        this._make_button.bind(this);
     }
 
-    make_button(button) {
+    /**
+     * Parses a subsection of the header's props, using them to build a
+     * navigation button
+     *
+     * @param {Object} button: The button that is to be made, of the form
+     *  @example
+     *      { name: "Button name", link: "#", key: "Key1" }
+     * @returns {XML} The JSX code responsible for creating the button
+     */
+    _make_button(button) {
         return(
             <li key={button.key} role="presentation">
                 <a href={button.link}>{button.name}</a>
@@ -35,10 +46,14 @@ class HeaderBar extends React.Component {
         )
     }
 
+    /**
+     * Write the navbar into the DOM
+     * @returns {XML} JSX responsible for making the navbar
+     */
     render() {
         return(
             <ul className="nav nav-pills">
-                {this.props.buttons.map(this.make_button)}
+                {this.props.buttons.map(this._make_button)}
             </ul>
         )
     }

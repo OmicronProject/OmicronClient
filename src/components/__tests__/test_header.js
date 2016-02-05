@@ -19,7 +19,7 @@ describe('Test header bar', () => {
         let props = {buttons:[{name: 'foo', link: "#", key: "key"}]};
         let bar = new HeaderBar(props);
 
-        let button = bar.make_button(props.buttons[0]);
+        let button = bar._make_button(props.buttons[0]);
 
         let button_name = props.buttons[0].name;
         let button_link = props.buttons[0].link;
