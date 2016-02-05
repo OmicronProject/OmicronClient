@@ -9,17 +9,35 @@ Travis CI Build
 * [![Build Status](
     https://travis-ci.org/MichalKononenko/OmicronServer.svg?branch=master)
     ](https://travis-ci.org/MichalKononenko/OmicronServer) Build Status 
-* Coveralls Code Coverage Report [![Coverage Status](https://coveralls.io/repos/MichalKononenko/OmicronClient/badge.svg?branch=master&service=github)](https://coveralls.io/github/MichalKononenko/OmicronClient?branch=master)
-* License [![License](https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-* Dependency Status [![Dependency Status](https://david-dm.org/MichalKononenko/OmicronClient.svg)](https://david-dm.org/MichalKononenko/OmicronClient)
-* CodeClimate [![Code Climate](https://codeclimate.com/github/MichalKononenko/OmicronClient/badges/gpa.svg)](https://codeclimate.com/github/MichalKononenko/OmicronClient)
-* Project Management [![Stories in Ready](https://badge.waffle.io/MichalKononenko/OmicronClient.svg?label=ready&title=Ready)](http://waffle.io/MichalKononenko/OmicronClient)
-* Docs [![Documentation](https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/badge.svg)](https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/)
+* [![Coverage Status](
+    https://coveralls.io/repos/MichalKononenko/OmicronClient/badge.svg?branch=master&service=github)
+    ](https://coveralls.io/github/MichalKononenko/OmicronClient?branch=master)
+    Coveralls Code Coverage Report 
+* [![License](
+    https://img.shields.io/badge/License-GNU%20GPL%20v3-blue.svg)
+    ](https://www.gnu.org/licenses/gpl-3.0.en.html)
+    License
+* [![Dependency Status](
+    https://david-dm.org/MichalKononenko/OmicronClient.svg)
+    ](https://david-dm.org/MichalKononenko/OmicronClient)
+    Dependency Status 
+* [![Code Climate](
+    https://codeclimate.com/github/MichalKononenko/OmicronClient/badges/gpa.svg)
+    ](https://codeclimate.com/github/MichalKononenko/OmicronClient)
+    [codeclimate](www.codeclimate.com) automated code-quality reports
+* [![Stories in Ready](
+    https://badge.waffle.io/MichalKononenko/OmicronClient.svg?label=ready&title=Ready)
+    ](http://waffle.io/MichalKononenko/OmicronClient)
+    Project Management
+* [![Documentation](
+    https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/badge.svg)
+    ](https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/)
+    Docs
 
 ## Development Machine ##
 
-The master branch of this repository is built and hosted on 
-[omicronclient.herokuapp.com](omicronclient.herokuapp.com)
+A build of the latest ```master``` branch of this repository is hosted on 
+[omicronclient.herokuapp.com](http://www.omicronclient.herokuapp.com)
 
 ## Installation ##
 
@@ -45,7 +63,7 @@ added to the output code.
 
 ### Installation Requirements ###
 
-1. [Git](git-scm.com)
+1. [Git](https://www.git-scm.com)
 2. [Node.js](https://nodejs.org/en/)
 3. [Node Package Manager (npm)](https://www.npmjs.com/)
     (Should come bundled with node)
