@@ -4,7 +4,8 @@ Front end for the Omicron System
 
 ## Badges ##
 
-Travis CI Build
+The following are reports from various automated codebase monitoring systems.
+Each one is linked to their respective service.
 
 * [![Build Status](
     https://travis-ci.org/MichalKononenko/OmicronServer.svg?branch=master)
@@ -63,7 +64,7 @@ added to the output code.
 
 ### Installation Requirements ###
 
-1. [Git](https://www.git-scm.com)
+1. [Git](https://git-scm.com)
 2. [Node.js](https://nodejs.org/en/)
 3. [Node Package Manager (npm)](https://www.npmjs.com/)
     (Should come bundled with node)
