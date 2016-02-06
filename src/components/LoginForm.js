@@ -1,7 +1,8 @@
 /**
  * Created by Michal on 2016-01-12.
  *
- * Contains the login form for the user
+ * Contains the login form for the user. Intended to be used as a test bed for
+ * React's form handling
  */
 'use strict';
 import React from 'react';

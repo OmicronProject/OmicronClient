@@ -10,7 +10,9 @@ var build_directory = path.join(__dirname, 'dist');
 
 module.exports = {
     entry: './index.js',
-    output: { path: build_directory, filename: 'bundle.min.js' },
+    output: { path: build_directory, filename: 'bundle.min.js',
+              publicPath: "/dist/"
+            },
     module: {
         loaders: [
             {
