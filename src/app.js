@@ -9,6 +9,9 @@ import Logo from './components/logo';
 import LoginForm from './components/LoginForm';
 import HeaderBar from './components/header';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
+
 /**
  * class responsible for creating the first-rendered React component
  */
