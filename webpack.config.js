@@ -24,7 +24,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/, loader: "style!css"
+                test: /\.css$/, loader: "style-loader!css-loader"
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"
