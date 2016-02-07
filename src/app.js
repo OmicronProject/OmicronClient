@@ -4,10 +4,10 @@
 'use strict';
 
 import React from 'react';
-import {react_dom} from 'react-dom';
 import Logo from './components/logo';
 import LoginForm from './components/LoginForm';
 import HeaderBar from './components/header';
+import {Router, Route, Link} from 'react-router';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -44,15 +44,18 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <HeaderBar
-                    buttons={
+            <HeaderBar
+            buttons={
                     [
                         {name: "Home", link: "#", key: "header_button1"},
                         {name: "Dashboard", link: "#", key: "header_button2"},
                         {name: "Login", link: "#", key: "header_button3"}
                     ]
-                    }/>
-                <LoginForm />
+                    }
+            />
+            <Router>
+                <Route path="/" component={LoginForm} />
+            </Router>
             </div>
         )
     }
