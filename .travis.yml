@@ -14,6 +14,9 @@ node_js:
   - "0.12"
   - "iojs"
 
+env:
+  - CXX=g++-4.8
+
 after_success:
   -  npm run coveralls
   -  npm run report_codeclimate
