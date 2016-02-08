@@ -95,7 +95,7 @@ class HTTPRequest extends React.Component{
      *  should be dispatched. the type of this action is "HTTP_REQUEST_SUCCESS"
      */
     handle_success(response, dispatcher=dispatcher){
-        this.state += {response: response};
+        this.setState({response: response});
         let action = new Action('HTTP_REQUEST_SUCCESS',
             {
                 url: this.props.url,
@@ -114,7 +114,7 @@ class HTTPRequest extends React.Component{
      * @param dispatcher
      */
     handle_failure(error, dispatcher=dispatcher){
-        this.state += {error: error};
+        this.setState({error: error});
         let action = new Action('HTTP_REQUEST_FAILURE',
             {
                 url: this.props.url,
