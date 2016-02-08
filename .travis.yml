@@ -17,6 +17,13 @@ node_js:
 env:
   - CXX=g++-4.8
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
 after_success:
   -  npm run coveralls
   -  npm run report_codeclimate
