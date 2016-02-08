@@ -53,9 +53,11 @@ class HeaderBar extends React.Component {
      */
     render() {
         return(
-            <ul className="nav nav-pills">
-                {this.props.buttons.map(this._make_button)}
-            </ul>
+            <div>
+                <ul className="nav nav-pills">
+                    {this.props.buttons.map(this._make_button)}
+                </ul>
+            </div>
         )
     }
 }

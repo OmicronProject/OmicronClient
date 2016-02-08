@@ -7,7 +7,8 @@ import React from 'react';
 import Logo from './components/logo';
 import LoginForm from './components/LoginForm';
 import HeaderBar from './components/header';
-import {Router, Route, Link} from 'react-router';
+import HTTPTest from './components/http_test';
+import {Router, Route, Link, browserHistory} from 'react-router';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -43,20 +44,10 @@ class App extends React.Component {
      */
     render() {
         return (
-            <div>
-            <HeaderBar
-            buttons={
-                    [
-                        {name: "Home", link: "#", key: "header_button1"},
-                        {name: "Dashboard", link: "#", key: "header_button2"},
-                        {name: "Login", link: "#", key: "header_button3"}
-                    ]
-                    }
-            />
-            <Router>
-                <Route path="/" component={LoginForm} />
+            <Router history={browserHistory}>
+                <Route path="/" component={LoginForm}/>
+                <Route path="http_test" component={HTTPTest}/>
             </Router>
-            </div>
         )
     }
 }
