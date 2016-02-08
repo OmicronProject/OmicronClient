@@ -5,6 +5,7 @@ import TestUtils from 'react/lib/ReactTestUtils';
 import expect from 'expect';
 import HeaderBar from '../header';
 import React from 'react';
+import {Link} from 'react-router';
 
 describe('Test header bar', () => {
     it('should take in props in its constructor', () => {
@@ -27,7 +28,7 @@ describe('Test header bar', () => {
 
         expect(button).toEqual(
             <li role="presentation" key={button_key}>
-                <a href={button_link}>{button_name}</a>
+                <Link to={button_link}>{button_name}</Link>
             </li>);
     });
 

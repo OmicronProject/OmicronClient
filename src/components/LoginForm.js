@@ -6,6 +6,7 @@
  */
 'use strict';
 import React from 'react';
+import HeaderBar from './header';
 
 /**
  * Controller-view for a simple login form for the user. Most code apart from
@@ -62,6 +63,16 @@ class LoginForm extends React.Component {
      */
     render() {
         return(
+            <div>
+            <HeaderBar buttons={
+                        [
+                            {name: "Home", link: "#", key: "header_button1"},
+                            {name: "Dashboard", link: "#", key: "header_button2"},
+                            {name: "Login", link: "#", key: "header_button3"},
+                            {name: "HTTP Test", link: "/http_test",
+                                key:"header_button4"}
+                        ]
+                        } />
             <div className="container">
             <form>
                 <div id={this.name} className="loginForm">
@@ -89,6 +100,7 @@ class LoginForm extends React.Component {
                 </div>
                 <div>username={this.state.username}, password={this.state.password}</div>
             </form>
+            </div>
             </div>
         )
     }

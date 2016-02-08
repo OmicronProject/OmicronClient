@@ -4,6 +4,7 @@
  * Created by Michal on 2016-02-01.
  */
 import React from 'react';
+import {Link} from 'react-router';
 
 /**
  * Responsible for rendering the header bar, corresponding to the available
@@ -40,8 +41,8 @@ class HeaderBar extends React.Component {
      */
     _make_button(button) {
         return(
-            <li role="presentation" key={button.key}>
-                <a href={button.link}>{button.name}</a>
+            <li key={button.key} role="presentation">
+                <Link to={button.link}>{button.name}</Link>
             </li>
         )
     }
@@ -52,9 +53,11 @@ class HeaderBar extends React.Component {
      */
     render() {
         return(
-            <ul className="nav nav-pills">
-                {this.props.buttons.map(this._make_button)}
-            </ul>
+            <div>
+                <ul className="nav nav-pills">
+                    {this.props.buttons.map(this._make_button)}
+                </ul>
+            </div>
         )
     }
 }
