@@ -4,12 +4,16 @@
 class Action extends Object {
     constructor(type, payload){
         super();
-        if (type === undefined) {
-            throw new Error('Attempted to launch action without a name for action type')
-        }
         this.type = type;
         this.payload = payload;
         this.error = false;
+    }
+}
+
+class Error extends Action {
+    constructor(payload){
+        super(payload);
+        this.error = true;
     }
 }
 
