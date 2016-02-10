@@ -7,8 +7,7 @@ import React from 'react';
 import axios from 'axios';
 import log from 'loglevel';
 import dispatcher from '../dispatcher/Dispatcher';
-import Action from '../actions/action';
-
+import {HTTPSuccessAction, HTTPFailureAction} from '../actions/http_request';
 /**
  * Run a cross-domain HTTP Request to another server.
  */
@@ -96,7 +95,7 @@ class HTTPRequest extends React.Component{
      */
     handle_success(response, dispatcher=dispatcher){
         this.setState({response: response});
-        let action = new Action('HTTP_REQUEST_SUCCESS',
+        let action = new HTTPSuccessAction(
             {
                 url: this.props.url,
                 method: this.props.method,
@@ -114,16 +113,15 @@ class HTTPRequest extends React.Component{
      * @param dispatcher
      */
     handle_failure(error, dispatcher=dispatcher){
-        this.setState({error: error});
-        let action = new Action('HTTP_REQUEST_FAILURE',
+        this.setState({response: error, error: true});
+        let action = new HTTPFailureAction(
             {
                 url: this.props.url,
                 method: this.props.method,
                 headers: this.props.headers,
-                error: error
+                response: error
             }
         );
-        action.error = true;
 
         dispatcher.dispatch(action);
     }

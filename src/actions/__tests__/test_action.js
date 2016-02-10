@@ -9,10 +9,8 @@ import TestUtils from 'react/lib/ReactTestUtils';
 describe('Tests Action', () => {
     it('Should accept an action type as a name', () => {
         let payload = {value: 'payload'};
-        let name = 'TEST_ACTION';
-        let action = new Action(name, payload);
+        let action = new Action(payload);
 
         expect(action.payload).toEqual(payload);
-        expect(action.type).toEqual(name);
     })
 });

@@ -6,6 +6,7 @@ import expect from 'expect';
 import React from 'react';
 import HTTPRequest from "../http_request";
 import dispatcher from '../../dispatcher/Dispatcher';
+import {HTTPSuccessAction, HTTPFailureAction} from '../../actions/http_request';
 
 describe('Test HTTP Request component', () => {
     let dispatch_spy;
@@ -87,16 +88,12 @@ describe('Test that HTTP Request successfully creates an axios instance', ()=>{
         req.handle_success(response, dispatcher);
 
         expect(dispatcher_callback_list[0].payload.response).toEqual(response);
-        expect(dispatcher_callback_list[0].type).toEqual(
-            "HTTP_REQUEST_SUCCESS");
     });
 
     it('Should handle a failed response', () => {
         let response = {error: 'returned error'};
 
         req.handle_failure(response, dispatcher);
-        expect(dispatcher_callback_list[0].payload.error).toEqual(response);
-        expect(dispatcher_callback_list[0].type)
-            .toEqual("HTTP_REQUEST_FAILURE");
+        expect(dispatcher_callback_list[0].payload.response).toEqual(response);
     });
 });

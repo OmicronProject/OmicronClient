@@ -2,9 +2,8 @@
  * Contains a model class for an action
  */
 class Action extends Object {
-    constructor(type, payload){
+    constructor(payload){
         super();
-        this.type = type;
         this.payload = payload;
         this.error = false;
     }
@@ -17,4 +16,5 @@ class Error extends Action {
     }
 }
 
-export default Action;
+export {Action, Error}
+export default Action
