@@ -5,7 +5,7 @@
 
 import TestUtils from 'react/lib/ReactTestUtils';
 import expect from 'expect';
-import LoginForm from '../LoginForm';
+import LoginForm from '../login_form';
 import React from 'react';
 
 describe('Test Login Form', ()=> {

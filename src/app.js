@@ -5,7 +5,7 @@
 
 import React from 'react';
 import Logo from './components/logo';
-import LoginForm from './components/LoginForm';
+import LoginForm from './containers/login_form';
 import HeaderBar from './components/header';
 import HTTPTest from './components/http_cors_test';
 import {Router, Route, Link, browserHistory} from 'react-router';

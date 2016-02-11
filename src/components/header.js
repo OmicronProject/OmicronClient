@@ -27,7 +27,9 @@ class HeaderBar extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
-        this._make_button.bind(this);
+        this._make_button = this._make_button.bind(this);
+        this._make_internal = this._make_internal.bind(this);
+        this._make_external = this._make_external.bind(this);
     }
 
     /**
@@ -40,9 +42,25 @@ class HeaderBar extends React.Component {
      * @returns {XML} The JSX code responsible for creating the button
      */
     _make_button(button) {
+        if ((button.type === undefined) || (button.type === 'internal')) {
+            return (this._make_internal(button));
+        } else {
+            return (this._make_external(button));
+        }
+    }
+
+    _make_internal(button) {
         return(
             <li key={button.key} role="presentation">
                 <Link to={button.link}>{button.name}</Link>
+            </li>
+        )
+    }
+
+    _make_external(button) {
+        return(
+            <li key={button.key} role="presentation">
+                <a href={button.link}>{button.name}</a>
             </li>
         )
     }
