@@ -5,18 +5,8 @@
 import expect from 'expect';
 import React from 'react';
 import HTTPRequest from "../http_request";
-import dispatcher from '../../dispatcher/Dispatcher';
 
 describe('Test HTTP Request component', () => {
-    let dispatch_spy;
-
-    beforeEach(() => {
-        dispatch_spy = expect.spyOn(dispatcher, 'dispatch');
-    });
-
-    afterEach(() => {
-        dispatch_spy.restore();
-    });
 
     it('Should construct with a valid URL', () => {
         let props = {
@@ -61,18 +51,9 @@ describe('Test HTTP Request component', () => {
 describe('Test that HTTP Request successfully creates an axios instance', ()=>{
     let props = {url: 'https://api.github.com'};
     let req;
-    let dispatcher;
-    let dispatcher_callback_list = [];
 
     beforeEach(()=> {
         req = new HTTPRequest(props);
-        dispatcher = {dispatch: (action) => {
-            dispatcher_callback_list.push(action);
-        }};
-    });
-
-    afterEach(()=>{
-        dispatcher_callback_list = [];
     });
 
     it('Should set default arguments if no arguments are provided', () => {
@@ -84,12 +65,12 @@ describe('Test that HTTP Request successfully creates an axios instance', ()=>{
     it('Should handle a successful response', () => {
         let response = {data: 'returned data'};
 
-        req.handle_success(response, dispatcher);
+        req.handle_success(response);
     });
 
     it('Should handle a failed response', () => {
         let response = {error: 'returned error'};
 
-        req.handle_failure(response, dispatcher);
+        req.handle_failure(response);
     });
 });

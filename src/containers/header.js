@@ -4,7 +4,7 @@
  * Created by Michal on 2016-02-01.
  */
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 /**
  * Responsible for rendering the header bar, corresponding to the available
