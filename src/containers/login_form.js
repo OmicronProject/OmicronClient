@@ -1,5 +1,6 @@
 /**
  * Created by Michal on 2016-02-11.
+ * Contains a container for a form allowing a user to log in to the site
  */
 import React, { PropTypes } from 'react';
 import {UserNameBox, PasswordBox} from '../components/login_form';
@@ -7,8 +8,20 @@ import {connect} from 'react-redux';
 import clone from '../object_cloning';
 import Header from './header';
 
-const LOGIN_CHANGED = 'LOGIN_CHANGED';
-
+/**
+ *
+ * Builds a login form
+ *
+ * @param {function} on_username_change The callback to execute when the
+ *  value of the username field changes
+ * @param {function} on_password_change The callback to execute when the value
+ *  of the password field changes
+ * @param {str} uname_value The value of the
+ * @param password_value
+ * @param main_menu_buttons
+ * @returns {XML}
+ * @constructor
+ */
 const LoginForm = (
     {on_username_change, on_password_change,
     uname_value, password_value, main_menu_buttons}
