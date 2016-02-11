@@ -6,8 +6,6 @@
  */
 'use strict';
 import React from 'react';
-import HeaderBar from './header';
-
 
 class InputBox extends React.Component {
     constructor(props) {

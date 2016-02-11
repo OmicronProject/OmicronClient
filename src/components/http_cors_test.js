@@ -4,7 +4,6 @@
 import React from 'react';
 import HTTPRequest from './http_request';
 import axios from 'axios';
-import HeaderBar from './header';
 
 class HTTPTest extends React.Component {
     constructor(props) {

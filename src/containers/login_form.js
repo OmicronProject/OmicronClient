@@ -5,15 +5,17 @@ import React, { PropTypes } from 'react';
 import {UserNameBox, PasswordBox} from '../components/login_form';
 import {connect} from 'react-redux';
 import clone from '../object_cloning';
+import Header from './header';
 
 const LOGIN_CHANGED = 'LOGIN_CHANGED';
 
 const LoginForm = (
     {on_username_change, on_password_change,
-    uname_value, password_value}
+    uname_value, password_value, main_menu_buttons}
 ) => {
     return(
     <div className="container">
+        <Header buttons={main_menu_buttons} />
         <form>
             <div id="loginForm" className="loginForm">
                 <UserNameBox
@@ -39,7 +41,8 @@ LoginForm.propTypes = {
 const mapLoginStateToProps = (state) => (
     {
         uname_value: state.user.username,
-        password_value: state.user.password
+        password_value: state.user.password,
+        main_menu_buttons: state.main_menu.buttons
     }
 );
 

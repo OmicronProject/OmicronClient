@@ -6,7 +6,6 @@
 import React from 'react';
 import axios from 'axios';
 import log from 'loglevel';
-import dispatcher from '../dispatcher/Dispatcher';
 /**
  * Run a cross-domain HTTP Request to another server.
  */
