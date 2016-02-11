@@ -18,7 +18,7 @@ const initial_state = {
     }
 };
 
-let root_reducer = (state = initial_state, action) => {
+let root_reducer = (state=initial_state, action) => {
     return (state);
 };
 
@@ -36,6 +36,6 @@ let reducer = (state, action) => {
     }
 };
 
-let store = createStore(reducer);
+let store = createStore(reducer, initial_state);
 
 export default store;

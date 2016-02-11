@@ -1,20 +1,17 @@
 /**
  * Created by Michal on 2016-02-11.
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 import {UserNameBox, PasswordBox} from '../components/login_form';
 import {connect} from 'react-redux';
+import clone from '../object_cloning';
 
 const LOGIN_CHANGED = 'LOGIN_CHANGED';
 
 const LoginForm = (
-    on_username_change, on_password_change,
-    uname_value, password_value
+    {on_username_change, on_password_change,
+    uname_value, password_value}
 ) => {
-    console.log("uname change " + on_username_change);
-    console.log("password change " + on_password_change);
-    console.log('uname value ' + uname_value);
-    console.log('password value ' + password_value);
     return(
     <div className="container">
         <form>
@@ -29,10 +26,15 @@ const LoginForm = (
                 />
             </div>
         </form>
-        username = {uname_value}
+        username = {uname_value} <br/>
         password = {password_value}
     </div>
 )};
+
+LoginForm.propTypes = {
+    on_username_change: PropTypes.func.isRequired,
+    on_password_change: PropTypes.func.isRequired
+};
 
 const mapLoginStateToProps = (state) => (
     {
@@ -58,25 +60,28 @@ const LoginBox = connect(mapLoginStateToProps, mapLoginDispatchToProps)
 
 // Reducers
 
-let username_change_reducer = (state, action) => {
+function username_change_reducer(state, action){
     if (action.type === "USERNAME_CHANGED") {
-        let new_state = Object.assign({}, state);
+        let new_state = clone(state);
 
         new_state.user.username = action.username;
 
         return(new_state);
+    } else {
+        return(state);
     }
-};
+}
 
-let password_change_reducer = (state, action) => {
+function password_change_reducer(state, action){
     if (action.type === "PASSWORD_CHANGED") {
-        let new_state = Object.assign({}, state);
-
+        let new_state = clone(state);
         new_state.user.password = action.password;
 
         return(new_state);
+    } else {
+        return(state);
     }
-};
+}
 
 export default LoginBox;
 export {username_change_reducer, password_change_reducer};
