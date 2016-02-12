@@ -4,6 +4,7 @@
  */
 import React, { PropTypes } from 'react';
 import {UserNameBox, PasswordBox} from '../components/login_form';
+import {SignInButton, SignUpButton} from '../components/login_form';
 import {connect} from 'react-redux';
 import clone from '../object_cloning';
 import Header from './header';
@@ -40,6 +41,8 @@ const LoginForm = (
                     value={password_value}
                 />
             </div>
+            <SignInButton/>
+            <SignUpButton/>
         </form>
         username = {uname_value} <br/>
         password = {password_value}

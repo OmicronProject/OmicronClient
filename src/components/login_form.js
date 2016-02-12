@@ -47,4 +47,50 @@ class PasswordBox extends InputBox {
     }
 }
 
-export {UserNameBox, PasswordBox};
+
+class SignInButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.props = props;
+
+        if (this.props.is_active === undefined) {
+            this.props.is_active = true;
+        }
+
+        this.get_class_name = this.get_class_name.bind(this);
+    }
+
+    get_class_name() {
+        let className;
+        if (this.props.is_active) {
+            className = "btn-primary active"
+        } else {
+            className = 'btn-primary disabled'
+        }
+        return (className);
+    }
+
+    render() {
+        return (
+            <button className={this.get_class_name()} type="submit"
+                    onClick={this.props.onClick}>{this.props.content}
+            </button>
+        );
+    }
+}
+
+class SignUpButton extends React.Component{
+    constructor(props){
+        super(props);
+        this.props = props;
+    }
+
+    render() {
+        return (
+            <button className="btn btn-primary" onClick={this.props.onClick}>
+                Sign Up
+            </button>
+        )
+    }
+}
+export {UserNameBox, PasswordBox, SignInButton, SignUpButton};

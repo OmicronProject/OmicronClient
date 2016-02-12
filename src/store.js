@@ -19,7 +19,8 @@ const initial_state = {
         username: undefined,
         password: undefined,
         token: undefined,
-        auth_status: "not_authenticated"
+        auth_status: "not_authenticated",
+        token_expiry_date: undefined
     },
     login_form:
     {
