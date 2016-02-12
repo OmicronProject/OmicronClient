@@ -41,8 +41,8 @@ const LoginForm = (
                     value={password_value}
                 />
             </div>
-            <SignInButton/>
-            <SignUpButton/>
+            <SignInButton is_active={true} content="Sign In"/>
+            <SignUpButton is_active={true}/>
         </form>
         username = {uname_value} <br/>
         password = {password_value}

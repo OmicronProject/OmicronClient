@@ -36,6 +36,16 @@ class App extends React.Component {
         } else {
             this.state = state
         }
+
+        if (this.props.pages === undefined){
+            this.props.pages = [];
+        }
+    }
+
+    static make_page(page){
+        return(
+            <Route path={page.path} component={page.component_to_load}/>
+        )
     }
 
     /**
@@ -44,8 +54,7 @@ class App extends React.Component {
     render() {
         return (
             <Router history={browserHistory}>
-                <Route path="/" component={LoginForm}/>
-                <Route path="http_test" component={HTTPTest}/>
+                {this.props.pages.map(App.make_page)}
             </Router>
         )
     }

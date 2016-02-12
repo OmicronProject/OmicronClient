@@ -52,20 +52,15 @@ class SignInButton extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
-
-        if (this.props.is_active === undefined) {
-            this.props.is_active = true;
-        }
-
         this.get_class_name = this.get_class_name.bind(this);
     }
 
     get_class_name() {
         let className;
         if (this.props.is_active) {
-            className = "btn-primary active"
+            className = "btn btn-primary active"
         } else {
-            className = 'btn-primary disabled'
+            className = 'btn btn-primary disabled'
         }
         return (className);
     }
