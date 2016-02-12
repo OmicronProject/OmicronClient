@@ -3,6 +3,7 @@
  */
 import { createStore, combineReducers } from 'redux';
 import {username_change_reducer, password_change_reducer} from './containers/login_form';
+import LoginBox from './containers/login_form';
 
 const initial_state = {
     main_menu: {
@@ -14,6 +15,9 @@ const initial_state = {
             {name: "HTTP Test", link: "/http_test", key:"header_button4"}
         ]
     },
+    pages: [
+        {path: '/', component_to_load: LoginBox}
+    ],
     user:
     {
         username: undefined,
