@@ -25,11 +25,10 @@ import Header from './header';
  */
 const LoginForm = (
     {on_username_change, on_password_change,
-    uname_value, password_value, main_menu_buttons}
+    uname_value, password_value}
 ) => {
     return(
     <div className="container">
-        <Header buttons={main_menu_buttons} />
         <form>
             <div id="loginForm" className="loginForm">
                 <UserNameBox
@@ -57,8 +56,7 @@ LoginForm.propTypes = {
 const mapLoginStateToProps = (state) => (
     {
         uname_value: state.user.username,
-        password_value: state.user.password,
-        main_menu_buttons: state.main_menu.buttons
+        password_value: state.user.password
     }
 );
 

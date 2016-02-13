@@ -13,6 +13,10 @@ import {connect} from 'react-redux';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const routes = (pages) => (
+    pages.map(make_page)
+);
+
 /**
  * Basic template for the application that is responsible for rendering
  * pages, and keeping these pages synchronized with React-Router.
@@ -26,18 +30,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
  *  state in the method ```map_state_to_app_props```.
  * @param {Object} menu_buttons: The buttons to load in the main menu.
  */
-
-const routes = (pages) => (
-    pages.map(make_page)
-);
-
 const AppTemplate = ({pages, menu_buttons}) => (
+    <div>
+    <HeaderBar buttons={menu_buttons}/>
     <Router history={browserHistory}>
-        <HeaderBar buttons={menu_buttons}/>
-        <div className="container container-fluid">
-            {routes(pages)}
-        </div>
+        {routes(pages)}
     </Router>
+    </div>
 );
 
 /**
