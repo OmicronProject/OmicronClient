@@ -28,23 +28,26 @@ const LoginForm = (
     uname_value, password_value}
 ) => {
     return(
-    <div className="container">
-        <form>
-            <div id="loginForm" className="loginForm">
-                <UserNameBox
-                    change_callback={on_username_change}
-                    value={uname_value}
-                />
-                <PasswordBox
-                    change_callback={on_password_change}
-                    value={password_value}
-                />
-            </div>
-            <SignInButton is_active={true} content="Sign In"/>
-            <SignUpButton is_active={true}/>
-        </form>
-        username = {uname_value} <br/>
-        password = {password_value}
+    <div className="container container-fluid page" id="login_page">
+        <Header />
+        <div className="container">
+            <form>
+                <div id="loginForm" className="loginForm">
+                    <UserNameBox
+                        change_callback={on_username_change}
+                        value={uname_value}
+                    />
+                    <PasswordBox
+                        change_callback={on_password_change}
+                        value={password_value}
+                    />
+                </div>
+                <SignInButton is_active={true} content="Sign In"/>
+                <SignUpButton is_active={true}/>
+            </form>
+            username = {uname_value} <br/>
+            password = {password_value}
+        </div>
     </div>
 )};
 
