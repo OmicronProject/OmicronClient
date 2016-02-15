@@ -5,7 +5,7 @@
 // is passed in, that parameter is returned and no recursion occurs.
 
 function cloneObject(obj) {
-    if (obj === null || typeof obj !== 'object') {
+    if (obj === null || typeof obj !== 'object' || obj === undefined) {
         return obj;
     }
 
