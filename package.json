@@ -13,7 +13,8 @@
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port $PORT",
     "report_codeclimate": "CODECLIMATE_REPO_TOKEN=8a865bc474c488e8f16c2622ba5a57e041f96e3d75867f73b8db9cf716211ef5 ; node ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
     "compile": "node ./node_modules/webpack/bin/webpack.js",
-    "build_docs": "node ./node_modules/esdoc/out/src/ESDocCLI.js -c ./esdoc.json"
+    "build_docs": "node ./node_modules/esdoc/out/src/ESDocCLI.js -c ./esdoc.json",
+    "dev_server": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot"
   },
   "repository": {
     "type": "git",

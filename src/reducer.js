@@ -78,6 +78,7 @@ class Reducer {
             catch(error){
                 log.error('The callback ' + this._callback_list[index] +
                 ' produced error ' + error + '.');
+                throw(error);
             }
         }
 

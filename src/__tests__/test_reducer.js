@@ -68,5 +68,23 @@ describe("The Reducer's application reducer", () => {{
         expect(new_state.added_property).toEqual(
             "added string"
         );
-    })
+    });
+
+    it('should log and rethrow an error if one occurs in a component reducer',
+        () => {
+            let state = {};
+            let poisoned_reducer = (state, action) => {
+                throw new Error("unable to finish")
+            };
+
+            let action = {
+                type: "SHOULD_THROW_AN_ERROR"
+            };
+
+            reducer_store.register(poisoned_reducer);
+
+            expect(() => {reducer_store.application_reducer(state, action)}).toThrow(
+                Error
+            );
+        })
 }});
