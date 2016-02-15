@@ -8,6 +8,7 @@ import {SignInButton, SignUpButton} from '../components/login_form';
 import {connect} from 'react-redux';
 import clone from '../object_cloning';
 import Header from './header';
+import reducer from '../reducer';
 
 /**
  *
@@ -55,7 +56,8 @@ const LoginForm = (
 
 LoginForm.propTypes = {
     on_username_change: PropTypes.func.isRequired,
-    on_password_change: PropTypes.func.isRequired
+    on_password_change: PropTypes.func.isRequired,
+    on_submit: PropTypes.func.isRequired
 };
 
 const mapLoginStateToProps = (state) => (
@@ -121,4 +123,6 @@ function submit_reducer(state, action){
 }
 
 export default LoginBox;
-export {username_change_reducer, password_change_reducer, submit_reducer};
+reducer.register(username_change_reducer);
+reducer.register(password_change_reducer);
+reducer.register(submit_reducer);
