@@ -19,13 +19,13 @@ import Header from './header';
  *  of the password field changes
  * @param {str} uname_value The value of the
  * @param password_value
- * @param main_menu_buttons
+ * @param on_submit
  * @returns {XML}
  * @constructor
  */
 const LoginForm = (
     {on_username_change, on_password_change,
-    uname_value, password_value}
+    uname_value, password_value, on_submit}
 ) => {
     return(
     <div className="container container-fluid page" id="login_page">
@@ -42,7 +42,9 @@ const LoginForm = (
                         value={password_value}
                     />
                 </div>
-                <SignInButton is_active={true} content="Sign In"/>
+                <SignInButton is_active={true}
+                              content="Sign In"
+                              onClick={on_submit}/>
                 <SignUpButton is_active={true}/>
             </form>
             username = {uname_value} <br/>
@@ -71,6 +73,9 @@ const mapLoginDispatchToProps = (dispatch) => (
         },
         on_password_change: (event) => {
             dispatch({type: "PASSWORD_CHANGED", password: event.target.value})
+        },
+        on_submit: (event) => {
+            dispatch({type: "USER_AUTHENTICATION_SUBMIT"})
         }
     }
 );
@@ -103,5 +108,17 @@ function password_change_reducer(state, action){
     }
 }
 
+function submit_reducer(state, action){
+    if (action.type === "USER_AUTHENTICATION_SUBMIT"){
+        let new_state = clone(state);
+        new_state.user.auth_status = "authenticating";
+        
+
+        return(new_state);
+    } else {
+        return(state);
+    }
+}
+
 export default LoginBox;
-export {username_change_reducer, password_change_reducer};
+export {username_change_reducer, password_change_reducer, submit_reducer};

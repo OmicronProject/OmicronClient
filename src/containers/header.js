@@ -1,5 +1,5 @@
 /**
- * Contains a class for making top-level navigation bars in the web page
+ * Contains a component for creating navigation menus in the app
  *
  * Created by Michal on 2016-02-01.
  */
@@ -7,6 +7,12 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+/**
+ * Templates a navigation header bar that can be updated from the application
+ * state
+ *
+ * @param buttons The buttons to place in the header bar
+ */
 const Header = ({buttons}) => (
     <div id="header_bar" className="container container-fluid">
         <ul className="nav nav-pills">
