@@ -20,7 +20,7 @@ const HTTPTestTemplate = ({
         <br/>
 
         <button className="btn btn-default"
-                onclick={on_button_click}>
+                onClick={on_button_click}>
             Run Request
         </button> <br/>
         URL {url_value}
