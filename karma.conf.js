@@ -55,6 +55,10 @@ module.exports = function (config) {
                     {
                         test: /\.jpe?g$/,
                         loader: "file"
+                    },
+                    {
+                        test: /\.gif$/,
+                        loader: "file"
                     }
                 ],
                 postLoaders: [{
