@@ -88,4 +88,21 @@ class SignUpButton extends React.Component{
         )
     }
 }
-export {UserNameBox, PasswordBox, SignInButton, SignUpButton};
+
+class SignInSpinner extends React.Component{
+    constructor(props){
+        super(props);
+        this.props = props;
+    }
+
+    render(){
+        if (this.props.is_active){
+            return (
+                <img src={this.props.source} id="loading_spinner"/>
+            )
+        }
+    }
+
+}
+
+export {UserNameBox, PasswordBox, SignInButton, SignUpButton, SignInSpinner};

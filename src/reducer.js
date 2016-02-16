@@ -16,7 +16,8 @@ import log from 'loglevel';
  * For testing purposes, The class that generates the singleton is exported.
  * This is so that multiple copies of the reducer can be generated, making the
  * unit tests independent of their execution order. In theory, this means that
- * a developer can import this singleton's
+ * a developer can import this singleton's generating class and make their own
+ * reducer. Don't do this.
  */
 class Reducer {
     /**
@@ -31,6 +32,11 @@ class Reducer {
 
     }
 
+    /**
+     * Push a callback onto this reducer's callback list
+     * @param {func} callback The callback to add to the reducer. This
+     *  must be a function that takes in the state and the action as arguments.
+     */
     register(callback){
         this._callback_list.push(callback);
     }

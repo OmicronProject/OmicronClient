@@ -5,10 +5,13 @@
 import React, { PropTypes } from 'react';
 import {UserNameBox, PasswordBox} from '../components/login_form';
 import {SignInButton, SignUpButton} from '../components/login_form';
+import {SignInSpinner} from '../components/login_form';
 import {connect} from 'react-redux';
 import clone from '../object_cloning';
 import Header from './header';
 import reducer from '../reducer';
+
+import image_source from '../../static/img/spinner.gif';
 
 /**
  *

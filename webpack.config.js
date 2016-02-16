@@ -44,9 +44,13 @@ module.exports = {
             {
                 test: /\.jpe?g$/,
                 loader: "file"
+            },
+            {
+                test: /\.gif$/,
+                loader: "file"
             }
         ]
-    },
+    }
     //plugins: [
     //    new webpack.optimize.UglifyJsPlugin({minimize: true})
     //]
