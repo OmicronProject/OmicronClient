@@ -1,5 +1,9 @@
 /**
  * Created by Michal on 2016-02-16.
+ * Contains a window meant to work as a demonstration of asynchronous
+ * XHR, as well as the capability of the react-redux architecture to handle
+ * Asynchronicity. Hopefully, this code can serve as a design pattern for
+ * designing code involving asynchronous thunk execution.
  */
 import React from 'react';
 import {PropTypes} from 'react';
@@ -10,6 +14,14 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import store from '../store';
 
+/**
+ *
+ * @param on_url_change
+ * @param on_button_click
+ * @param http_test_result
+ * @param url_value
+ * @constructor
+ */
 const HTTPTestTemplate = ({
     on_url_change, on_button_click, http_test_result, url_value
     }) => (

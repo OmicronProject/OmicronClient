@@ -7,7 +7,7 @@ import React from 'react';
 import Logo from './components/logo';
 import LoginForm from './containers/login_form';
 import HeaderBar from './containers/header';
-import HTTPTest from './containers/http_test';
+import HTTPTest from './containers/http_request';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
 import "bootstrap/dist/css/bootstrap.min.css";
