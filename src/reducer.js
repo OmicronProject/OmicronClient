@@ -86,6 +86,11 @@ class Reducer {
                 ' produced error ' + error + '.');
                 throw(error);
             }
+
+            if (new_state === undefined){
+                throw new Error('The callback ' + this._callback_list[index] +
+                ' returned an undefined state.')
+            }
         }
 
         return new_state;

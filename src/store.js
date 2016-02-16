@@ -49,9 +49,6 @@ const initial_state = {
     }
 };
 
-let store = createStore(
-    Reducer.application_reducer, initial_state,
-    applyMiddleware(thunkMiddleware)
-);
+let store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(Reducer.application_reducer, initial_state);
 
 export default store;

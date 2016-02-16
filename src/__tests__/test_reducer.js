@@ -28,7 +28,7 @@ describe('Reducer', () => {
     });
 });
 
-describe("Root Reducer", () => {
+describe("Root reducer", () => {
     it('Should return the input state regardless of what is thrown in as' +
         'an action', () => {
         let state = {foo: "bar"};
@@ -39,7 +39,7 @@ describe("Root Reducer", () => {
 });
 
 
-describe("The Reducer's application reducer", () => {{
+describe("The reducer's application reducer", () => {{
     let test_reducer;
     let reducer_store;
 

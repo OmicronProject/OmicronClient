@@ -63,12 +63,12 @@ LoginForm.propTypes = {
     on_submit: PropTypes.func.isRequired
 };
 
-const mapLoginStateToProps = (state) => (
-    {
+const mapLoginStateToProps = (state) => {
+    return ({
         uname_value: state.user.username,
         password_value: state.user.password
-    }
-);
+    })
+};
 
 
 const mapLoginDispatchToProps = (dispatch) => (
