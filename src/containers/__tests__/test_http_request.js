@@ -6,6 +6,7 @@
 import expect from 'expect';
 import React from 'react';
 import {HTTPTestTemplate, map_state_to_props} from '../http_request';
+import {map_dispatch_to_props} from '../http_request';
 import Header from '../header';
 
 describe("HTTPTestTemplate", () => {
@@ -44,4 +45,22 @@ describe("map_state_to_props", () => {
             }
         )
     })
+});
+
+describe("map_dispatch_to_props", () => {
+    let dispatch_list;
+    let dispatch;
+
+    beforeEach(() => {
+        dispatch_list = [];
+        dispatch = (input) => {dispatch_list.push(input)}
+    });
+
+    it("should give two callbacks for the callback functions in the container",
+        () => {
+            let result = map_dispatch_to_props(dispatch);
+
+            expect(typeof result.on_url_change).toEqual("function");
+            expect(typeof result.on_button_click).toEqual("function");
+        })
 });

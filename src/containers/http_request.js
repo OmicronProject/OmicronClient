@@ -86,7 +86,7 @@ export function map_state_to_props(state) {
  *  This function is the method to which actions will be dispatched for the
  *  store's reducers to process.
  */
-const map_dispatch_to_props = (dispatch) => (
+export const map_dispatch_to_props = (dispatch) => (
     {
         on_url_change: (event) => {
             dispatch(url_changed(event.target.value))
