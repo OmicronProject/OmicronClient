@@ -10,7 +10,7 @@ import HeaderBar from '../header';
 import {Link} from 'react-router';
 import {Provider} from 'react-redux';
 import store from '../../store';
-import {Header, _make_button} from '../header';
+import {Header, _make_button, map_header_state_to_props} from '../header';
 
 describe("Header", () => {
     it('Should map the make_button function to all the buttons', () => {
@@ -56,6 +56,24 @@ describe("_make_button", () => {
             </li>
         )
     })
+});
+
+describe("map_header_state_to_props", () => {
+    let state;
+
+    beforeEach(() => {
+        state = {
+            main_menu: {buttons: "This is where an array of buttons would go"}
+        }
+    });
+
+    it('Should return an object with buttons matching those of the state',
+        () => {
+            expect(map_header_state_to_props(state)).toEqual(
+                {buttons: state.main_menu.buttons}
+            )
+        }
+    )
 });
 
 describe("HeaderBar", () => {

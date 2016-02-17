@@ -48,7 +48,7 @@ export function _make_external(button){
 export function map_header_state_to_props(state){
     return(
         {
-            buttons:state.main_menu.buttons
+            buttons: state.main_menu.buttons
         }
     )
 }
