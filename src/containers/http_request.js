@@ -208,23 +208,23 @@ reducer.register(get_data_from_url_reducer);
  * This action is called when the request is recieved by the UX.
  * It will write the data into the state
  */
-export const RECIEVE_DATA_FROM_URL = 'RECIEVE_DATA_FROM_URL';
+export const RECEIVE_DATA_FROM_URL = 'RECEIVE_DATA_FROM_URL';
 
-export function recieve_data_from_url(url, recieved_json) {
+export function receive_data_from_url(url, received_json) {
     return {
-        type: RECIEVE_DATA_FROM_URL,
+        type: RECEIVE_DATA_FROM_URL,
         url: url,
-        recieved_at: Date.now(),
-        data: recieved_json
+        received_at: Date.now(),
+        data: received_json
     }
 }
 
-export function recieve_data_from_url_reducer(state, action) {
-    if (action.type === RECIEVE_DATA_FROM_URL){
+export function receive_data_from_url_reducer(state, action) {
+    if (action.type === RECEIVE_DATA_FROM_URL){
         let new_state = clone(state);
 
         new_state.http_test.reactjs.is_fetching = false;
-        new_state.http_test.reactjs.last_updated = action.recieved_at;
+        new_state.http_test.reactjs.last_updated = action.received_at;
         new_state.http_test.reactjs.data = action.data;
 
         new_state.http_test.frontend.is_fetching = false;
@@ -236,7 +236,7 @@ export function recieve_data_from_url_reducer(state, action) {
     }
 }
 
-reducer.register(recieve_data_from_url_reducer);
+reducer.register(receive_data_from_url_reducer);
 
 /**
  * Thunk action to fetch the data from the URL.
@@ -260,7 +260,7 @@ export function fetch_data() {
         });
 
         let success_handler = (response) => (
-            dispatch(recieve_data_from_url(url, response.data))
+            dispatch(receive_data_from_url(url, response.data))
         );
 
         return request.then(success_handler)

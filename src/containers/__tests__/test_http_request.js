@@ -11,7 +11,13 @@ import {URL_CHANGED, url_changed, url_changed_reducer} from '../http_request';
 import {RUN_TEST, run_test, run_test_reducer} from '../http_request';
 import {GET_DATA_FROM_URL, get_data_from_url} from '../http_request';
 import {get_data_from_url_reducer} from '../http_request';
+import {RECEIVE_DATA_FROM_URL} from '../http_request';
+import {receive_data_from_url} from '../http_request';
+import {receive_data_from_url_reducer} from '../http_request';
 import Header from '../header';
+import {fetch_data} from '../http_request';
+import store from '../../store';
+import axios from 'axios';
 
 describe("HTTPTestTemplate", () => {
     let on_url_change;
@@ -177,5 +183,114 @@ describe("get_data_from_url_reducer", () => {
         let new_state = get_data_from_url_reducer(state, action);
 
         expect(new_state.http_test.reactjs.is_fetching).toEqual(true);
+    })
+});
+
+describe("receive_data_from_url", () => {
+    let url;
+    let received_json;
+
+    beforeEach(() => {
+        url = 'https://api.github.com';
+        received_json = {data: "data"};
+    });
+
+    it("Should create an action", () => {
+        let action = receive_data_from_url(url, received_json);
+        expect(action.type).toEqual(RECEIVE_DATA_FROM_URL);
+        expect(action.data).toEqual(received_json);
+        expect(action.received_at).toExist();
+    })
+});
+
+describe("receive_data_from_url_reducer", () => {
+    let url;
+    let received_json;
+    let action;
+    let state;
+
+    beforeEach(() => {
+        url = 'https://api.github.com';
+        received_json = {data: "data"};
+        action = receive_data_from_url(url, received_json);
+
+        state = {
+            http_test: {
+                reactjs: {
+                    is_fetching: false,
+                    data: {}
+                },
+                frontend: {
+                    is_fetching: false,
+                    data: {}
+                }
+            }
+        }
+    });
+
+    it("Should return the old state if the action is bad", () => {
+        let bad_action = {type: "TAKE NO ACTION"};
+        expect(receive_data_from_url_reducer(state, bad_action)).toEqual(
+            state
+        );
+    });
+
+    it("Should make the required state manipulations", () => {
+        let expected_new_state = {
+            http_test: {
+                reactjs: {
+                    is_fetching: false,
+                    last_updated: action.received_at,
+                    data: received_json
+                },
+                frontend: {
+                    is_fetching: false,
+                    data: received_json
+                }
+            }
+        };
+
+        let new_state = receive_data_from_url_reducer(state, action);
+
+        expect(expected_new_state).toEqual(new_state);
+    })
+});
+
+describe("fetch data thunk", () => {
+    let fetch_data_thunk;
+    let get_state_spy;
+
+    let initial_state;
+
+    let mock_dispatch;
+    let dispatched_actions;
+
+    beforeEach(() => {
+        initial_state = {
+            http_test: {url: "https://api.github.com"}
+        };
+
+        get_state_spy = expect.spyOn(store, "getState").andCall(
+            () => (initial_state)
+        );
+
+        dispatched_actions = [];
+        mock_dispatch = (action) => {dispatched_actions.push(action)};
+
+        fetch_data_thunk = fetch_data();
+    });
+
+    afterEach(() => {
+        expect.restoreSpies();
+    });
+
+    it("Should return a function", () => {
+        expect(typeof fetch_data()).toEqual("function");
+    });
+
+    it("Should run successfully", () => {
+        fetch_data_thunk(mock_dispatch);
+        expect(get_state_spy.calls.length).toEqual(1);
+        expect(dispatched_actions.length).toNotEqual(0);
     })
 });
