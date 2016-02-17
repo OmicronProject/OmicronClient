@@ -56,6 +56,12 @@ export function _make_internal(button){
     )
 }
 
+/**
+ * Make an external link using React's <a/> tag to do so
+ * @param {Object} button The button to make
+ * @returns {XML} The JSX representation of the external link
+ * @private
+ */
 export function _make_external(button){
     return(
         <li key={button.key} role="presentation">
@@ -64,6 +70,13 @@ export function _make_external(button){
     )
 }
 
+/**
+ * Takes the current application state, and returns an object containing
+ * the buttons to render in the menu bar
+ *
+ * @param {Object} state The current application state
+ * @returns {{buttons: string}} the buttons to render
+ */
 export function map_header_state_to_props(state){
     return(
         {
@@ -72,6 +85,9 @@ export function map_header_state_to_props(state){
     )
 }
 
-const HeaderBar =  connect(map_header_state_to_props)(Header);
+/**
+ * Connect the header bar to the store using the state mapper and export it
+ */
+const HeaderBar = connect(map_header_state_to_props)(Header);
 
 export default HeaderBar;
