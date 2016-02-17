@@ -8,6 +8,9 @@ import React from 'react';
 import {HTTPTestTemplate, map_state_to_props} from '../http_request';
 import {map_dispatch_to_props} from '../http_request';
 import {URL_CHANGED, url_changed, url_changed_reducer} from '../http_request';
+import {RUN_TEST, run_test, run_test_reducer} from '../http_request';
+import {GET_DATA_FROM_URL, get_data_from_url} from '../http_request';
+import {get_data_from_url_reducer} from '../http_request';
 import Header from '../header';
 
 describe("HTTPTestTemplate", () => {
@@ -105,5 +108,74 @@ describe("url_changed reducer", () => {
         let new_state = {http_test: {url: new_url}};
 
         expect(url_changed_reducer(state, action)).toEqual(new_state);
+    })
+});
+
+describe("run_test_action", () => {
+    it("Should return the correct action", () => {
+        expect(run_test()).toEqual({type: RUN_TEST});
+    })
+});
+
+describe("run_test_reducer", () => {
+    let action;
+    let state;
+
+    beforeEach(() => {
+        action = run_test();
+        state = {http_test: {frontend: {is_fetching: false}}};
+    });
+
+    it("Should return the old state if bad action is passed to it", () => {
+        let not_valid_action = {type: "TAKE_NO_ACTION"};
+        expect(not_valid_action.type).toNotEqual(action.type);
+
+        expect(run_test_reducer(state, not_valid_action)).toEqual(state);
+    });
+
+    it("Should modify the state if the correct action is passed in", () => {
+        let new_state = run_test_reducer(state, action);
+
+        expect(new_state.http_test.frontend.is_fetching).toEqual(true);
+    });
+});
+
+describe("get_data_from_url action", () => {
+    let url;
+
+    beforeEach(() => {
+        url = "https://api.github.com";
+    });
+
+    it("Should return an action of the correct type", () => {
+        expect(get_data_from_url(url)).toEqual(
+            {type: GET_DATA_FROM_URL, url: url}
+        )
+    })
+});
+
+describe("get_data_from_url_reducer", () => {
+    let state;
+    let action;
+    let url;
+
+    beforeEach(() => {
+        url = "https://api.github.com";
+
+        state = {http_test: {reactjs: {is_fetching: false}}};
+        action = get_data_from_url(url);
+    });
+
+    it("Should return the old state if the action is wrong", () => {
+        let bad_action = {type: "NOT_A_VALID_ACTION"};
+        expect(bad_action.type).toNotEqual(action.type);
+
+        expect(get_data_from_url_reducer(state, bad_action)).toEqual(state);
+    });
+
+    it("Should flip the is_fetching flag when fetching begins", () => {
+        let new_state = get_data_from_url_reducer(state, action);
+
+        expect(new_state.http_test.reactjs.is_fetching).toEqual(true);
     })
 });
