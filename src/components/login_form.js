@@ -7,7 +7,7 @@
 'use strict';
 import React from 'react';
 
-class InputBox extends React.Component {
+export class InputBox extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
