@@ -24,24 +24,38 @@ import store from '../store';
  *  get stringified and displayed
  * @param {string} url_value The URL of the resource to access.
  */
-const HTTPTestTemplate = ({
+export const HTTPTestTemplate = ({
     on_url_change, on_button_click, http_test_result, url_value
     }) => (
     <div className="container container-fluid">
-        <Header />
-        <label>JSON Resource URL</label><br />
-        <input type="text" placeholder="URL To contact" value={url_value}
-               onChange={on_url_change} />
-        <br/>
-
-        <button className="btn btn-default"
-                onClick={on_button_click}>
-            Run Request
-        </button> <br/>
-        URL {url_value}
-        <br/>
-        Result of test: <br/>
-        {JSON.stringify(http_test_result)}
+    <div className="row">
+        <div className="col-md-8">
+            <Header />
+        </div>
+        <div className="col-md-8">
+            <form>
+                <div className="form-group">
+                    <label>JSON Resource URL</label>
+                    <input type="text" className="form-control"
+                           placeholder="URL To contact"
+                           value={url_value} onChange={on_url_change} />
+                </div>
+                <div className="form-group">
+                    <button className="btn btn-default"
+                            onClick={on_button_click}>
+                        Run Request
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div className="col-md-8">
+        <p>URL {url_value}</p>
+        </div>
+        <div className="col-md-8">
+            <p>Result of test: <br/></p>
+            <p>{JSON.stringify(http_test_result)}</p>
+        </div>
+    </div>
     </div>
 );
 
@@ -58,7 +72,7 @@ HTTPTestTemplate.propTypes = {
  * @param {Object} state The current application state.
  * @returns {{http_test_result: (initial_state.http_test.reactjs.data|{}), url_value: *}}
  */
-function map_state_to_props(state) {
+export function map_state_to_props(state) {
     return ({
         http_test_result: state.http_test.reactjs.data,
         url_value: state.http_test.url
