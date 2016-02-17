@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
  *
  * @param buttons The buttons to place in the header bar
  */
-const Header = ({buttons}) => (
+export const Header = ({buttons}) => (
     <div id="header_bar" className="container container-fluid">
         <ul className="nav nav-pills">
             {buttons.map(_make_button)}
@@ -21,7 +21,7 @@ const Header = ({buttons}) => (
     </div>
 );
 
-function _make_button(button) {
+export function _make_button(button) {
     if (button.type === "internal"){
         return _make_internal(button);
     } else {
@@ -29,7 +29,7 @@ function _make_button(button) {
     }
 }
 
-function _make_internal(button){
+export function _make_internal(button){
     return(
         <li key={button.key} role="presentation">
             <Link to={button.link}>{button.name}</Link>
@@ -37,7 +37,7 @@ function _make_internal(button){
     )
 }
 
-function _make_external(button){
+export function _make_external(button){
     return(
         <li key={button.key} role="presentation">
             <a href={button.link}>{button.name}</a>
@@ -45,7 +45,7 @@ function _make_external(button){
     )
 }
 
-function map_header_state_to_props(state){
+export function map_header_state_to_props(state){
     return(
         {
             buttons:state.main_menu.buttons
