@@ -12,6 +12,7 @@ import reducer from '../reducer';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import store from '../store';
+import {URLEntryForm, ResultsBox} from '../components/http_request';
 
 /**
  * Template for running the asynchronous HTTP request test.
@@ -33,27 +34,12 @@ export const HTTPTestTemplate = ({
             <Header />
         </div>
         <div className="col-md-8">
-            <form>
-                <div className="form-group">
-                    <label>JSON Resource URL</label>
-                    <input type="text" className="form-control"
-                           placeholder="URL To contact"
-                           value={url_value} onChange={on_url_change} />
-                </div>
-                <div className="form-group">
-                    <button className="btn btn-default"
-                            onClick={on_button_click}>
-                        Run Request
-                    </button>
-                </div>
-            </form>
+            <URLEntryForm url_value={url_value} on_url_change={on_url_change}
+                          on_button_click={on_button_click}
+            />
         </div>
         <div className="col-md-8">
-        <p>URL {url_value}</p>
-        </div>
-        <div className="col-md-8">
-            <p>Result of test: <br/></p>
-            <p>{JSON.stringify(http_test_result)}</p>
+            <ResultsBox url_value={url_value} test_result={http_test_result} />
         </div>
     </div>
     </div>
