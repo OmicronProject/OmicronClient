@@ -5,8 +5,7 @@
  * Asynchronicity. Hopefully, this code can serve as a design pattern for
  * designing code involving asynchronous thunk execution.
  */
-import React from 'react';
-import {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import Header from './header';
 import clone from '../object_cloning';
 import reducer from '../reducer';
@@ -15,18 +14,22 @@ import {connect} from 'react-redux';
 import store from '../store';
 
 /**
+ * Template for running the asynchronous HTTP request test.
  *
- * @param on_url_change
- * @param on_button_click
- * @param http_test_result
- * @param url_value
- * @constructor
+ * @param {function} on_url_change The callback to execute when the url typed
+ *  into the input box is changed
+ * @param {function} on_button_click The callback to execute when the submit
+ *  button is clicked, signifying that the user wants to access the site.
+ * @param {Object} http_test_result The result of the JSON API call. This will
+ *  get stringified and displayed
+ * @param {string} url_value The URL of the resource to access.
  */
 const HTTPTestTemplate = ({
     on_url_change, on_button_click, http_test_result, url_value
     }) => (
     <div className="container container-fluid">
         <Header />
+        <label>JSON Resource URL</label><br />
         <input type="text" placeholder="URL To contact" value={url_value}
                onChange={on_url_change} />
         <br/>
@@ -47,6 +50,14 @@ HTTPTestTemplate.propTypes = {
     on_button_click: PropTypes.func.isRequired
 };
 
+/**
+ * Takes in the current application state, and returns an object with the
+ * required properties to render the HTTP Request form. Used in the connect
+ * decorator to link up the application's state with the template props.
+ *
+ * @param {Object} state The current application state.
+ * @returns {{http_test_result: (initial_state.http_test.reactjs.data|{}), url_value: *}}
+ */
 function map_state_to_props(state) {
     return ({
         http_test_result: state.http_test.reactjs.data,
@@ -54,6 +65,13 @@ function map_state_to_props(state) {
     })
 }
 
+/**
+ * Maps the required action creators to the callback properties required to
+ * render the HTTP Request form
+ * @param {function} dispatch The dispatch method for the application's store.
+ *  This function is the method to which actions will be dispatched for the
+ *  store's reducers to process.
+ */
 const map_dispatch_to_props = (dispatch) => (
     {
         on_url_change: (event) => {
@@ -65,11 +83,16 @@ const map_dispatch_to_props = (dispatch) => (
     }
 );
 
+/**
+ * Connect the HTTP template and the template's mappers to the application
+ * state, and export it.
+ */
 const HTTPTest = connect(map_state_to_props, map_dispatch_to_props)(
     HTTPTestTemplate
 );
 
 export default HTTPTest;
+
 
 export const URL_CHANGED = 'URL_CHANGED';
 
@@ -85,6 +108,14 @@ export function url_changed(new_url) {
     })
 }
 
+/**
+ * If the action is of the "URL_CHANGED" type, copies the current application
+ * state, alters the url to be the new url, and returns the new state
+ *
+ * @param {Object} state The initial application state
+ * @param {Object} action The action that is to change the state
+ * @returns {*} The new application state
+ */
 export function url_changed_reducer(state, action) {
     if (action.type === URL_CHANGED) {
         let new_state = clone(state);
@@ -98,15 +129,29 @@ export function url_changed_reducer(state, action) {
 reducer.register(url_changed_reducer);
 
 /**
- * This action is synchronous
+ * Toggle the fetching flag on the front end, in order to let the UI know that
+ * the appropriate loading graphics (i.e. spinners) should be loaded.
  */
 export const RUN_TEST = "RUN_TEST";
+
+/**
+ * Create the test action
+ *
+ * @returns {{type: string}}
+ */
 export function run_test() {
     return ({
         type: RUN_TEST
     })
 }
 
+/**
+ * Toggle the fetching flag to "true"
+ *
+ * @param {Object} state The initial application state
+ * @param {Object} action The action that is to change the state
+ * @returns {*} The new application state
+ */
 export function run_test_reducer(state, action) {
     if (action.type === RUN_TEST) {
         let new_state = clone(state);
