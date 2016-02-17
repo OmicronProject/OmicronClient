@@ -5,9 +5,9 @@
 
 import React from 'react';
 import Logo from './components/logo';
-import LoginForm from './components/LoginForm';
-import HeaderBar from './components/header';
-import HTTPTest from './components/http_cors_test';
+import LoginForm from './containers/login_form';
+import HeaderBar from './containers/header';
+import HTTPTest from './containers/http_request';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,4 +53,3 @@ class App extends React.Component {
 }
 
 export default App;
-

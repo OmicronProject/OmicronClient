@@ -1,7 +1,4 @@
 /**
- * Created by Michal on 2016-02-17.
- */
-/**
  * Created by Michal on 2015-11-18.
  */
 'use strict';
@@ -13,10 +10,9 @@ var build_directory = path.join(__dirname, 'dist');
 
 module.exports = {
     entry: './index.js',
-    output: {
-        path: build_directory, filename: 'bundle.min.js',
-        publicPath: "/dist/"
-    },
+    output: { path: build_directory, filename: 'bundle.min.js',
+              publicPath: "/dist/"
+            },
     module: {
         loaders: [
             {
@@ -35,7 +31,7 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2)$/,
-                loader: "url?prefix=font/&limit=5000"
+                loader:"url?prefix=font/&limit=5000"
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
@@ -56,6 +52,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({'process.env.NODE_ENV': '"development"'})
+        new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
+        new webpack.optimize.UglifyJsPlugin({minimize: true})
     ]
 };
