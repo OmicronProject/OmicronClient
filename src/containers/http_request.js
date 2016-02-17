@@ -250,7 +250,6 @@ export function fetch_data() {
          * Dispatch the action stating that the back end is getting data
          */
         let url = store.getState().http_test.url;
-        dispatch(run_test());
         dispatch(get_data_from_url(url));
 
         let request = axios({

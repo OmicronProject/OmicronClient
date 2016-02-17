@@ -1,7 +1,7 @@
 /**
  * Created by Michal on 2016-02-10.
  */
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import Reducer from './reducer';
 import LoginBox from './containers/login_form';
 import thunkMiddleware from 'redux-thunk';
@@ -36,7 +36,7 @@ const initial_state = {
     http_test: {
         url: undefined,
         frontend: {
-            is_fetching: true,
+            is_fetching: false,
             did_invalidate: false,
             data: {}
         },
@@ -49,7 +49,15 @@ const initial_state = {
     }
 };
 
-let store = createStore(Reducer.application_reducer, initial_state,
-applyMiddleware(thunkMiddleware));
+function configureStore(initialState) {
+    const store = createStore(
+        Reducer.application_reducer, initialState, compose(
+        applyMiddleware(thunkMiddleware),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    ));
+    return store;
+}
+
+let store = configureStore(initial_state);
 
 export default store;
