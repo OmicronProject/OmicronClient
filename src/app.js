@@ -22,10 +22,21 @@ class App extends React.Component {
      * app component, and sets the props and state for the component
      *
      * @param {object} props The properties of this component
+     * @param {object} state The set of variables making up this component's state
      */
-    constructor(props){
-        super(props);
-        this.props = props;
+    constructor(props, state){
+        super(props, state);
+        if (props === undefined){
+            this.props = {};
+        } else {
+            this.props = props;
+        }
+
+        if (state === undefined) {
+            this.state = {};
+        } else {
+            this.state = state
+        }
     }
 
     /**
@@ -35,7 +46,7 @@ class App extends React.Component {
         return (
             <Router history={browserHistory}>
                 <Route path="/" component={LoginForm}/>
-                <Route name="http_test" path="http_test" component={HTTPTest}/>
+                <Route path="http_test" component={HTTPTest}/>
             </Router>
         )
     }

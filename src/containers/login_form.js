@@ -32,7 +32,7 @@ const LoginForm = (
     uname_value, password_value, on_submit}
 ) => {
     return(
-    <div className="container" id="login_page">
+    <div className="container-fluid" id="login_page">
         <Header />
         <div className="container">
             <form>

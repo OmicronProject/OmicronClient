@@ -67,7 +67,7 @@ class SignInButton extends React.Component {
 
     render() {
         return (
-            <button className={this.get_class_name()} type="button"
+            <button className={this.get_class_name()} type="submit"
                     onClick={this.props.onClick}>{this.props.content}
             </button>
         );
@@ -82,8 +82,7 @@ class SignUpButton extends React.Component{
 
     render() {
         return (
-            <button className="btn btn-primary" onClick={this.props.onClick}
-            type="button">
+            <button className="btn btn-primary" onClick={this.props.onClick}>
                 Sign Up
             </button>
         )
