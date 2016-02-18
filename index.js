@@ -10,13 +10,6 @@ import LoginBox from './src/containers/login_form';
 
 React_DOM.render(
     <Provider store={store}>
-        <App pages={
-        [
-            {
-                path: '/',
-                component_to_load: LoginBox
-            }
-        ]
-        }/>
+        <App/>
     </Provider>,
     document.getElementById('app-container'));
