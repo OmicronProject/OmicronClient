@@ -10,9 +10,8 @@ addons:
 language: node_js
 node_js:
   - "node"
-  - "4.0"
-  - "0.12"
-  - "iojs"
+  - "stable"
+  - "4.2"
 
 env:
   - CXX=g++-4.8
