@@ -22,21 +22,10 @@ class App extends React.Component {
      * app component, and sets the props and state for the component
      *
      * @param {object} props The properties of this component
-     * @param {object} state The set of variables making up this component's state
      */
-    constructor(props, state){
-        super(props, state);
-        if (props === undefined){
-            this.props = {};
-        } else {
-            this.props = props;
-        }
-
-        if (state === undefined) {
-            this.state = {};
-        } else {
-            this.state = state
-        }
+    constructor(props){
+        super(props);
+        this.props = props;
     }
 
     /**
