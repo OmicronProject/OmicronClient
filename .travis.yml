@@ -12,6 +12,7 @@ node_js:
   - "node"
   - "stable"
   - "4.2"
+  - "0.12"
 
 env:
   - CXX=g++-4.8
