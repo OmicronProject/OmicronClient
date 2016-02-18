@@ -13,7 +13,8 @@ export const URLEntryForm = ({url_value, on_url_change, on_button_click}) => (
                    />
         </div>
         <div className="form-group">
-            <button className="btn btn-default" onClick={on_button_click}>
+            <button className="btn btn-default" onClick={on_button_click}
+                    type="button">
                 Run Request
             </button>
         </div>
