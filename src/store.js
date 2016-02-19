@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import Reducer from './reducer';
 import LoginBox from './containers/login_form';
 import thunkMiddleware from 'redux-thunk';
+import {api_url} from '../master_config';
 
 
 const initial_state = {
@@ -18,11 +19,18 @@ const initial_state = {
                 type:"internal"}
         ]
     },
+    authenticator:
+    {
+        username: undefined,
+        password: undefined,
+        is_authenticating: false,
+        authentication_failed: false,
+        error_message: undefined
+    },
     user:
     {
         username: undefined,
         password: undefined,
-        token: undefined,
         auth_status: "not_authenticated",
         token_expiry_date: undefined
     },
@@ -45,6 +53,12 @@ const initial_state = {
             did_invalidate: false,
             last_updated: Date.now(),
             data: {}
+        }
+    },
+    omicron_api: {
+        url: api_url,
+        headers: {
+            "content-type": "application/json"
         }
     }
 };

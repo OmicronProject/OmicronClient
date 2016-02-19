@@ -10,7 +10,8 @@ import {connect} from 'react-redux';
 import clone from '../object_cloning';
 import Header from './header';
 import reducer from '../reducer';
-
+import {auth_started, auth_success, auth_failure} from '../auth/actions';
+import axios from 'axios';
 import image_source from '../../static/img/spinner.gif';
 
 /**
@@ -129,3 +130,30 @@ export default LoginBox;
 reducer.register(username_change_reducer);
 reducer.register(password_change_reducer);
 reducer.register(submit_reducer);
+
+/**
+ * Dispatch a thunk to authenticate the user given a username and password
+ * @param {str} username The username of the user to authenticated
+ * @param {str} password The password to authenticate
+ */
+function authenticate_user(username, password) {
+    return function (dispatch) {
+        dispatch(auth_started(username, password));
+        let state = store.getState();
+
+        let auth_header = {
+            "Authorization": "Basic " + btoa(username + ":" + password)
+        };
+
+        let request = axios({
+            url: state.omicron_api.url,
+            headers: auth_header + state.omicron_api.headers,
+            method: "POST"
+        });
+
+        request.then((response) => {dispatch(
+            auth_success(response.data.token, response.data.expiration_date)
+        )}).catch((error) => {dispatch(auth_failure(error.message))})
+    }
+}
+
