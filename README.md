@@ -7,9 +7,9 @@ Front end for the Omicron System
 The following are reports from various automated codebase monitoring systems.
 Each one is linked to their respective service.
 
-* [![Build Status](
-    https://travis-ci.org/MichalKononenko/OmicronServer.svg?branch=master)
-    ](https://travis-ci.org/MichalKononenko/OmicronServer) Build Status 
+* [![Build Status]
+    (https://travis-ci.org/MichalKononenko/OmicronClient.svg?branch=master)]
+    (https://travis-ci.org/MichalKononenko/OmicronClient) Build Status 
 * [![Coverage Status](
     https://coveralls.io/repos/MichalKononenko/OmicronClient/badge.svg?branch=master&service=github)
     ](https://coveralls.io/github/MichalKononenko/OmicronClient?branch=master)
@@ -128,36 +128,41 @@ added to the output code.
 1. After installing the required hard dependencies for this project, clone
     this repository by running
 
-```bash
-    git clone https://github.com/MichalKononenko/OmicronClient.git
-```
+    ```bash
+        git clone https://github.com/MichalKononenko/OmicronClient.git
+    ```
+
     in your command line
     
 2. ```cd``` into your cloned repo and run
 
-```bash
-    npm install
-```
+    ```bash
+        npm install
+    ```
+
     This will create a directory called ```node_modules``` where this project's
     Javascript dependencies will be loaded
 
 3. Set the ```NODE_ENV``` environment variable to ```production``` by running
 
-```bash
-    export NODE_ENV=production
-```
+    ```bash
+        export NODE_ENV=production
+    ```
+
     on Unix-like operating systems, or
     
-```bash
-    SET NODE_ENV=production
-```
+    ```bash
+        SET NODE_ENV=production
+    ```
+    
     on Windows machines.
 
 4. Run
 
-```bash
-    npm run compile
-```
+    ```bash
+        npm run compile
+    ```
+
     This will create a directory called ```dist```, where the minified code,
     as well as any resources required for this site to work will be stored.
 
