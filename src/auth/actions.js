@@ -13,7 +13,7 @@ export const AUTH_STARTED = "AUTH_STARTED";
 
 export function auth_started(username, password) {
     return {
-        type: "AUTH_STARTED",
+        type: AUTH_STARTED,
         username: username,
         password: password
     }
@@ -37,7 +37,7 @@ export function auth_started_reducer(state, action) {
             password: action.password,
             is_authenticating: true,
             authentication_failed: false,
-            error_message: false
+            error_message: undefined
         };
         return new_state;
     } else {
@@ -94,6 +94,8 @@ export function auth_success_reducer(state, action) {
             auth_status: "authenticated",
             token_expiry_date: action.token_expiration_date
         }
+    } else {
+        return state;
     }
 }
 

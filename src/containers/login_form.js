@@ -81,7 +81,7 @@ const mapLoginDispatchToProps = (dispatch) => (
             dispatch({type: "PASSWORD_CHANGED", password: event.target.value})
         },
         on_submit: (event) => {
-            dispatch({type: "USER_AUTHENTICATION_SUBMIT"})
+            dispatch(authenticate_user())
         }
     }
 );
@@ -133,13 +133,11 @@ reducer.register(submit_reducer);
 
 /**
  * Dispatch a thunk to authenticate the user given a username and password
- * @param {str} username The username of the user to authenticated
- * @param {str} password The password to authenticate
  */
-function authenticate_user(username, password) {
+function authenticate_user() {
     return function (dispatch) {
-        dispatch(auth_started(username, password));
         let state = store.getState();
+        dispatch(auth_started(state.user.username, state.user.password));
 
         let auth_header = {
             "Authorization": "Basic " + btoa(username + ":" + password)
