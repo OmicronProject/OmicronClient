@@ -44,8 +44,8 @@ export function auth_started_reducer(state, action) {
         return state;
     }
 }
-reducer.register(auth_started_reducer);
 
+reducer.register(auth_started_reducer);
 
 /**
  * Action that is thrown last, indicating that the authentication request
@@ -93,7 +93,9 @@ export function auth_success_reducer(state, action) {
             password: undefined,
             auth_status: "authenticated",
             token_expiry_date: action.token_expiration_date
-        }
+        };
+
+        return new_state;
     } else {
         return state;
     }
