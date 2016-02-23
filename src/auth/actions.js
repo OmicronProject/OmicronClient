@@ -118,15 +118,15 @@ export function auth_failure(message){
     }
 }
 
-function auth_failure_reducer(state, action) {
+export function auth_failure_reducer(state, action) {
     if (action.type === AUTH_FAILURE){
         let new_state = clone(state);
         new_state.authenticator.is_authenticating = false;
         new_state.authenticator.error_message = action.message;
-        new_state.authentication_failed = true;
+        new_state.authenticator.authentication_failed = true;
         new_state.user.auth_status = "authentication_failed";
 
-        return(new_state);
+        return new_state;
     } else {
         return state;
     }

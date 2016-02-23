@@ -4,6 +4,7 @@
 import expect from 'expect'
 import {AUTH_STARTED, auth_started, auth_started_reducer} from '../actions';
 import {AUTH_SUCCESS, auth_success, auth_success_reducer} from '../actions';
+import {AUTH_FAILURE, auth_failure, auth_failure_reducer} from '../actions';
 
 describe("AUTH_STARTED", () => {
     describe("auth_started", () => {
@@ -148,6 +149,61 @@ describe("AUTH_SUCCESS", () => {
             };
 
             expect(auth_success_reducer(state, action)).toEqual(new_state);
+        })
+    })
+});
+
+describe("auth_failure", () => {
+    let message;
+
+    beforeEach(() => {
+        message = "They've got a message for the action man."
+    });
+
+    describe("auth_failure action creator", () => {
+        it("should create the correct action", () => {
+            let action = auth_failure(message);
+            expect(action.type).toEqual(AUTH_FAILURE);
+            expect(action.message).toEqual(message);
+        })
+    });
+
+    describe("auth_failure reducer", () => {
+        let state;
+        let action;
+        beforeEach(() => {
+            state = {
+                authenticator: {
+                    is_authenticating: true,
+                    error_message: undefined,
+                    authentication_failed: false
+                },
+                user: {
+                    auth_status: "authenticating"
+                }
+            };
+
+            action = auth_failure(message);
+        });
+
+        it("Should return the old state if wrong action", () => {
+            let bad_action = {type: "INVALID_ACTION"};
+            expect(auth_failure_reducer(state, bad_action)).toEqual(state);
+        });
+
+        it("Should alter the state if correct action", () => {
+            let new_state = {
+                authenticator: {
+                    is_authenticating: false,
+                    error_message: message,
+                    authentication_failed: true
+                },
+                user: {
+                    auth_status: "authentication_failed"
+                }
+            };
+
+            expect(auth_failure_reducer(state, action)).toEqual(new_state);
         })
     })
 });
