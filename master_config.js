@@ -6,12 +6,8 @@
  */
 let api_url;
 
-if (process.env.API_URL === undefined){
-    api_url = 'http://omicronserver.herokuapp.com';
-} else {
-    api_url = process.env.API_URL;
-}
+api_url = process.env.API_URL || 'https://omicronserver.herokuapp.com';
 
 module.exports = {
         api_url: api_url
-    };
+};

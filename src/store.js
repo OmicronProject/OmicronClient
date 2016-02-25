@@ -58,20 +58,27 @@ const initial_state = {
     omicron_api: {
         url: api_url,
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
         }
     }
 };
 
 function configureStore(initialState) {
-    const store = createStore(
+    return createStore(
         Reducer.application_reducer, initialState, compose(
         applyMiddleware(thunkMiddleware),
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
-    return store;
 }
 
-let store = configureStore(initial_state);
+let store;
+if (process.env.NODE_ENV === "development"){
+    store = configureStore(initial_state);
+} else {
+    store = createStore(Reducer.application_reducer, initial_state,
+        applyMiddleware(thunkMiddleware)
+    );
+}
 
 export default store;

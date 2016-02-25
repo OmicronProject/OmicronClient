@@ -109,8 +109,10 @@ describe("AUTH_SUCCESS", () => {
                 },
                 omicron_api: {
                     headers: {
-                        Authorization: undefined
-                    }
+                        "Authorization": undefined,
+                        "content-type": "application/json"
+                    },
+                    url: 'http://localhost:5000'
                 },
                 user: {
                     username: username,
@@ -157,7 +159,7 @@ describe("auth_failure", () => {
     let message;
 
     beforeEach(() => {
-        message = "They've got a message for the action man."
+        message = "They've got a message for the action man.";
     });
 
     describe("auth_failure action creator", () => {

@@ -5,7 +5,7 @@
 import React, { PropTypes } from 'react';
 import {UserNameBox, PasswordBox} from '../components/login_form';
 import {SignInButton, SignUpButton} from '../components/login_form';
-import {SignInSpinner} from '../components/login_form';
+import {SignInSpinner, LogoutButton} from '../components/login_form';
 import {connect} from 'react-redux';
 import clone from '../object_cloning';
 import Header from './header';
@@ -13,6 +13,7 @@ import reducer from '../reducer';
 import {auth_started, auth_success, auth_failure} from '../auth/actions';
 import axios from 'axios';
 import image_source from '../../static/img/spinner.gif';
+import store from '../store';
 
 /**
  *
@@ -30,7 +31,9 @@ import image_source from '../../static/img/spinner.gif';
  */
 const LoginForm = (
     {on_username_change, on_password_change,
-    uname_value, password_value, on_submit}
+    uname_value, password_value, on_submit, authed_username, auth_status,
+    is_spinner_visible
+    }
 ) => {
     return(
     <div className="container-fluid" id="login_page">
@@ -51,9 +54,22 @@ const LoginForm = (
                               content="Sign In"
                               onClick={on_submit}/>
                 <SignUpButton is_active={true}/>
+                <LogoutButton />
+                <SignInSpinner is_active={is_spinner_visible}
+                    source={image_source}
+                />
             </form>
-            username = {uname_value} <br/>
-            password = {password_value}
+        </div>
+        <div className="row">
+            <div className="col-md-8">
+                <h3>Authentication</h3>
+            </div>
+            <div className="col-md-8">
+                Hello: {authed_username}
+            </div>
+            <div className="col-md-8">
+                auth_status: {auth_status}
+            </div>
         </div>
     </div>
 )};
@@ -65,9 +81,16 @@ LoginForm.propTypes = {
 };
 
 const mapLoginStateToProps = (state) => {
+    let authed_username = undefined;
+    if (state.user.auth_status === 'authenticated') {
+        authed_username = state.user.username;
+    }
     return ({
         uname_value: state.user.username,
-        password_value: state.user.password
+        password_value: state.user.password,
+        authed_username: authed_username,
+        auth_status: state.user.auth_status,
+        is_spinner_visible: state.authenticator.is_authenticating
     })
 };
 
@@ -137,15 +160,19 @@ reducer.register(submit_reducer);
 function authenticate_user() {
     return function (dispatch) {
         let state = store.getState();
-        dispatch(auth_started(state.user.username, state.user.password));
+
+        let username = state.user.username;
+        let password = state.user.password;
+
+        dispatch(auth_started(username, password));
 
         let auth_header = {
             "Authorization": "Basic " + btoa(username + ":" + password)
         };
 
         let request = axios({
-            url: state.omicron_api.url,
-            headers: auth_header + state.omicron_api.headers,
+            url: state.omicron_api.url + '/api/v1/token',
+            headers: Object.assign(auth_header, state.omicron_api.headers),
             method: "POST"
         });
 
