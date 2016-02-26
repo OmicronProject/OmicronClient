@@ -46,7 +46,7 @@ export class InputBox extends React.Component {
 }
 
 /**
- *
+ * Renders a username box
  */
 class UserNameBox extends InputBox {
     constructor(props){
@@ -57,6 +57,9 @@ class UserNameBox extends InputBox {
     }
 }
 
+/**
+ * Renders a password box with masked input characters.
+ */
 class PasswordBox extends InputBox {
     constructor(props){
         super(props);
@@ -66,7 +69,9 @@ class PasswordBox extends InputBox {
     }
 }
 
-
+/**
+ * Constructs and renders a button enabling the user to sign in
+ */
 class SignInButton extends React.Component {
     constructor(props) {
         super(props);
@@ -74,6 +79,14 @@ class SignInButton extends React.Component {
         this.get_class_name = this.get_class_name.bind(this);
     }
 
+    /**
+     * Returns the appropriate name of the element class to which this
+     * button belongs. The "is_active" flag in the Props states whether this
+     * component should be grayed out or not. If the button is to be grayed
+     * out, the class of this button is changed to "disabled".
+     *
+     * @returns {String} The className of the button
+     */
     get_class_name() {
         let className;
         if (this.props.is_active) {
@@ -84,6 +97,11 @@ class SignInButton extends React.Component {
         return (className);
     }
 
+    /**
+     * Render the component into the DOM.
+     *
+     * @returns {XML}
+     */
     render() {
         return (
             <button className={this.get_class_name()} type="button"

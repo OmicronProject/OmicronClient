@@ -62,8 +62,9 @@ describe("PasswordBox", () => {
 
     beforeEach(() => {
         props = {
-            data: "foo"
-        }
+            value: "foo",
+            change_callback: (x) => ("ch ch ch ch changes")
+        };
     });
 
     it("Should fill in default parameters", () => {
@@ -71,5 +72,15 @@ describe("PasswordBox", () => {
         expect(box.box_name).toEqual("Password");
         expect(box.box_id).toEqual("password-entry");
         expect(box.input_type).toEqual("password");
+    });
+
+    it("Should render", () => {
+        let box = ReactTestUtils.renderIntoDocument(
+            <PasswordBox value={props.value}
+                         change_callback={props.change_callback}
+            />
+        );
+
+        expect(box).toExist();
     })
 });
