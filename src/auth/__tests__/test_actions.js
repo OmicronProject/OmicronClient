@@ -6,7 +6,17 @@ import {AUTH_STARTED, auth_started, auth_started_reducer} from '../actions';
 import {AUTH_SUCCESS, auth_success, auth_success_reducer} from '../actions';
 import {AUTH_FAILURE, auth_failure, auth_failure_reducer} from '../actions';
 
+/**
+ * Contains unit tests for the AUTH_STARTED action creator and reducer
+ *
+ * @test {AUTH_STARTED}
+ */
 describe("AUTH_STARTED", () => {
+
+    /**
+     * Tests the auth started action creator
+     * @test {auth_started}
+     */
     describe("auth_started", () => {
         let username;
         let password;
@@ -24,6 +34,11 @@ describe("AUTH_STARTED", () => {
         });
     });
 
+    /**
+     * Tests the reducer for the AUTH_STARTED action
+     *
+     * @test {auth_started_reducer}
+     */
     describe("auth_started_reducer", () => {
         let username;
         let password;
