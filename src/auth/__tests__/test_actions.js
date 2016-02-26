@@ -145,8 +145,10 @@ describe("AUTH_SUCCESS", () => {
                 },
                 omicron_api: {
                     headers: {
-                        Authorization: "Basic " + btoa(token)
-                    }
+                        Authorization: "Basic " + btoa(token),
+                        "content-type": "application/json"
+                    },
+                    url: "http://localhost:5000"
                 }
             };
 
@@ -155,7 +157,7 @@ describe("AUTH_SUCCESS", () => {
     })
 });
 
-describe("auth_failure", () => {
+describe("AUTH_FAILURE", () => {
     let message;
 
     beforeEach(() => {
