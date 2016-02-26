@@ -6,6 +6,8 @@
 import expect from 'expect';
 import {UserNameBox, PasswordBox, SignInButton} from '../login_form';
 import {SignInSpinner, InputBox} from '../login_form';
+import React from 'react';
+import ReactTestUtils from 'react/lib/ReactTestUtils';
 
 describe("InputBox", () => {
     let props;
@@ -28,16 +30,14 @@ describe("InputBox", () => {
     it('should add props to its constructor', () => {
         let box = new InputBox(props);
         expect(box.props).toEqual(props);
-    })
+    });
 });
 
 describe("UsernameBox", () => {
     let props;
 
     beforeEach(() => {
-        props = {
-            data: 'foo'
-        }
+        props = {change_callback: (x) => (x), value: "foo"};
     });
 
     it("Should add default parameters to the InputBox", () => {
@@ -45,6 +45,15 @@ describe("UsernameBox", () => {
 
         expect(box.box_name).toEqual("Username");
         expect(box.box_id).toEqual('username-entry');
+    });
+
+    it("Should render", () => {
+        let box = ReactTestUtils.renderIntoDocument(
+            <UserNameBox change_callback={props.change_callback}
+                         value={props.value}
+            />);
+
+        expect(box).toExist();
     })
 });
 

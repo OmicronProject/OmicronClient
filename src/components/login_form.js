@@ -10,12 +10,25 @@ import Reducer from '../reducer';
 import clone from '../object_cloning';
 import {connect} from 'react-redux';
 
+/**
+ * Generic component for an input box. This is subclassed by other components
+ * in the Login Form in order to render the username and password entries.
+ */
 export class InputBox extends React.Component {
+    /**
+     * Constructs an instance of InputBox
+     * @param {Object} props The input box's static properties.
+     */
     constructor(props) {
         super(props);
         this.props = props;
     }
 
+    /**
+     * Render the component into React's virtual DOM.
+     *
+     * @returns {XML} The blueprint for an input box, with given properties
+     */
     render() {
         return(
             <div className="form-group">
@@ -32,6 +45,9 @@ export class InputBox extends React.Component {
     }
 }
 
+/**
+ *
+ */
 class UserNameBox extends InputBox {
     constructor(props){
         super(props);
