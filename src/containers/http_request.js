@@ -120,7 +120,7 @@ export function url_changed(new_url) {
  *
  * @param {Object} state The initial application state
  * @param {Object} action The action that is to change the state
- * @returns {*} The new application state
+ * @returns {Object} The new application state
  */
 export function url_changed_reducer(state, action) {
     if (action.type === URL_CHANGED) {
@@ -156,7 +156,7 @@ export function run_test() {
  *
  * @param {Object} state The initial application state
  * @param {Object} action The action that is to change the state
- * @returns {*} The new application state
+ * @returns {Object} The new application state
  */
 export function run_test_reducer(state, action) {
     if (action.type === RUN_TEST) {

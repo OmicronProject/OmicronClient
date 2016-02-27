@@ -99,12 +99,8 @@ LoginForm.propTypes = {
  *
  * @param {Object} state The current state of the application, stored in the
  *  Redux store
- * @returns {
- *  {uname_value: *, password_value: *,
- *  authed_username: *,
- *  auth_status: (string|string), is_spinner_visible: boolean}
- *  } An object containing the required properties extracted from the
- *  application state.
+ * @returns {Object} An object containing the required properties extracted
+ *  from the application state.
  */
 export const mapLoginStateToProps = (state) => {
     let authed_username = undefined;
