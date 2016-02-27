@@ -5,6 +5,7 @@
  * Asynchronicity. Hopefully, this code can serve as a design pattern for
  * designing code involving asynchronous thunk execution.
  */
+'use strict';
 import React, { PropTypes } from 'react';
 import Header from './header';
 import clone from '../object_cloning';
@@ -94,6 +95,11 @@ const HTTPTest = connect(map_state_to_props, map_dispatch_to_props)(
 export default HTTPTest;
 
 
+/**
+ * Action signifying that the URL entered into the URL Test input box has
+ * changed.
+ * @type {string}
+ */
 export const URL_CHANGED = 'URL_CHANGED';
 
 /**
