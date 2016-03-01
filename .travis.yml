@@ -10,7 +10,6 @@ addons:
 language: node_js
 node_js:
   - "node"
-  - "stable"
   - "5.0"
   - "4.2"
   - "0.12"
