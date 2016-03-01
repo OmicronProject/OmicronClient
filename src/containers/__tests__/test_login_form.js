@@ -79,8 +79,6 @@ describe('login_form', () => {
                 {
                     uname_value: uname_value,
                     password_value: password_value,
-                    authed_username: uname_value,
-                    auth_status: auth_status,
                     is_spinner_visible: is_spinner_visible
                 }
             );
