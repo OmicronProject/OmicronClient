@@ -9,7 +9,7 @@ import {SignInButton, SignUpButton} from '../components/login_form';
 import {SignInSpinner, LogoutButton} from '../components/login_form';
 import {connect} from 'react-redux';
 import clone from '../object_cloning';
-import Header from './header';
+import HeaderBar from './header';
 import reducer from '../reducer';
 import {auth_started, auth_success, auth_failure} from '../auth/actions';
 import axios from 'axios';
@@ -44,13 +44,13 @@ import store from '../store';
  */
 export const LoginForm = (
     {on_username_change, on_password_change,
-    uname_value, password_value, on_submit, authed_username, auth_status,
+    uname_value, password_value, on_submit,
     is_spinner_visible
     }
 ) => {
     return(
     <div className="container-fluid" id="login_page">
-        <Header />
+        <HeaderBar />
         <div className="container">
             <form>
                 <div id="loginForm" className="loginForm">
@@ -73,17 +73,6 @@ export const LoginForm = (
                 />
             </form>
         </div>
-        <div className="row">
-            <div className="col-md-8">
-                <h3>Authentication</h3>
-            </div>
-            <div className="col-md-8">
-                Hello: {authed_username}
-            </div>
-            <div className="col-md-8">
-                auth_status: {auth_status}
-            </div>
-        </div>
     </div>
 )};
 
@@ -103,15 +92,9 @@ LoginForm.propTypes = {
  *  from the application state.
  */
 export const mapLoginStateToProps = (state) => {
-    let authed_username = undefined;
-    if (state.user.auth_status === 'authenticated') {
-        authed_username = state.user.username;
-    }
     return ({
         uname_value: state.user.username,
         password_value: state.user.password,
-        authed_username: authed_username,
-        auth_status: state.user.auth_status,
         is_spinner_visible: state.authenticator.is_authenticating
     })
 };

@@ -190,7 +190,7 @@ export const LogoutButton = connect(
 
 const USER_LOGOUT = "USER_LOGOUT";
 
-function logout(){
+export function logout(){
     return({
         type: USER_LOGOUT
     })

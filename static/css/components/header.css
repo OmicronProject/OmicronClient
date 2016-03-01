@@ -1,0 +1,11 @@
+.username-header-text {
+    color: #337ab7;
+    position: relative;
+    display: block;
+    border-radius: 4px;
+    top: 10px;
+}
+
+.navbar {
+    color: #FFFFFF;
+}
