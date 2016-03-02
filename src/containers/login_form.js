@@ -23,9 +23,9 @@ import store from '../store';
  *  value of the username field changes
  * @param {function} on_password_change The callback to execute when the value
  *  of the password field changes
- * @param {str} uname_value The current value of the username. This value is
+ * @param {string} uname_value The current value of the username. This value is
  *  displayed in the Username box on the form.
- * @param {str} password_value The password with which the user wishes to
+ * @param {string} password_value The password with which the user wishes to
  *  authenticate. This value is needed in order for the Password box to
  *  calculate how many masked characters need to be rendered. The user's
  *  password is cleared at the start of authentication. Clearing and

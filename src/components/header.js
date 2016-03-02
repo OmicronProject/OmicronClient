@@ -2,9 +2,8 @@
  * Created by Michal on 2016-03-01.
  */
 import React from 'react';
-import { Link } from 'react-router';
-import { NavItem, NavDropdown, MenuItem, Navbar, Dropdown } from 'react-bootstrap';
-import {Glyphicon} from 'react-bootstrap';
+import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
+import { Glyphicon } from 'react-bootstrap';
 
 export const HeaderNavBar = ({buttons}) => (
     <ul className="nav navbar-nav">
@@ -16,7 +15,7 @@ export const HelloBox = ({username, on_logout_button_click}) => (
     <NavDropdown id="user_options" title={"Signed in as " + username}>
         <MenuItem eventKey={"user_options_1"}
                   onClick={on_logout_button_click}>
-            Logout
+            Logout <Glyphicon glyph="log-out"/>
         </MenuItem>
     </NavDropdown>
 );
