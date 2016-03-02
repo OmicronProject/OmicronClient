@@ -44,29 +44,31 @@ export const LoginForm = (
     }
 ) => {
     return(
-    <div className="container-fluid" id="login_page">
+    <div>
         <HeaderBar />
-        <div className="container">
-            <form>
-                <div id="loginForm" className="loginForm">
-                    <UserNameBox
-                        change_callback={on_username_change}
-                        value={uname_value}
+        <div className="container-fluid" id="login_page">
+            <div className="row">
+                <form>
+                    <div id="loginForm" className="loginForm">
+                        <UserNameBox
+                            change_callback={on_username_change}
+                            value={uname_value}
+                        />
+                        <PasswordBox
+                            change_callback={on_password_change}
+                            value={password_value}
+                        />
+                    </div>
+                    <SignInButton is_active={true}
+                                  content="Sign In"
+                                  onClick={on_submit}/>
+                    <SignUpButton is_active={true}/>
+                    <LogoutButton />
+                    <SignInSpinner is_active={is_spinner_visible}
+                        source={sign_in_spinner}
                     />
-                    <PasswordBox
-                        change_callback={on_password_change}
-                        value={password_value}
-                    />
-                </div>
-                <SignInButton is_active={true}
-                              content="Sign In"
-                              onClick={on_submit}/>
-                <SignUpButton is_active={true}/>
-                <LogoutButton />
-                <SignInSpinner is_active={is_spinner_visible}
-                    source={sign_in_spinner}
-                />
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 )};

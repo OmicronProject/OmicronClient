@@ -8,8 +8,9 @@ import { connect } from 'react-redux';
 import { HeaderNavBar, HelloBox } from '../components/header';
 import { LoginButton } from '../components/header';
 import { logout } from '../components/login_form';
-
-import '../../static/css/components/header.css';
+import { Link } from 'react-router';
+import { _make_button } from '../components/header';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 export const Header = ({
         buttons, is_user_authenticated,
@@ -26,16 +27,22 @@ export const Header = ({
     }
 
     return(
-        <div className="container-fluid" id="header_bar">
-            <div className="row">
-                <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <HeaderNavBar buttons={buttons}/>
-                </div>
-                <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <Navbar inverse>
+            <Navbar.Header>
+                <Navbar.Brand>
+                    <Link to="/">Omicron Labs</Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+                <Nav>
+                    {buttons.map(_make_button)}
+                </Nav>
+                <Nav pullRight>
                     {login_component}
-                </div>
-            </div>
-        </div>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     )
 };
 

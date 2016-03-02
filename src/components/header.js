@@ -3,32 +3,31 @@
  */
 import React from 'react';
 import { Link } from 'react-router';
+import { NavItem } from 'react-bootstrap';
 
 export const HeaderNavBar = ({buttons}) => (
-    <ul className="nav navbar nav-pills">
+    <ul className="nav navbar-nav">
         {buttons.map(_make_button)}
     </ul>
 );
 
 export const HelloBox = ({username, on_logout_button_click}) => (
-    <ul className="nav navbar nav-pills">
-        <li key="Username" className="username-header-text">
-            Hello {username}
+    <ul className="nav navbar-nav navbar-right">
+        <li key="username">
+            <span className="glyphicon glyphicon-user">
+                Hello {username}
+            </span>
         </li>
-        <li key="LogoutButton" role="presentation">
-            <a onClick={on_logout_button_click}>
+        <li key="logout">
+            <span className="glyphicon glyphicon-log-out">
                 Logout
-            </a>
+            </span>
         </li>
     </ul>
 );
 
 export const LoginButton = () => (
-    <ul className="nav navbar nav-pills">
-        <li key="Login" role="presentation">
-            <Link to='/'>Login</Link>
-        </li>
-    </ul>
+    <NavItem eventkey={4} href="/login">Login</NavItem>
 );
 
 /**
@@ -59,9 +58,11 @@ export function _make_button(button) {
  */
 export function _make_internal(button){
     return(
-        <li key={button.key} role="presentation">
-            <Link to={button.link}>{button.name}</Link>
-        </li>
+        <NavItem eventKey={button.key} key={button.key}>
+            <Link to={button.link}>
+                {button.name}
+            </Link>
+        </NavItem>
     )
 }
 
@@ -73,8 +74,8 @@ export function _make_internal(button){
  */
 export function _make_external(button){
     return(
-        <li key={button.key} role="presentation">
-            <a href={button.link}>{button.name}</a>
-        </li>
+        <NavItem eventKey={button.key} key={button.key} href={button.link}>
+            {button.name}
+        </NavItem>
     )
 }
