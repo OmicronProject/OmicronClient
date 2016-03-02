@@ -4,6 +4,10 @@ body {
     background-color: #333333;
 }
 
+label {
+    color: #FFFFFF;
+}
+
 .container {
     color: #FFFFFF;
 }

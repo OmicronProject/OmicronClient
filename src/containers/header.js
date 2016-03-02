@@ -12,6 +12,8 @@ import { Link } from 'react-router';
 import { _make_button } from '../components/header';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
+import "../../static/css/components/header.css";
+
 export const Header = ({
         buttons, is_user_authenticated,
         username, on_logout_button_click

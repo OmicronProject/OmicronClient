@@ -3,7 +3,8 @@
  */
 import React from 'react';
 import { Link } from 'react-router';
-import { NavItem } from 'react-bootstrap';
+import { NavItem, NavDropdown, MenuItem, Navbar, Dropdown } from 'react-bootstrap';
+import {Glyphicon} from 'react-bootstrap';
 
 export const HeaderNavBar = ({buttons}) => (
     <ul className="nav navbar-nav">
@@ -12,22 +13,18 @@ export const HeaderNavBar = ({buttons}) => (
 );
 
 export const HelloBox = ({username, on_logout_button_click}) => (
-    <ul className="nav navbar-nav navbar-right">
-        <li key="username">
-            <span className="glyphicon glyphicon-user">
-                Hello {username}
-            </span>
-        </li>
-        <li key="logout">
-            <span className="glyphicon glyphicon-log-out">
-                Logout
-            </span>
-        </li>
-    </ul>
+    <NavDropdown id="user_options" title={"Signed in as " + username}>
+        <MenuItem eventKey={"user_options_1"}
+                  onClick={on_logout_button_click}>
+            Logout
+        </MenuItem>
+    </NavDropdown>
 );
 
 export const LoginButton = () => (
-    <NavItem eventkey={4} href="/login">Login</NavItem>
+    <NavItem eventKey={"login_button"} href="#/">
+        Login
+    </NavItem>
 );
 
 /**
@@ -58,10 +55,9 @@ export function _make_button(button) {
  */
 export function _make_internal(button){
     return(
-        <NavItem eventKey={button.key} key={button.key}>
-            <Link to={button.link}>
-                {button.name}
-            </Link>
+        <NavItem eventKey={button.key} key={button.key}
+                 href={"#" + button.link}>
+            {button.name}
         </NavItem>
     )
 }

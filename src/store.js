@@ -14,7 +14,6 @@ const initial_state = {
         [
             {name: "Home", link: "#", key: "header_button1"},
             {name: "Dashboard", link: "#", key: "header_button2"},
-            {name: "Login", link: "#", key: "header_button3"},
             {name: "HTTP Test", link: "/http_test", key:"header_button4",
                 type:"internal"}
         ]
