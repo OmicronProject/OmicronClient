@@ -8,7 +8,6 @@ import {UserNameBox, PasswordBox} from '../components/login_form';
 import {SignInButton, SignUpButton} from '../components/login_form';
 import {SignInSpinner, LogoutButton} from '../components/login_form';
 import {connect} from 'react-redux';
-import clone from '../object_cloning';
 import HeaderBar from './header';
 import reducer from '../reducer';
 import {auth_started, auth_success, auth_failure} from '../auth/actions';
@@ -33,10 +32,6 @@ import store from '../store';
  *  maintaining the password is not the responsibility of this component.
  * @param {function} on_submit The function to be executed when the user
  *  clicks the submit button.
- * @param {str} authed_username: After authentication, this is the username
- *  after the user has authenticated
- * @param {str} auth_status: The current state of the authenticator. At the
- *  moment, this is used for debugging purposes.
  * @param {bool} is_spinner_visible: If true, A spinner will be shown to the
  *  user, indicating that authentication is in progress
  * @returns {XML} The template for the login form
@@ -121,7 +116,7 @@ const LoginBox = connect(mapLoginStateToProps, mapLoginDispatchToProps)
 
 export function username_change_reducer(state, action){
     if (action.type === "USERNAME_CHANGED") {
-        let new_state = clone(state);
+        let new_state = Object.assign(state);
 
         new_state.user.username = action.username;
 
@@ -133,7 +128,7 @@ export function username_change_reducer(state, action){
 
 export function password_change_reducer(state, action){
     if (action.type === "PASSWORD_CHANGED") {
-        let new_state = clone(state);
+        let new_state = Object.assign(state);
         new_state.user.password = action.password;
 
         return(new_state);
@@ -144,10 +139,8 @@ export function password_change_reducer(state, action){
 
 export function submit_reducer(state, action){
     if (action.type === "USER_AUTHENTICATION_SUBMIT"){
-        let new_state = clone(state);
+        let new_state = Object.assign(state);
         new_state.user.auth_status = "authenticating";
-        
-
         return(new_state);
     } else {
         return(state);
