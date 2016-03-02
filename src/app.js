@@ -10,8 +10,8 @@ import HeaderBar from './containers/header';
 import HTTPTest from './containers/http_request';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "../static/css/index.css";
 
 /**
  * class responsible for creating the first-rendered React component

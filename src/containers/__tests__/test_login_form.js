@@ -79,8 +79,6 @@ describe('login_form', () => {
                 {
                     uname_value: uname_value,
                     password_value: password_value,
-                    authed_username: uname_value,
-                    auth_status: auth_status,
                     is_spinner_visible: is_spinner_visible
                 }
             );
@@ -174,13 +172,15 @@ describe("submit_reducer", () => {
 
     it("Should return the old state if wrong action", () => {
         let action = {type: "INVALID"};
-        expect(submit_reducer(state, action)).toEqual(state);
+        let new_state = submit_reducer(state, action);
+        expect(new_state).toEqual(state);
     });
 
     it("Should appropriately change the state if correct action", () => {
         let action = {type: "USER_AUTHENTICATION_SUBMIT"};
+        let new_state = submit_reducer(state, action);
         expect(
-            submit_reducer(state, action).user.auth_status
+            new_state.user.auth_status
         ).toEqual("authenticating");
     });
 });

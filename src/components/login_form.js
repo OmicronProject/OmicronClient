@@ -160,7 +160,7 @@ LogoutButtonTemplate.propTypes = {
     on_click: PropTypes.func.isRequired
 };
 
-function map_logout_state_to_props(state){
+export function map_logout_state_to_props(state){
     let is_active = true;
     if (state.user.auth_status !== 'authenticated'){
         is_active = false;
@@ -190,7 +190,7 @@ export const LogoutButton = connect(
 
 const USER_LOGOUT = "USER_LOGOUT";
 
-function logout(){
+export function logout(){
     return({
         type: USER_LOGOUT
     })

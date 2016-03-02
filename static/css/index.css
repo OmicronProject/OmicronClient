@@ -1,0 +1,13 @@
+html,
+body {
+    height: 100%;
+    background-color: #333333;
+}
+
+label {
+    color: #FFFFFF;
+}
+
+.container {
+    color: #FFFFFF;
+}

@@ -3,72 +3,54 @@
  *
  * Created by Michal on 2016-02-01.
  */
-import React from 'react';
-import { Link } from 'react-router';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { HeaderNavBar, HelloBox } from '../components/header';
+import { LoginButton } from '../components/header';
+import { logout } from '../components/login_form';
+import { Link } from 'react-router';
+import { _make_button } from '../components/header';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
-/**
- * Templates a navigation header bar that can be updated from the application
- * state
- *
- * @param buttons The buttons to place in the header bar
- * @constructor
- */
-export const Header = ({buttons}) => (
-    <div id="header_bar" className="container container-fluid">
-        <ul className="nav nav-pills">
-            {buttons.map(_make_button)}
-        </ul>
-    </div>
-);
+import "../../static/css/components/header.css";
 
-/**
- * Factory for creating a button in the menu. Differentiates between buttons
- * pointing to internal links in the single-page application and external
- * links to other websites. External links could include a potential Wordpress
- * blog for a spin physics wiki authenticated through OAuth 2 (nudge nudge
- * wink wink :))
- *
- * @param {Object} button The button to be made
- * @private
- */
-export function _make_button(button) {
-    if (button.type === "internal"){
-        return _make_internal(button);
+export const Header = ({
+        buttons, is_user_authenticated,
+        username, on_logout_button_click
+    }) => {
+    let login_component;
+    if (is_user_authenticated){
+        login_component = <HelloBox
+            username={username}
+            on_logout_button_click={on_logout_button_click}
+            />;
     } else {
-        return _make_external(button);
+        login_component = <LoginButton/>;
     }
-}
 
-/**
- * Make an internal link to another page in the Omicron Client's SPA, using the
- * Link element provided by react-router.
- *
- * @param {Object} button The button to make
- * @returns {XML} The JSX representation of the link
- * @private
- */
-export function _make_internal(button){
     return(
-        <li key={button.key} role="presentation">
-            <Link to={button.link}>{button.name}</Link>
-        </li>
+        <Navbar inverse>
+            <Navbar.Header>
+                <Navbar.Brand>
+                    <Link to="/">Omicron Labs</Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+                <Nav>
+                    {buttons.map(_make_button)}
+                </Nav>
+                <Nav pullRight>
+                    {login_component}
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     )
-}
+};
 
-/**
- * Make an external link using React's <a/> tag to do so
- * @param {Object} button The button to make
- * @returns {XML} The JSX representation of the external link
- * @private
- */
-export function _make_external(button){
-    return(
-        <li key={button.key} role="presentation">
-            <a href={button.link}>{button.name}</a>
-        </li>
-    )
-}
+Header.propTypes = {
+    on_logout_button_click: PropTypes.func.isRequired
+};
 
 /**
  * Takes the current application state, and returns an object containing
@@ -80,14 +62,25 @@ export function _make_external(button){
 export function map_header_state_to_props(state){
     return(
         {
-            buttons: state.main_menu.buttons
+            buttons: state.main_menu.buttons,
+            is_user_authenticated:
+                (state.user.auth_status === "authenticated"),
+            username: state.user.username
         }
     )
+}
+
+export function map_dispatch_to_props(dispatch){
+    return ({
+        on_logout_button_click: () => (dispatch(logout()))
+    })
 }
 
 /**
  * Connect the header bar to the store using the state mapper and export it
  */
-const HeaderBar = connect(map_header_state_to_props)(Header);
+const HeaderBar = connect(
+    map_header_state_to_props, map_dispatch_to_props
+)(Header);
 
 export default HeaderBar;

@@ -8,6 +8,7 @@ import {UserNameBox, PasswordBox, SignInButton} from '../login_form';
 import {SignInSpinner, InputBox} from '../login_form';
 import React from 'react';
 import ReactTestUtils from 'react/lib/ReactTestUtils';
+import {map_logout_state_to_props} from '../login_form';
 
 describe("InputBox", () => {
     let props;
@@ -82,5 +83,30 @@ describe("PasswordBox", () => {
         );
 
         expect(box).toExist();
+    })
+});
+
+describe("map_logout_state_to_props", () => {
+    let state;
+
+    beforeEach(() => {
+        state = {
+            user: {
+                auth_status: undefined
+            }
+        }
+    });
+    it("should return the correct class name if the class is active", () => {
+        state.user.auth_status = 'authenticated';
+        let classname = map_logout_state_to_props(state);
+        expect(classname).toEqual({className: 'btn btn-primary'});
+    });
+    it("should return the correct class name if the class is not active",
+        () => {
+            state.user.auth_status = 'not_authenticated';
+            let class_name = map_logout_state_to_props(state);
+            expect(class_name).toEqual(
+                {className: 'btn btn-primary disabled'}
+            );
     })
 });

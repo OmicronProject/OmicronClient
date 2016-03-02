@@ -8,8 +8,7 @@ import {UserNameBox, PasswordBox} from '../components/login_form';
 import {SignInButton, SignUpButton} from '../components/login_form';
 import {SignInSpinner, LogoutButton} from '../components/login_form';
 import {connect} from 'react-redux';
-import clone from '../object_cloning';
-import Header from './header';
+import HeaderBar from './header';
 import reducer from '../reducer';
 import {auth_started, auth_success, auth_failure} from '../auth/actions';
 import axios from 'axios';
@@ -24,19 +23,15 @@ import store from '../store';
  *  value of the username field changes
  * @param {function} on_password_change The callback to execute when the value
  *  of the password field changes
- * @param {str} uname_value The current value of the username. This value is
+ * @param {string} uname_value The current value of the username. This value is
  *  displayed in the Username box on the form.
- * @param {str} password_value The password with which the user wishes to
+ * @param {string} password_value The password with which the user wishes to
  *  authenticate. This value is needed in order for the Password box to
  *  calculate how many masked characters need to be rendered. The user's
  *  password is cleared at the start of authentication. Clearing and
  *  maintaining the password is not the responsibility of this component.
  * @param {function} on_submit The function to be executed when the user
  *  clicks the submit button.
- * @param {str} authed_username: After authentication, this is the username
- *  after the user has authenticated
- * @param {str} auth_status: The current state of the authenticator. At the
- *  moment, this is used for debugging purposes.
  * @param {bool} is_spinner_visible: If true, A spinner will be shown to the
  *  user, indicating that authentication is in progress
  * @returns {XML} The template for the login form
@@ -44,44 +39,35 @@ import store from '../store';
  */
 export const LoginForm = (
     {on_username_change, on_password_change,
-    uname_value, password_value, on_submit, authed_username, auth_status,
+    uname_value, password_value, on_submit,
     is_spinner_visible
     }
 ) => {
     return(
-    <div className="container-fluid" id="login_page">
-        <Header />
-        <div className="container">
-            <form>
-                <div id="loginForm" className="loginForm">
-                    <UserNameBox
-                        change_callback={on_username_change}
-                        value={uname_value}
+    <div>
+        <HeaderBar />
+        <div className="container-fluid" id="login_page">
+            <div className="row">
+                <form>
+                    <div id="loginForm" className="loginForm">
+                        <UserNameBox
+                            change_callback={on_username_change}
+                            value={uname_value}
+                        />
+                        <PasswordBox
+                            change_callback={on_password_change}
+                            value={password_value}
+                        />
+                    </div>
+                    <SignInButton is_active={true}
+                                  content="Sign In"
+                                  onClick={on_submit}/>
+                    <SignUpButton is_active={true}/>
+                    <LogoutButton />
+                    <SignInSpinner is_active={is_spinner_visible}
+                        source={sign_in_spinner}
                     />
-                    <PasswordBox
-                        change_callback={on_password_change}
-                        value={password_value}
-                    />
-                </div>
-                <SignInButton is_active={true}
-                              content="Sign In"
-                              onClick={on_submit}/>
-                <SignUpButton is_active={true}/>
-                <LogoutButton />
-                <SignInSpinner is_active={is_spinner_visible}
-                    source={sign_in_spinner}
-                />
-            </form>
-        </div>
-        <div className="row">
-            <div className="col-md-8">
-                <h3>Authentication</h3>
-            </div>
-            <div className="col-md-8">
-                Hello: {authed_username}
-            </div>
-            <div className="col-md-8">
-                auth_status: {auth_status}
+                </form>
             </div>
         </div>
     </div>
@@ -103,15 +89,9 @@ LoginForm.propTypes = {
  *  from the application state.
  */
 export const mapLoginStateToProps = (state) => {
-    let authed_username = undefined;
-    if (state.user.auth_status === 'authenticated') {
-        authed_username = state.user.username;
-    }
     return ({
         uname_value: state.user.username,
         password_value: state.user.password,
-        authed_username: authed_username,
-        auth_status: state.user.auth_status,
         is_spinner_visible: state.authenticator.is_authenticating
     })
 };
@@ -138,7 +118,7 @@ const LoginBox = connect(mapLoginStateToProps, mapLoginDispatchToProps)
 
 export function username_change_reducer(state, action){
     if (action.type === "USERNAME_CHANGED") {
-        let new_state = clone(state);
+        let new_state = Object.assign(state);
 
         new_state.user.username = action.username;
 
@@ -150,7 +130,7 @@ export function username_change_reducer(state, action){
 
 export function password_change_reducer(state, action){
     if (action.type === "PASSWORD_CHANGED") {
-        let new_state = clone(state);
+        let new_state = Object.assign(state);
         new_state.user.password = action.password;
 
         return(new_state);
@@ -161,10 +141,8 @@ export function password_change_reducer(state, action){
 
 export function submit_reducer(state, action){
     if (action.type === "USER_AUTHENTICATION_SUBMIT"){
-        let new_state = clone(state);
+        let new_state = Object.assign(state);
         new_state.user.auth_status = "authenticating";
-        
-
         return(new_state);
     } else {
         return(state);

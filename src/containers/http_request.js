@@ -29,20 +29,21 @@ import {URLEntryForm, ResultsBox} from '../components/http_request';
 export const HTTPTestTemplate = ({
     on_url_change, on_button_click, http_test_result, url_value
     }) => (
-    <div className="container container-fluid">
-    <div className="row">
-        <div className="col-md-8">
-            <Header />
+    <div>
+        <Header />
+        <div className="container-fluid">
+            <div className="row">
+                <URLEntryForm url_value={url_value}
+                              on_url_change={on_url_change}
+                              on_button_click={on_button_click}
+                />
+            </div>
+            <div className="row">
+                <ResultsBox url_value={url_value}
+                            test_result={http_test_result}
+                />
+            </div>
         </div>
-        <div className="col-md-8">
-            <URLEntryForm url_value={url_value} on_url_change={on_url_change}
-                          on_button_click={on_button_click}
-            />
-        </div>
-        <div className="col-md-8">
-            <ResultsBox url_value={url_value} test_result={http_test_result} />
-        </div>
-    </div>
     </div>
 );
 
