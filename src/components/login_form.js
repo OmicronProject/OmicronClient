@@ -10,6 +10,8 @@ import Reducer from '../reducer';
 import clone from '../object_cloning';
 import {connect} from 'react-redux';
 
+import '../../static/css/components/login_form.css';
+
 /**
  * Generic component for an input box. This is subclassed by other components
  * in the Login Form in order to render the username and password entries.
@@ -136,12 +138,12 @@ class SignInSpinner extends React.Component{
     render(){
         if (this.props.is_active){
             return (
-                <img src={this.props.source} id="loading_spinner" height="20px"/>
+                <img src={this.props.source} id="loading_spinner"/>
             )
         } else {
             return (
                 <div className="col-md-1 hidden">
-                    <img src={this.props.source} id="loading_spinner" height="20px"/>
+                    <img src={this.props.source} id="loading_spinner"/>
                 </div>
 
             )

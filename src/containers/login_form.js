@@ -12,7 +12,7 @@ import HeaderBar from './header';
 import reducer from '../reducer';
 import {auth_started, auth_success, auth_failure} from '../auth/actions';
 import axios from 'axios';
-import sign_in_spinner from '../../static/img/spinner.gif';
+import sign_in_spinner from '../../static/img/hourglass.svg';
 import store from '../store';
 
 /**
