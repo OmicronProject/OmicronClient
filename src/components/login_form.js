@@ -188,7 +188,7 @@ export const LogoutButton = connect(
     map_logout_state_to_props, map_logout_dispatch_to_props
 )(LogoutButtonTemplate);
 
-const USER_LOGOUT = "USER_LOGOUT";
+const USER_LOGOUT = "USER_LOGOUT_STARTED";
 
 export function logout(){
     return({

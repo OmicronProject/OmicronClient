@@ -54,6 +54,44 @@ const initial_state = {
             data: {}
         }
     },
+    projects: {
+        frontend: {
+            is_fetching_projects: false,
+            did_invalidate: false,
+            projects: [
+                {
+                    "name": "test_project",
+                    "description": "Delete this before checkin",
+                    "date_created": 1457022439084,
+                    "owner": "timmy"
+                },
+                {
+                    "name": "test_project2",
+                    "description": "This makes it a list",
+                    "date_created": 1457022488535,
+                    "owner": "timmy"
+                }
+            ]
+        },
+        reactjs: {
+            is_fetching: false,
+            cache_last_updated: 1457022488545,
+            projects: [
+                {
+                    "name": "test_project",
+                    "description": "Delete this before checkin",
+                    "date_created": 1457022439084,
+                    "owner": "timmy"
+                },
+                {
+                    "name": "test_project2",
+                    "description": "This makes it a list",
+                    "date_created": 1457022488535,
+                    "owner": "timmy"
+                }
+            ]
+        }
+    },
     omicron_api: {
         url: api_url,
         headers: {

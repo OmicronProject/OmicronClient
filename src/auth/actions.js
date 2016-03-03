@@ -132,3 +132,24 @@ export function auth_failure_reducer(state, action) {
     }
 }
 reducer.register(auth_failure_reducer);
+
+export const USER_LOGOUT_STARTED = "USER_LOGOUT_STARTED";
+
+export function user_logout_started(){
+    return {
+        type: USER_LOGOUT_STARTED
+    }
+}
+
+export function user_logout_started_reducer(state, action){
+    if(action.type === USER_LOGOUT_STARTED){
+        let new_state = Object.assign(state);
+        new_state.user.username = undefined;
+        new_state.user.password = undefined;
+        return new_state
+    } else {
+        return state;
+    }
+}
+
+reducer.register(user_logout_started_reducer);
