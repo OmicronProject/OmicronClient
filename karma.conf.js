@@ -59,6 +59,10 @@ module.exports = function (config) {
                     {
                         test: /\.gif$/,
                         loader: "file"
+                    },
+                    {
+                        test: /\.png$/,
+                        loader: "url-loader?limit=10000"
                     }
                 ],
                 postLoaders: [{
