@@ -7,9 +7,9 @@ Front end for the Omicron System
 The following are reports from various automated codebase monitoring systems.
 Each one is linked to their respective service.
 
-* [![Build Status]
-    (https://travis-ci.org/MichalKononenko/OmicronClient.svg?branch=master)]
-    (https://travis-ci.org/MichalKononenko/OmicronClient) Build Status 
+* [![Build Status](
+    https://travis-ci.org/MichalKononenko/OmicronClient.svg?branch=master)
+    ](https://travis-ci.org/MichalKononenko/OmicronClient) Build Status 
 * [![Coverage Status](
     https://coveralls.io/repos/MichalKononenko/OmicronClient/badge.svg?branch=master&service=github)
     ](https://coveralls.io/github/MichalKononenko/OmicronClient?branch=master)
