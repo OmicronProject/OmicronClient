@@ -14,6 +14,7 @@ import {auth_started, auth_success, auth_failure} from '../auth/actions';
 import axios from 'axios';
 import sign_in_spinner from '../../static/img/hourglass.svg';
 import store from '../store';
+import Footer from '../components/footer';
 
 /**
  *
@@ -70,6 +71,7 @@ export const LoginForm = (
                 </form>
             </div>
         </div>
+        <Footer />
     </div>
 )};
 

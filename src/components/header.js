@@ -6,7 +6,7 @@ import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
 
 export const HeaderNavBar = ({buttons}) => (
-    <ul className="nav navbar-nav">
+    <ul className="nav navbar-fixed-top">
         {buttons.map(_make_button)}
     </ul>
 );

@@ -43,11 +43,15 @@ module.exports = {
             },
             {
                 test: /\.jpe?g$/,
-                loader: "file"
+                loader: "url-loader?limit=8192"
             },
             {
                 test: /\.gif$/,
-                loader: "file"
+                loader: "url-loader?limit=8192"
+            },
+            {
+                test: /\.png$/,
+                loader: "url-loader?limit=10000"
             }
         ]
     },
