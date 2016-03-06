@@ -35,7 +35,7 @@ module.exports = function (config) {
             devtool: 'inline-source-map',
             module: {
                 loaders: [
-                    { test: /\.js$/, loader: 'babel-loader' },
+                    { test: /\.jsx?$/, loader: 'babel-loader' },
                     { test: /\.css$/, loader: "style-loader!css-loader" },
                     {
                         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"

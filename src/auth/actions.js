@@ -136,5 +136,7 @@ reducer.register(login_failure_reducer);
 export const LOGOUT_STARTED = "LOGOUT_STARTED";
 
 export function logout_started(){
-
+    return {
+        type: LOGOUT_STARTED
+    };
 }
