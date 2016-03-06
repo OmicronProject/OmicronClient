@@ -10,7 +10,7 @@ import {SignInSpinner, LogoutButton} from '../components/login_form';
 import {connect} from 'react-redux';
 import HeaderBar from './header';
 import reducer from '../reducer';
-import {auth_started, auth_success, auth_failure} from '../auth/actions';
+import {login_started, login_success, login_failure} from '../auth/actions';
 import axios from 'axios';
 import sign_in_spinner from '../../static/img/hourglass.svg';
 import store from '../store';
@@ -170,7 +170,7 @@ export function authenticate_user() {
         let username = state.user.username;
         let password = state.user.password;
 
-        dispatch(auth_started(username, password));
+        dispatch(login_started(username, password));
 
         let auth_header = {
             "Authorization": "Basic " + btoa(username + ":" + password)
@@ -183,8 +183,8 @@ export function authenticate_user() {
         });
 
         request.then((response) => {dispatch(
-            auth_success(response.data.token, response.data.expiration_date)
-        )}).catch((error) => {dispatch(auth_failure(error.message))})
+            login_success(response.data.token, response.data.expiration_date)
+        )}).catch((error) => {dispatch(login_failure(error.message))})
     }
 }
 

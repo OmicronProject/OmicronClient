@@ -56,6 +56,14 @@ module.exports = {
             {
                 test: /\.png$/,
                 loader: "url-loader?limit=10000"
+            },
+            {
+                test: /index\.html$/,
+                loader: "file-loader?name=index.html"
+            },
+            {
+                test: /favicon\.ico$/,
+                loader: "file-loader?name=favicon.ico"
             }
         ]
     },
