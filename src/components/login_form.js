@@ -41,7 +41,9 @@ export class InputBox extends React.Component {
                        onChange={this.props.change_callback}
                        placeholder={this.box_name}
                        value={this.props.value}
-                       autocomplete="off"
+                       autoComplete="off"
+                       autoCorrect="off"
+                       autoCapitalize="off"
                 />
             </div>
         )

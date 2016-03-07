@@ -7,6 +7,7 @@ import expect from 'expect';
 import { _make_button } from '../header';
 import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 describe("_make_button", () => {
     let internal_button;
@@ -23,11 +24,12 @@ describe("_make_button", () => {
 
     it("Should make an internal link if the button is internal", () => {
         expect(_make_button(internal_button)).toEqual(
-            <NavItem eventKey={internal_button.key}
-                     key={internal_button.key}
-                     href={"#" + internal_button.link}>
-                {internal_button.name}
-            </NavItem>
+            <LinkContainer to={{pathname: internal_button.link}}>
+                <NavItem eventKey={internal_button.key}
+                         key={internal_button.key}>
+                    {internal_button.name}
+                </NavItem>
+            </LinkContainer>
         );
     });
 

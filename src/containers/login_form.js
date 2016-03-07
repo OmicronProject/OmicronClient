@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import HeaderBar from './header';
 import reducer from '../reducer';
 import {auth_started, auth_success, auth_failure} from '../auth/actions';
-import axios from 'axios';
+import 'isomorphic-fetch';
 import sign_in_spinner from '../../static/img/hourglass.svg';
 import store from '../store';
 import Footer from '../components/footer';
@@ -176,14 +176,15 @@ export function authenticate_user() {
             "Authorization": "Basic " + btoa(username + ":" + password)
         };
 
-        let request = axios({
-            url: state.omicron_api.url + '/api/v1/token',
+        let request = fetch(state.omicron_api.url + '/api/v1/token', {
             headers: Object.assign(auth_header, state.omicron_api.headers),
             method: "POST"
         });
 
-        request.then((response) => {dispatch(
-            auth_success(response.data.token, response.data.expiration_date)
+        request.then((response) => {
+            let data = response.json();
+            dispatch(
+            auth_success(data.token, data.expiration_date)
         )}).catch((error) => {dispatch(auth_failure(error.message))})
     }
 }
