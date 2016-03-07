@@ -17,9 +17,18 @@ describe(START_LOGIN, () => {
         beforeEach(() => {
             state = {
                 auth: {
-                    front_end: {is_authenticating: true}
+                    front_end: {
+                        is_authenticating: false,
+                        has_authenticated: true
+                    }
                 }
             }
+        });
+
+        it("Should flip the two variables in the state", () => {
+            start_login_reducer(state);
+            expect(state.auth.front_end.is_authenticating).toEqual(true);
+            expect(state.auth.front_end.has_authenticated).toEqual(false);
         })
     })
 });
