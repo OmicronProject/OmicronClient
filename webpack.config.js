@@ -21,7 +21,7 @@ module.exports = {
     module: {
         loaders: master_config.loaders
     },
-    plugins: [
+    plugins: master_config.plugins(webpack).concat([
         new webpack.DefinePlugin({'process.env.NODE_ENV': '"development"'})
-    ]
+    ])
 };

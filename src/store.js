@@ -18,20 +18,22 @@ const initial_state = {
                 type:"internal"}
         ]
     },
-    authenticator:
-    {
-        username: undefined,
-        password: undefined,
-        is_authenticating: false,
-        authentication_failed: false,
-        error_message: undefined
-    },
-    user:
-    {
-        username: undefined,
-        password: undefined,
-        auth_status: "not_authenticated",
-        token_expiry_date: undefined
+    auth: {
+        front_end: {
+            username: undefined,
+            password: undefined,
+            is_authenticating: false,
+            has_authenticated: false,
+            error_message: undefined
+        },
+        back_end: {
+            username: undefined,
+            password: undefined,
+            is_authenticating: false,
+            error_message: undefined,
+            auth_token: undefined,
+            token_expiry_date: undefined
+        }
     },
     registration_form:
     {

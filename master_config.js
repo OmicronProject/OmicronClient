@@ -5,7 +5,6 @@
  *
  */
 'use strict';
-
 let api_url = process.env.API_URL || 'https://omicronserver.herokuapp.com';
 let github_repo_url = 'https://github.com/MichalKononenko/OmicronClient';
 let waffle_url = "https://waffle.io/MichalKononenko/OmicronClient";
@@ -41,6 +40,12 @@ let non_js_loaders = [
     { test: /favicon\.ico$/, loader: "file-loader?name=favicon.ico" }
 ];
 
+let plugins = (webpack) => ([
+    new webpack.ProvidePlugin({
+        "fetch": "imports?this=>global!exports?global.fetch!whatwg-fetch"
+    })
+]);
+
 module.exports = {
     api_url: api_url,
     github_repo_url: github_repo_url,
@@ -48,5 +53,6 @@ module.exports = {
     esdoc_url: esdoc_url,
     loaders: js_loaders.concat(non_js_loaders),
     js_loaders: js_loaders,
-    non_js_loaders: non_js_loaders
+    non_js_loaders: non_js_loaders,
+    plugins: plugins
 };

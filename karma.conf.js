@@ -42,7 +42,8 @@ module.exports = function(config) {
                     test: /\.js?$/,
                     exclude: /(test|node_modules)/,
                     loader: 'istanbul-instrumenter'
-                }]
+                }],
+                plugins: master_config.plugins(webpack)
             }
         },
 
