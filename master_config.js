@@ -11,7 +11,7 @@ let github_repo_url = 'https://github.com/MichalKononenko/OmicronClient';
 let waffle_url = "https://waffle.io/MichalKononenko/OmicronClient";
 let esdoc_url = "https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/";
 
-let loaders = [
+let js_loaders = [
     {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -19,7 +19,10 @@ let loaders = [
         query: {
             presets: ['es2015', 'react']
         }
-    },
+    }
+];
+
+let non_js_loaders = [
     { test: /\.css$/, loader: "style-loader!css-loader" },
     { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
     { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
@@ -43,5 +46,7 @@ module.exports = {
     github_repo_url: github_repo_url,
     waffle_url: waffle_url,
     esdoc_url: esdoc_url,
-    loaders: loaders
+    loaders: js_loaders.concat(non_js_loaders),
+    js_loaders: js_loaders,
+    non_js_loaders: non_js_loaders
 };

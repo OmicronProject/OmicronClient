@@ -1,8 +1,9 @@
 'use strict';
 
 var webpack = require('webpack');
+var master_config = require('./master_config');
 
-module.exports = function (config) {
+module.exports = function(config) {
     config.set({
 
         browsers: [ 'PhantomJS' ],
@@ -35,44 +36,8 @@ module.exports = function (config) {
             devtool: 'inline-source-map',
             module: {
                 loaders: [
-                    { test: /\.jsx?$/, loader: 'babel-loader' },
-                    { test: /\.css$/, loader: "style-loader!css-loader" },
-                    {
-                        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"
-                    },
-                    {
-                        test: /\.(woff|woff2)$/,
-                        loader:"url?prefix=font/&limit=5000"
-                    },
-                    {
-                        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                        loader: "url?limit=10000&mimetype=application/octet-stream"
-                    },
-                    {
-                        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                        loader: "url?limit=10000&mimetype=image/svg+xml"
-                    },
-                    {
-                        test: /\.jpe?g$/,
-                        loader: "file"
-                    },
-                    {
-                        test: /\.gif$/,
-                        loader: "file"
-                    },
-                    {
-                        test: /\.png$/,
-                        loader: "url-loader?limit=10000"
-                    },
-                    {
-                        test: /index\.html$/,
-                        loader: "file-loader?name=index.html"
-                    },
-                    {
-                        test: /favicon\.ico$/,
-                        loader: "file-loader?name=favicon.ico"
-                    }
-                ],
+                    { test: /\.jsx?$/, loader: 'babel-loader' }
+                ].concat(master_config.non_js_loaders),
                 postLoaders: [{
                     test: /\.js?$/,
                     exclude: /(test|node_modules)/,
