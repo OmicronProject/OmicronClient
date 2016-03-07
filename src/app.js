@@ -35,7 +35,7 @@ class App extends React.Component {
         return (
             <Router history={browserHistory}>
                 <Route path="/" component={LoginForm}/>
-                <Route path="http_test" component={HTTPTest}/>
+                <Route path="/http_test" component={HTTPTest}/>
             </Router>
         )
     }

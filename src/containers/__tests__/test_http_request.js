@@ -17,7 +17,6 @@ import {receive_data_from_url_reducer} from '../http_request';
 import Header from '../header';
 import {fetch_data} from '../http_request';
 import store from '../../store';
-import axios from 'axios';
 
 describe("HTTPTestTemplate", () => {
     let on_url_change;

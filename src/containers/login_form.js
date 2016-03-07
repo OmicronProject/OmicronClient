@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import HeaderBar from './header';
 import reducer from '../reducer';
 import login_user from '../auth/actions';
-import axios from 'axios';
+import 'isomorphic-fetch';
 import sign_in_spinner from '../../static/img/hourglass.svg';
 import store from '../store';
 import Footer from '../components/footer';
