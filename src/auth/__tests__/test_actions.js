@@ -6,6 +6,7 @@ import expect from 'expect';
 import {START_LOGIN, start_login, start_login_reducer} from '../actions';
 import {REQUEST_TOKEN, request_token, request_token_reducer} from '../actions';
 import {RECEIVE_TOKEN, receive_token, receive_token_reducer} from '../actions';
+import {FINISH_AUTH, finish_auth, finish_auth_reducer} from '../actions';
 
 describe(START_LOGIN, () => {
     describe("action_creator", () => {
@@ -144,4 +145,58 @@ describe(RECEIVE_TOKEN, () => {
             })
         })
     })
+});
+
+describe(FINISH_AUTH, () => {
+    let username;
+    let token;
+
+    beforeEach(() => {
+        username = "username";
+        token = "8cfd50e6-e4ae-11e5-9b7f-0ac61c3535b4";
+    });
+
+    describe("action_creator", () => {
+        it("should create the action", () => {
+            expect(finish_auth(username, token)).toEqual(
+                {
+                    type: FINISH_AUTH,
+                    username: username,
+                    token: token,
+                    auth_header: "Basic " + btoa(token + ":")
+                }
+            )
+        })
+    });
+
+    describe("finish_auth_reducer", () => {
+        let state;
+        let action;
+
+        beforeEach(() => {
+            action = finish_auth(username, token);
+            state = { auth: { front_end: {
+                username: undefined,
+                password: "password",
+                is_authenticating: true,
+                has_authenticated: false,
+                error_message: "this should be cleared"
+            }}};
+        });
+
+        it("should reduce", () => {
+            finish_auth_reducer(state, action);
+            expect(state.auth.front_end).toEqual({
+                username: action.username,
+                password: undefined,
+                is_authenticating: false,
+                has_authenticated: true,
+                error_message: undefined
+            });
+
+            expect(state.omicron_api.headers["Authorization"]).toEqual(
+                action.auth_header
+            );
+        });
+    });
 });
