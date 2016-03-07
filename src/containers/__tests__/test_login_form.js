@@ -10,7 +10,7 @@ import expect from 'expect';
 import {LoginForm, mapLoginStateToProps} from '../login_form';
 import {mapLoginDispatchToProps} from '../login_form';
 import {username_change_reducer, password_change_reducer} from '../login_form';
-import {submit_reducer, authenticate_user} from '../login_form';
+import {submit_reducer} from '../login_form';
 import {Provider} from 'react-redux';
 import store from '../../store';
 
@@ -182,11 +182,5 @@ describe("submit_reducer", () => {
         expect(
             new_state.user.auth_status
         ).toEqual("authenticating");
-    });
-});
-
-describe("authenticate_user", () => {
-    it("Should return a function", () => {
-        expect(authenticate_user()).toBeA("function");
     });
 });

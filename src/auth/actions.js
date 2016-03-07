@@ -59,15 +59,15 @@ Reducer.register(reducer_factory(REQUEST_TOKEN)(request_token_reducer));
 /**
  * Successfully receive the token, and clean up the back end authenticator
  */
-const RECEIVE_TOKEN = "RECEIVE_TOKEN";
+export const RECEIVE_TOKEN = "RECEIVE_TOKEN";
 
-const receive_token = (token, expiry_date) => ({
+export const receive_token = (token, expiry_date) => ({
     type: RECEIVE_TOKEN,
     token: token,
     expiry_date: expiry_date
 });
 
-const receive_token_reducer = (state, action) => {
+export const receive_token_reducer = (state, action) => {
     state.auth.back_end.auth_token = action.token;
     state.auth.back_end.password = undefined;
     state.auth.back_end.token_expiry_date = action.expiry_date;

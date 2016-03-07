@@ -18,7 +18,7 @@ describe("map_header_state_to_props", () => {
     beforeEach(() => {
         state = {
             main_menu: {buttons: "This is where an array of buttons would go"},
-            user: {auth_status: "authenticated", username: "username"}
+            auth: {front_end: {has_user_authenticated: true, username: "foo"}}
         }
     });
 
@@ -28,24 +28,11 @@ describe("map_header_state_to_props", () => {
                 {
                     buttons: state.main_menu.buttons,
                     is_user_authenticated: true,
-                    username: state.user.username
+                    username: state.auth.front_end.username
                 }
             )
         }
     );
-
-    it("Should return a false value if incorrect auth status", () => {
-        let new_state = Object.assign(state);
-        new_state.user.auth_status = 'not_authed';
-
-        expect(map_header_state_to_props(state)).toEqual(
-            {
-                buttons: state.main_menu.buttons,
-                is_user_authenticated: false,
-                username: state.user.username
-            }
-        )
-    })
 });
 
 describe("HeaderBar", () => {

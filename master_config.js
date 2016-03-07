@@ -40,12 +40,6 @@ let non_js_loaders = [
     { test: /favicon\.ico$/, loader: "file-loader?name=favicon.ico" }
 ];
 
-let plugins = (webpack) => ([
-    new webpack.ProvidePlugin({
-        "fetch": "imports?this=>global!exports?global.fetch!whatwg-fetch"
-    })
-]);
-
 module.exports = {
     api_url: api_url,
     github_repo_url: github_repo_url,
@@ -54,5 +48,4 @@ module.exports = {
     loaders: js_loaders.concat(non_js_loaders),
     js_loaders: js_loaders,
     non_js_loaders: non_js_loaders,
-    plugins: plugins
 };

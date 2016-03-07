@@ -122,7 +122,7 @@ export function username_change_reducer(state, action){
     if (action.type === "USERNAME_CHANGED") {
         let new_state = Object.assign(state);
 
-        new_state.user.username = action.username;
+        new_state.auth.front_end.username = action.username;
 
         return(new_state);
     } else {
@@ -133,7 +133,7 @@ export function username_change_reducer(state, action){
 export function password_change_reducer(state, action){
     if (action.type === "PASSWORD_CHANGED") {
         let new_state = Object.assign(state);
-        new_state.user.password = action.password;
+        new_state.auth.front_end.password = action.password;
 
         return(new_state);
     } else {
@@ -144,7 +144,7 @@ export function password_change_reducer(state, action){
 export function submit_reducer(state, action){
     if (action.type === "USER_AUTHENTICATION_SUBMIT"){
         let new_state = Object.assign(state);
-        new_state.user.auth_status = "authenticating";
+        new_state.auth.front_end.is_authenticating = true;
         return(new_state);
     } else {
         return(state);
