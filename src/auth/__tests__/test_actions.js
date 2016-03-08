@@ -7,6 +7,8 @@ import {START_LOGIN, start_login, start_login_reducer} from '../actions';
 import {REQUEST_TOKEN, request_token, request_token_reducer} from '../actions';
 import {RECEIVE_TOKEN, receive_token, receive_token_reducer} from '../actions';
 import {FINISH_AUTH, finish_auth, finish_auth_reducer} from '../actions';
+import {RECEIVE_TOKEN_ERROR, receive_token_error} from '../actions';
+import {receive_token_error_reducer} from '../actions';
 
 describe(START_LOGIN, () => {
     describe("action_creator", () => {
@@ -197,6 +199,54 @@ describe(FINISH_AUTH, () => {
             expect(state.omicron_api.headers["Authorization"]).toEqual(
                 action.auth_header
             );
+        });
+    });
+});
+
+describe(RECEIVE_TOKEN_ERROR, () => {
+    let error_message;
+
+    beforeEach(() => {
+        error_message = "I'll send an SOS to the world.";
+    });
+
+    describe("action creator", () => {
+        it("Should create an action", () => {
+            expect(receive_token_error(error_message)).toEqual({
+                type: RECEIVE_TOKEN_ERROR,
+                message: error_message
+            })
+        });
+    });
+
+    describe("reducer", () => {
+        let state;
+        let action;
+
+        beforeEach(() => {
+            state = {auth: {back_end: {
+                username: "username",
+                password: "password",
+                is_authenticating: true,
+                error_message: undefined,
+                auth_token: "token",
+                token_expiry_date: "This is an expiry date"
+            }}};
+
+            action = receive_token_error(error_message);
+        });
+
+        it("Should reduce", () => {
+            receive_token_error_reducer(state, action);
+
+            expect(state).toEqual({auth: {back_end: {
+                username: undefined,
+                password: undefined,
+                is_authenticating: false,
+                error_message: error_message,
+                auth_token: undefined,
+                token_expiry_date: undefined
+            }}})
         });
     });
 });
