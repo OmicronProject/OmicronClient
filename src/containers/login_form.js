@@ -92,9 +92,9 @@ LoginForm.propTypes = {
  */
 export const mapLoginStateToProps = (state) => {
     return ({
-        uname_value: state.user.username,
-        password_value: state.user.password,
-        is_spinner_visible: state.authenticator.is_authenticating
+        uname_value: state.auth.front_end.username,
+        password_value: state.auth.front_end.password,
+        is_spinner_visible: state.auth.front_end.is_authenticating
     })
 };
 

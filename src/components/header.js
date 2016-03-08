@@ -55,8 +55,8 @@ export function _make_button(button) {
  */
 export function _make_internal(button){
     return(
-        <LinkContainer to={{pathname: button.link}}>
-            <NavItem eventKey={button.key} key={button.key}>
+        <LinkContainer key={button.key} to={{pathname: button.link}}>
+            <NavItem eventKey={button.key}>
                 {button.name}
             </NavItem>
         </LinkContainer>

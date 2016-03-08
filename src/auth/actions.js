@@ -176,31 +176,35 @@ export function login_user() {
             method: "POST",
             headers: state.omicron_api.headers
         }).then(
-            check_status, handle_request_error
+            check_status(dispatch), handle_request_error(dispatch)
         ).then(
             handle_request_success(
                 dispatch, state.auth.front_end.username
             ),
-            handle_request_error
+            handle_request_error(dispatch)
         )
     }
 }
 
-export function check_status(response){
-    let content_type = response.headers["Content-Type"];
-    if (response.status != 201){
-        let error_message = "Unable to authenticate. " +
-            "API request returned status " + response.status
-            + " instead of 201.";
-        dispatch(receive_token_error(error_message));
-        dispatch(cleanup_auth(error_message));
-    }
-    if (content_type != 'application/json'){
-        let error_message = "Unable to authenticate. " +
+export function check_status(dispatch){
+    return function (response) {
+        let content_type = response.headers.get("Content-Type");
+        if (response.status != 201){
+            let error_message = "Unable to authenticate. " +
+                "API request returned status " + response.status
+                + " instead of 201.";
+            dispatch(receive_token_error(error_message));
+            dispatch(cleanup_auth(error_message));
+        }
+        if (content_type != 'application/json'){
+            let error_message = "Unable to authenticate. " +
                 "API request did not return JSON. Content-type is " +
                 content_type + " instead.";
-        dispatch(receive_token_error(error_message));
-        dispatch(cleanup_auth(error_message));
+            dispatch(receive_token_error(error_message));
+            dispatch(cleanup_auth(error_message));
+        }
+
+        return response;
     }
 }
 
@@ -208,20 +212,24 @@ export function check_status(response){
  * This function is called if a failure occurs on making the request
  * before it is sent off to the API. This could be a preflight error, or
  * something more serious.
- * @param error
+ * @param dispatch
  */
-export function handle_request_error(error){
-    dispatch(receive_token_error(error));
-    dispatch(cleanup_auth(error));
+export function handle_request_error(dispatch){
+    return function(error){
+        dispatch(receive_token_error(error));
+        dispatch(cleanup_auth(error));
+    }
 }
 
 export function handle_request_success(dispatch, username){
     return function(response){
-        let response_data = response.json();
-        dispatch(receive_token(
-            response_data.token, response_data.token_expiry_date
-        ));
-        dispatch(finish_auth(username, response_data.token));
+        console.log(response);
+        response.json().then(
+            (json) => {
+                dispatch(receive_token(json.token, json.expiration_date));
+                dispatch(finish_auth(username, json.token))
+            }
+        );
     }
 }
 

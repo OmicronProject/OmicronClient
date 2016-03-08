@@ -167,7 +167,7 @@ LogoutButtonTemplate.propTypes = {
 
 export function map_logout_state_to_props(state){
     let is_active = true;
-    if (state.user.auth_status !== 'authenticated'){
+    if (state.auth.front_end.has_authenticated){
         is_active = false;
     }
 
