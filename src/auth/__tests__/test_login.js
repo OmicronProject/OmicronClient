@@ -3,12 +3,14 @@
  * Contains unit tests for the authenticator
  */
 import expect from 'expect';
-import {START_LOGIN, start_login, start_login_reducer} from '../actions';
-import {REQUEST_TOKEN, request_token, request_token_reducer} from '../actions';
-import {RECEIVE_TOKEN, receive_token, receive_token_reducer} from '../actions';
-import {FINISH_AUTH, finish_auth, finish_auth_reducer} from '../actions';
-import {RECEIVE_TOKEN_ERROR, receive_token_error} from '../actions';
-import {receive_token_error_reducer} from '../actions';
+import {START_LOGIN, start_login, start_login_reducer} from '../login';
+import {REQUEST_TOKEN, request_token, request_token_reducer} from '../login';
+import {RECEIVE_TOKEN, receive_token, receive_token_reducer} from '../login';
+import {FINISH_AUTH, finish_auth, finish_auth_reducer} from '../login';
+import {RECEIVE_TOKEN_ERROR, receive_token_error} from '../login';
+import {receive_token_error_reducer} from '../login';
+import {CLEANUP_AUTH, cleanup_auth, cleanup_auth_reducer} from '../login';
+import login_user from '../login';
 
 describe(START_LOGIN, () => {
     describe("action_creator", () => {
@@ -246,7 +248,66 @@ describe(RECEIVE_TOKEN_ERROR, () => {
                 error_message: error_message,
                 auth_token: undefined,
                 token_expiry_date: undefined
-            }}})
+            }}});
         });
+    });
+});
+
+describe(CLEANUP_AUTH, () => {
+    let error_message;
+
+    beforeEach(() => {
+        error_message = "They got a message for the action man";
+    });
+
+    describe("action creator", () => {
+        it("Should create an action", () => {
+            expect(cleanup_auth(error_message)).toEqual(
+                {type: CLEANUP_AUTH, message: error_message}
+            );
+        });
+    });
+
+    describe("reducer", () => {
+        let state;
+        let action;
+
+        beforeEach(() => {
+            state = { auth: { front_end: {
+                username: "username",
+                password: "password",
+                is_authenticating: true,
+                has_authenticated: true,
+                error_message: undefined
+            }}};
+
+            action = cleanup_auth(error_message);
+        });
+
+        it("Should reduce", () => {
+            cleanup_auth_reducer(state, action);
+
+            expect(state.auth.front_end).toEqual({
+                username: undefined,
+                password: undefined,
+                is_authenticating: false,
+                has_authenticated: false,
+                error_message: error_message
+            })
+        })
+    })
+});
+
+describe("login_user", () => {
+    let dispatch;
+    let dispatched_actions;
+
+    beforeEach(() => {
+        dispatch = (action) => {dispatched_actions.push(action)};
+        dispatched_actions = [];
+    });
+
+    it("should return a function", () => {
+        expect(login_user()).toBeA("function");
     });
 });
