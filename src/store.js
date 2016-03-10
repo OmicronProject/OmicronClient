@@ -24,7 +24,8 @@ const initial_state = {
             password: undefined,
             is_authenticating: false,
             has_authenticated: false,
-            error_message: undefined
+            error_message: undefined,
+            is_logging_out: false
         },
         back_end: {
             username: undefined,
@@ -32,7 +33,8 @@ const initial_state = {
             is_authenticating: false,
             error_message: undefined,
             auth_token: undefined,
-            token_expiry_date: undefined
+            token_expiry_date: undefined,
+            is_logging_out: false
         }
     },
     registration_form:
