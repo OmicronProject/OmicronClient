@@ -4,6 +4,7 @@
 import React from 'react';
 import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export const HeaderNavBar = ({buttons}) => (
     <ul className="nav navbar-fixed-top">
@@ -54,10 +55,11 @@ export function _make_button(button) {
  */
 export function _make_internal(button){
     return(
-        <NavItem eventKey={button.key} key={button.key}
-                 href={"#" + button.link}>
-            {button.name}
-        </NavItem>
+        <LinkContainer to={{pathname: button.link}}>
+            <NavItem eventKey={button.key} key={button.key}>
+                {button.name}
+            </NavItem>
+        </LinkContainer>
     )
 }
 
