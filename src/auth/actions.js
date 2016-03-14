@@ -9,11 +9,11 @@ import clone from '../object_cloning';
  * started
  * @type {string}
  */
-export const AUTH_STARTED = "AUTH_STARTED";
+export const LOGIN_STARTED = "LOGIN_STARTED";
 
-export function auth_started(username, password) {
+export function login_started(username, password) {
     return {
-        type: AUTH_STARTED,
+        type: LOGIN_STARTED,
         username: username,
         password: password
     }
@@ -29,8 +29,8 @@ export function auth_started(username, password) {
  * @param {Object} action The action to execute on the state
  * @returns {*} The new state
  */
-export function auth_started_reducer(state, action) {
-    if (action.type === AUTH_STARTED) {
+export function login_started_reducer(state, action) {
+    if (action.type === LOGIN_STARTED) {
         let new_state = clone(state);
         new_state.authenticator = {
             username: action.username,
@@ -45,25 +45,25 @@ export function auth_started_reducer(state, action) {
     }
 }
 
-reducer.register(auth_started_reducer);
+reducer.register(login_started_reducer);
 
 /**
  * Action that is thrown last, indicating that the authentication request
  * completed successfully
  * @type {string}
  */
-export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 /**
- * Action creator for the "AUTH_SUCCESS" action. Takes in the token and
+ * Action creator for the "LOGIN_SUCCESS" action. Takes in the token and
  * expiration date
  *
  * @param {str} token The token supplied on authentication
  * @param {str} expiration_date The datetime of expiration of the current token
  */
-export function auth_success(token, expiration_date){
+export function login_success(token, expiration_date){
     return {
-        type: AUTH_SUCCESS,
+        type: LOGIN_SUCCESS,
         token: token,
         token_expiration_date: expiration_date
     }
@@ -75,8 +75,8 @@ export function auth_success(token, expiration_date){
  * @param state
  * @param action
  */
-export function auth_success_reducer(state, action) {
-    if (action.type === AUTH_SUCCESS){
+export function login_success_reducer(state, action) {
+    if (action.type === LOGIN_SUCCESS){
         let new_state = clone(state);
         new_state.omicron_api.headers.Authorization =
             "Basic " + btoa(action.token);
@@ -101,9 +101,9 @@ export function auth_success_reducer(state, action) {
     }
 }
 
-reducer.register(auth_success_reducer);
+reducer.register(login_success_reducer);
 
-export const AUTH_FAILURE = "AUTH_FAILURE";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 /**
  * Create an action stating that the authentication failed
@@ -111,15 +111,15 @@ export const AUTH_FAILURE = "AUTH_FAILURE";
  * @param {string} message The message to send to the
  * @returns {{type: string, message: *}}
  */
-export function auth_failure(message){
+export function login_failure(message){
     return {
-        type: AUTH_FAILURE,
+        type: LOGIN_FAILURE,
         message: message
     }
 }
 
-export function auth_failure_reducer(state, action) {
-    if (action.type === AUTH_FAILURE){
+export function login_failure_reducer(state, action) {
+    if (action.type === LOGIN_FAILURE){
         let new_state = clone(state);
         new_state.authenticator.is_authenticating = false;
         new_state.authenticator.error_message = action.message;
@@ -131,4 +131,12 @@ export function auth_failure_reducer(state, action) {
         return state;
     }
 }
-reducer.register(auth_failure_reducer);
+reducer.register(login_failure_reducer);
+
+export const LOGOUT_STARTED = "LOGOUT_STARTED";
+
+export function logout_started(){
+    return {
+        type: LOGOUT_STARTED
+    };
+}

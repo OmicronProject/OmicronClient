@@ -13,7 +13,7 @@ import reducer from '../reducer';
 import {connect} from 'react-redux';
 import store from '../store';
 import {URLEntryForm, ResultsBox} from '../components/http_request';
-import 'isomorphic-fetch';
+import axios from 'axios';
 
 /**
  * Template for running the asynchronous HTTP request test.
@@ -245,13 +245,15 @@ export function fetch_data() {
         let url = store.getState().http_test.url;
         dispatch(get_data_from_url(url));
 
-        let request = fetch(url, {
-            method: "GET",
-            headers: {"content-type": "application/json"}
+        let request = axios(
+            {
+                url: url,
+                method: "GET",
+                headers: {"content-type": "application/json"}
         });
 
         let success_handler = (response) => (
-            dispatch(receive_data_from_url(url, response.json()))
+            dispatch(receive_data_from_url(url, response.data))
         );
 
         return request.then(success_handler)

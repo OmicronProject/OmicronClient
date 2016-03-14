@@ -5,7 +5,7 @@
 'use strict';
 import expect from 'expect';
 import clone from '../object_cloning';
-import {Reducer} from '../reducer';
+import {Reducer, reducer_factory} from '../reducer';
 
 describe('Reducer', () => {
     let reducer;
@@ -73,7 +73,7 @@ describe("The reducer's application reducer", () => {{
     it('should log and rethrow an error if one occurs in a component reducer',
         () => {
             let state = {};
-            let poisoned_reducer = (state, action) => {
+            let poisoned_reducer = () => {
                 throw new Error("unable to finish")
             };
 
@@ -88,3 +88,48 @@ describe("The reducer's application reducer", () => {{
             );
         })
 }});
+
+describe("reducer_factory", () => {
+    let state;
+    let action_type;
+    let action;
+    let mutator;
+
+    beforeEach(() => {
+        state = {};
+        action_type = "TEST_REDUCER_FACTORY";
+        action = {type: action_type, data: "this is some new data"};
+        mutator = (state, action) => {state.data = action.data};
+    });
+
+    it("Should decorate a mutator and return a function", () => {
+        expect(reducer_factory(action_type)(mutator)).toBeA("function");
+    });
+
+    it("Should call the mutator if the action is of the correct type", () => {
+        let confirm_message = "the mutator was called";
+
+        let mutator = (state, action) => {state.message = confirm_message};
+
+        expect(reducer_factory(action_type)(mutator)(state, action)).toEqual(
+            {message: confirm_message}
+        );
+    });
+
+    it("Should return the old state if the incorrect action type is supplied", () => {
+        let bad_action = "INVALID_ACTION";
+        let message = "The reducer was called";
+
+        let mutator = (state, action) => {state.message = message};
+
+        expect(reducer_factory(action_type)(mutator)(
+            state, {type: bad_action})
+        ).toEqual(state);
+    });
+
+    it("Should deep-copy the state", () => {
+        let new_state = reducer_factory(action_type)(mutator)(state, action);
+        expect(new_state).toNotEqual(state);
+        expect(new_state.data).toEqual(action.data);
+    })
+});

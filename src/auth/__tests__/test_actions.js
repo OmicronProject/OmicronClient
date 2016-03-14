@@ -2,22 +2,22 @@
  * Created by Michal on 2016-02-22.
  */
 import expect from 'expect'
-import {AUTH_STARTED, auth_started, auth_started_reducer} from '../actions';
-import {AUTH_SUCCESS, auth_success, auth_success_reducer} from '../actions';
-import {AUTH_FAILURE, auth_failure, auth_failure_reducer} from '../actions';
+import {LOGIN_STARTED, login_started, login_started_reducer} from '../actions';
+import {LOGIN_SUCCESS, login_success, login_success_reducer} from '../actions';
+import {LOGIN_FAILURE, login_failure, login_failure_reducer} from '../actions';
 
 /**
- * Contains unit tests for the AUTH_STARTED action creator and reducer
+ * Contains unit tests for the LOGIN_STARTED action creator and reducer
  *
- * @test {AUTH_STARTED}
+ * @test {LOGIN_STARTED}
  */
-describe("AUTH_STARTED", () => {
+describe("LOGIN_STARTED", () => {
 
     /**
      * Tests the auth started action creator
-     * @test {auth_started}
+     * @test {login_started}
      */
-    describe("auth_started", () => {
+    describe("login_started", () => {
         let username;
         let password;
 
@@ -27,19 +27,19 @@ describe("AUTH_STARTED", () => {
         });
 
         it("Should accept a username and password into the action creator", () => {
-            let action = auth_started(username, password);
-            expect(action.type).toEqual(AUTH_STARTED);
+            let action = login_started(username, password);
+            expect(action.type).toEqual(LOGIN_STARTED);
             expect(action.username).toEqual(username);
             expect(action.password).toEqual(password);
         });
     });
 
     /**
-     * Tests the reducer for the AUTH_STARTED action
+     * Tests the reducer for the LOGIN_STARTED action
      *
-     * @test {auth_started_reducer}
+     * @test {login_started_reducer}
      */
-    describe("auth_started_reducer", () => {
+    describe("login_started_reducer", () => {
         let username;
         let password;
         let action;
@@ -49,7 +49,7 @@ describe("AUTH_STARTED", () => {
         beforeEach(() => {
             username = 'username';
             password = 'password';
-            action = auth_started(username, password);
+            action = login_started(username, password);
 
             state = {
                 authenticator: {
@@ -65,7 +65,7 @@ describe("AUTH_STARTED", () => {
         it('Should return the old state if the action is of the wrong type', () => {
             let bad_action = {type: "not the correct action"};
 
-            expect(auth_started_reducer(state, bad_action)).toEqual(state);
+            expect(login_started_reducer(state, bad_action)).toEqual(state);
         });
 
         it("Should create a new state when the correct action is passed in", () => {
@@ -79,12 +79,12 @@ describe("AUTH_STARTED", () => {
                 }
             };
 
-            expect(auth_started_reducer(state, action)).toEqual(new_state);
+            expect(login_started_reducer(state, action)).toEqual(new_state);
         })
     });
 });
 
-describe("AUTH_SUCCESS", () => {
+describe("LOGIN_SUCCESS", () => {
     let token;
     let expiration_date;
     let username;
@@ -100,20 +100,20 @@ describe("AUTH_SUCCESS", () => {
         password = 'password';
     });
 
-    describe("auth_success", () => {
+    describe("login_success", () => {
         it("should create the correct action", () => {
-            let action = auth_success(token, expiration_date);
+            let action = login_success(token, expiration_date);
 
-            expect(action.type).toEqual(AUTH_SUCCESS);
+            expect(action.type).toEqual(LOGIN_SUCCESS);
         })
     });
 
-    describe("auth_success_reducer", () => {
+    describe("login_success_reducer", () => {
         let action;
         let state;
 
         beforeEach(() => {
-            action = auth_success(token, expiration_date);
+            action = login_success(token, expiration_date);
             state = {
                 authenticator: {
                     username: undefined,
@@ -140,7 +140,7 @@ describe("AUTH_SUCCESS", () => {
 
         it("should return the old state if the wrong action is provided", () => {
             let new_action = {type: "invalid_action"};
-            expect(auth_success_reducer(state, new_action)).toEqual(state);
+            expect(login_success_reducer(state, new_action)).toEqual(state);
         });
 
         it("should change the state given the correct action", () => {
@@ -167,27 +167,27 @@ describe("AUTH_SUCCESS", () => {
                 }
             };
 
-            expect(auth_success_reducer(state, action)).toEqual(new_state);
+            expect(login_success_reducer(state, action)).toEqual(new_state);
         })
     })
 });
 
-describe("AUTH_FAILURE", () => {
+describe("LOGIN_FAILURE", () => {
     let message;
 
     beforeEach(() => {
         message = "They've got a message for the action man.";
     });
 
-    describe("auth_failure action creator", () => {
+    describe("login_failure action creator", () => {
         it("should create the correct action", () => {
-            let action = auth_failure(message);
-            expect(action.type).toEqual(AUTH_FAILURE);
+            let action = login_failure(message);
+            expect(action.type).toEqual(LOGIN_FAILURE);
             expect(action.message).toEqual(message);
         })
     });
 
-    describe("auth_failure reducer", () => {
+    describe("login_failure reducer", () => {
         let state;
         let action;
         beforeEach(() => {
@@ -202,12 +202,12 @@ describe("AUTH_FAILURE", () => {
                 }
             };
 
-            action = auth_failure(message);
+            action = login_failure(message);
         });
 
         it("Should return the old state if wrong action", () => {
             let bad_action = {type: "INVALID_ACTION"};
-            expect(auth_failure_reducer(state, bad_action)).toEqual(state);
+            expect(login_failure_reducer(state, bad_action)).toEqual(state);
         });
 
         it("Should alter the state if correct action", () => {
@@ -222,7 +222,7 @@ describe("AUTH_FAILURE", () => {
                 }
             };
 
-            expect(auth_failure_reducer(state, action)).toEqual(new_state);
+            expect(login_failure_reducer(state, action)).toEqual(new_state);
         })
     })
 });
