@@ -25,7 +25,8 @@ const initial_state = {
             is_authenticating: false,
             has_authenticated: false,
             error_message: undefined,
-            is_logging_out: false
+            is_logging_out: false,
+            has_logged_out: false
         },
         back_end: {
             username: undefined,
