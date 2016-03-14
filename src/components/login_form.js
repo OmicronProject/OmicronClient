@@ -166,16 +166,12 @@ LogoutButtonTemplate.propTypes = {
 };
 
 export function map_logout_state_to_props(state){
-    let is_active = true;
-    if (state.auth.front_end.has_authenticated){
-        is_active = false;
-    }
-
     let className;
-    if(is_active){
-        className = "btn btn-primary"
+
+    if(state.auth.front_end.has_authenticated){
+        className = 'btn btn-primary';
     } else {
-        className = "btn btn-primary disabled"
+        className = 'btn btn-primary disabled';
     }
 
     return({

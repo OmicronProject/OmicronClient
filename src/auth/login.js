@@ -172,7 +172,8 @@ export function login_user() {
 
         state = store.getState();
 
-        fetch(state.omicron_api.url + '/api/v1/token', {
+        axios({
+            url:state.omicron_api.url + '/api/v1/token',
             method: "POST",
             headers: state.omicron_api.headers
         }).then(
@@ -223,11 +224,10 @@ export function handle_request_error(dispatch){
 
 export function handle_request_success(dispatch, username){
     return function(response){
-        console.log(response);
-        response.json().then(
-            (json) => {
-                dispatch(receive_token(json.token, json.expiration_date));
-                dispatch(finish_auth(username, json.token))
+        response.then(
+            (response) => {
+                dispatch(receive_token(response.data.token, response.data.expiration_date));
+                dispatch(finish_auth(username, response.data.token))
             }
         );
     }

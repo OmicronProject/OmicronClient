@@ -86,27 +86,26 @@ describe("PasswordBox", () => {
     })
 });
 
-describe("map_logout_state_to_props", () => {
+describe('map_logout_state_to_props', () => {
     let state;
 
     beforeEach(() => {
-        state = {
-            user: {
-                auth_status: undefined
-            }
-        }
+        state = {auth: {front_end: {has_authenticated: undefined}}}
     });
-    it("should return the correct class name if the class is active", () => {
-        state.user.auth_status = 'authenticated';
-        let classname = map_logout_state_to_props(state);
-        expect(classname).toEqual({className: 'btn btn-primary'});
+
+    it("Should return the correct class name if active", () => {
+        state.auth.front_end.has_authenticated = false;
+
+        expect(map_logout_state_to_props(state)).toEqual(
+            {className: 'btn btn-primary disabled'}
+        );
     });
-    it("should return the correct class name if the class is not active",
-        () => {
-            state.user.auth_status = 'not_authenticated';
-            let class_name = map_logout_state_to_props(state);
-            expect(class_name).toEqual(
-                {className: 'btn btn-primary disabled'}
-            );
-    })
+
+    it("Should return the correct class name if inactive", () => {
+        state.auth.front_end.has_authenticated = true;
+
+        expect(map_logout_state_to_props(state)).toEqual(
+            {className: 'btn btn-primary'}
+        );
+    });
 });

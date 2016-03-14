@@ -10,7 +10,7 @@ import {SignInSpinner, LogoutButton} from '../components/login_form';
 import {connect} from 'react-redux';
 import HeaderBar from './header';
 import reducer from '../reducer';
-import {login_started, login_success, login_failure} from '../auth/actions';
+import {login_user} from '../auth/login';
 import axios from 'axios';
 import sign_in_spinner from '../../static/img/hourglass.svg';
 import store from '../store';

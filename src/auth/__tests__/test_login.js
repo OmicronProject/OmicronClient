@@ -179,13 +179,22 @@ describe(FINISH_AUTH, () => {
 
         beforeEach(() => {
             action = finish_auth(username, token);
-            state = { auth: { front_end: {
-                username: undefined,
-                password: "password",
-                is_authenticating: true,
-                has_authenticated: false,
-                error_message: "this should be cleared"
-            }}};
+            state = {
+                auth: {
+                    front_end: {
+                        username: undefined,
+                        password: 'a password',
+                        is_authenticating: true,
+                        has_authenticated: false,
+                        error_message: "I've loved all I needed to love."
+                    }
+                },
+                omicron_api: {
+                    headers: {
+                        "Authorization": "Sordid details following"
+                    }
+                }
+            }
         });
 
         it("should reduce", () => {

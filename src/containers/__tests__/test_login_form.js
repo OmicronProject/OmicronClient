@@ -60,21 +60,17 @@ describe('login_form', () => {
         let state;
         beforeEach(() => {
             state = {
-                user: {
-                    username: uname_value,
-                    password: password_value,
-                    auth_status: auth_status
-                },
-                authenticator: {
-                    is_authenticating: is_spinner_visible
+                auth: {
+                    front_end: {
+                        username: uname_value,
+                        password: password_value,
+                        is_authenticating: is_spinner_visible
+                    }
                 }
             }
         });
 
         it("Should map the state to the required properties", () => {
-            auth_status = 'authenticated';
-            state.user.auth_status = 'authenticated';
-
             expect(mapLoginStateToProps(state)).toEqual(
                 {
                     uname_value: uname_value,
@@ -82,13 +78,6 @@ describe('login_form', () => {
                     is_spinner_visible: is_spinner_visible
                 }
             );
-        });
-        it("Should set the authed_username to undefined if user is" +
-            "not authenticated", () => {
-            auth_status = 'not_authenticated';
-            let mapped_props = mapLoginStateToProps(state);
-
-            expect(mapped_props.authed_username).toEqual(undefined);
         });
     });
 
@@ -120,7 +109,7 @@ describe("username_change_reducer", () => {
     let username;
 
     beforeEach(() => {
-        state = {user: {username: "old_username"}};
+        state = {auth: {front_end: {username: "old_username"}}};
         username = "new_username";
     });
 
@@ -135,7 +124,7 @@ describe("username_change_reducer", () => {
 
         let new_state = username_change_reducer(state, action);
 
-        expect(new_state.user.username).toEqual(username);
+        expect(new_state.auth.front_end.username).toEqual(username);
     });
 });
 
@@ -144,7 +133,7 @@ describe("password_change_reducer", () => {
     let password;
 
     beforeEach(() => {
-        state = {user: {password: "old_password"}};
+        state = {auth: {front_end: {password: 'old_password'}}};
         password = "new_password";
     });
 
@@ -158,7 +147,7 @@ describe("password_change_reducer", () => {
         let action = {type: "PASSWORD_CHANGED", password: password};
 
         expect(
-            password_change_reducer(state, action).user.password
+            password_change_reducer(state, action).auth.front_end.password
         ).toEqual(password);
     })
 });
@@ -167,7 +156,13 @@ describe("submit_reducer", () => {
     let state;
 
     beforeEach(() => {
-        state = {user: {auth_status: "not_authenticated"}};
+        state = {
+            auth: {
+                front_end: {
+                    is_authenticating: false
+                }
+            }
+        };
     });
 
     it("Should return the old state if wrong action", () => {
@@ -180,7 +175,7 @@ describe("submit_reducer", () => {
         let action = {type: "USER_AUTHENTICATION_SUBMIT"};
         let new_state = submit_reducer(state, action);
         expect(
-            new_state.user.auth_status
-        ).toEqual("authenticating");
+            new_state.auth.front_end.is_authenticating
+        ).toEqual(true);
     });
 });
