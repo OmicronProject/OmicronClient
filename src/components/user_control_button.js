@@ -100,4 +100,4 @@ const SignInButton = connect(
     SignInButtonTemplate
 );
 
-export default SignInButton
+export default SignInButton;

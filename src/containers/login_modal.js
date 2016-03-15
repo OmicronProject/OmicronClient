@@ -1,7 +1,7 @@
 /**
  * Created by Michal on 2016-03-15.
  */
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import {UsernameBox, PasswordBox} from '../components/login_form';
 import SignInButton from '../components/user_control_button';
 import Reducer, {reducer_factory} from '../reducer';
@@ -11,15 +11,17 @@ import { Modal } from 'react-bootstrap';
 
 const LoginFormTemplate = ({is_visible, on_hide}) => (
     <Modal show={is_visible} onHide={on_hide}>
-        <Modal.Header closeButton={true}>
+        <Modal.Header closeButton>
             <Modal.Title>Log In</Modal.Title>
         </Modal.Header>
-        <Modal.body>
-            <form>
-                <UsernameBox />
-                <PasswordBox />
-            </form>
-        </Modal.body>
+        <Modal.Body>
+            <div>
+                <form>
+                    <UsernameBox />
+                    <PasswordBox />
+                </form>
+            </div>
+        </Modal.Body>
         <Modal.Footer>
             <SignInButton />
         </Modal.Footer>

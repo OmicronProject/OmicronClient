@@ -52,7 +52,7 @@ const username_changed_reducer = (state, action) => {
 
 Reducer.register(reducer_factory(USERNAME_CHANGED)(username_changed_reducer));
 
-export const UsernameBox = connect(
+const UsernameBox = connect(
     map_state_to_username_props, map_dispatch_to_username_props
 )(UsernameBoxTemplate);
 
@@ -61,6 +61,7 @@ const PasswordBoxTemplate = ({value, on_change}) => (
            value={value}
            label="Password"
            onChange={on_change}
+           placeholder="Password"
     />
 );
 
@@ -89,5 +90,8 @@ const map_dispatch_to_password_props = (dispatch) => ({
     on_change: (event) => {dispatch(password_changed(event.target.value))}
 });
 
-export const PasswordBox = connect(map_state_to_password_props,
+const PasswordBox = connect(map_state_to_password_props,
     map_dispatch_to_password_props)(PasswordBoxTemplate);
+
+
+export {UsernameBox, PasswordBox};
