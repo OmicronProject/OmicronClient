@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import {api_url} from '../master_config';
 
 
-const initial_state = {
+export const initial_state = {
     main_menu: {
         buttons:
         [
