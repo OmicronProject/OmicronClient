@@ -5,9 +5,9 @@
 
 import React from 'react';
 import Logo from './components/logo';
-import LoginForm from './containers/login_form';
 import HeaderBar from './containers/header';
 import HTTPTest from './containers/http_request';
+import HomePage from './containers/home_page';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -34,7 +34,7 @@ class App extends React.Component {
     render() {
         return (
             <Router history={browserHistory}>
-                <Route path="/" component={LoginForm}/>
+                <Route path="/" component={HomePage}/>
                 <Route path="/http_test" component={HTTPTest}/>
             </Router>
         )

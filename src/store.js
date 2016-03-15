@@ -3,7 +3,6 @@
  */
 import { createStore, applyMiddleware, compose } from 'redux';
 import Reducer from './reducer';
-import LoginBox from './containers/login_form';
 import thunkMiddleware from 'redux-thunk';
 import {api_url} from '../master_config';
 
