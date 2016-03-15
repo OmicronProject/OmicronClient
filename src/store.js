@@ -37,6 +37,9 @@ export const initial_state = {
             is_logging_out: false
         }
     },
+    login_form: {
+        is_visible: false
+    },
     registration_form:
     {
         username: undefined,

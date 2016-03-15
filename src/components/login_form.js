@@ -12,13 +12,10 @@ import {connect} from 'react-redux';
 import {Input, Glyphicon} from 'react-bootstrap';
 import store from '../store';
 
-import login_user from '../auth/login';
-import logout_user from '../auth/logout';
-
 import '../../static/css/components/login_form.css';
 import spinner from '../../static/img/hourglass.svg';
 
-const UsernameBoxTemplate = ({value, on_change}) => (
+export const UsernameBoxTemplate = ({value, on_change}) => (
     <Input type="text"
            value={value}
            onChange={on_change}

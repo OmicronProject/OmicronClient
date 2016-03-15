@@ -5,6 +5,7 @@ import React from 'react';
 import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import LoginForm from '../containers/login_modal';
 
 export const HeaderNavBar = ({buttons}) => (
     <ul className="nav navbar-fixed-top">
@@ -18,12 +19,14 @@ export const HelloBox = ({username, on_logout_button_click}) => (
                   onClick={on_logout_button_click}>
             Logout <Glyphicon glyph="log-out"/>
         </MenuItem>
+        <LoginForm />
     </NavDropdown>
 );
 
-export const LoginButton = () => (
-    <NavItem eventKey={"login_button"} href="#/">
+export const LoginButton = ({on_login_button_click}) => (
+    <NavItem eventKey={"login_button"} onClick={on_login_button_click}>
         Login
+        <LoginForm />
     </NavItem>
 );
 
