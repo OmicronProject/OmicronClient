@@ -7,7 +7,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { HeaderNavBar, HelloBox } from '../components/header';
 import { LoginButton } from '../components/header';
-import { logout } from '../components/login_form';
 import { Link } from 'react-router';
 import { _make_button } from '../components/header';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
@@ -71,7 +70,7 @@ export function map_header_state_to_props(state){
 
 export function map_dispatch_to_props(dispatch){
     return ({
-        on_logout_button_click: () => (dispatch(logout()))
+        on_logout_button_click: () => {console.log("Logout button clicked")}
     })
 }
 
