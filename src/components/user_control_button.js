@@ -19,7 +19,7 @@ import logout_user from '../auth/logout';
 
 import spinner from '../../static/img/user_control_spinner.gif';
 
-export const SignInButtonTemplate = ({on_click, className, content}) => (
+export const SignInButtonTemplate = ({on_click, className, content, icon}) => (
     <button type="button"
             className={"btn btn-primary " + className}
             id="SignInButton"
@@ -76,16 +76,16 @@ export const map_state_to_signin_button_props = (state) => {
 
     if (is_authenticating){
         className = 'disabled';
-        content = 'Logging In ' + loading_spinner;
+        content = <span>Logging In {loading_spinner}</span>;
     } else if (has_authenticated){
         className = '';
-        content = 'Sign Out ' + <Glyphicon glyph="log-out" />;
+        content = <span>Sign Out <Glyphicon glyph="log-out" /></span>;
     } else if (is_logging_out){
         className = 'disabled';
-        content = 'Logging Out ' + loading_spinner;
+        content = <span>Logging Out {loading_spinner}</span>;
     } else {
         className = '';
-        content = 'Sign In ' + <Glyphicon glyph="log-in" />;
+        content = <span>Sign In <Glyphicon glyph="log-in" /></span>;
     }
 
     return({className: className, content: content});

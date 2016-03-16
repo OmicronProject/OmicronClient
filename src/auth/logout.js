@@ -3,6 +3,7 @@
  */
 import Reducer, {reducer_factory} from '../reducer';
 import axios from 'axios';
+import store from '../store';
 
 /**
  * Inform the UI that logout has started
@@ -56,7 +57,7 @@ export const logout_request_failure = (
     error_message
 ) => ({type: LOGOUT_REQUEST_FAILURE, error_message: error_message});
 
-export const logout_request_failure_reducer = (state) => {
+export const logout_request_failure_reducer = (state, action) => {
     state.auth.back_end = {
         username: undefined,
         password: undefined,

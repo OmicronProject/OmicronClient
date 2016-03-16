@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 
 import { Modal } from 'react-bootstrap';
 
-const LoginFormTemplate = ({is_visible, on_hide}) => (
+export const LoginFormTemplate = ({is_visible, on_hide}) => (
     <Modal show={is_visible} onHide={on_hide}>
         <Modal.Header closeButton>
             <Modal.Title>Log In</Modal.Title>

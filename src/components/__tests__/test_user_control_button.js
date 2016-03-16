@@ -108,7 +108,7 @@ describe("map_state_to_signin_button_props", () => {
         state.auth.front_end.is_authenticating = true;
         expect(map_state_to_signin_button_props(state)).toEqual({
             className: 'disabled',
-            content: "Logging In " + loading_spinner
+            content: <span>Logging In {loading_spinner}</span>
         });
     });
 
@@ -118,7 +118,7 @@ describe("map_state_to_signin_button_props", () => {
 
         expect(map_state_to_signin_button_props(state)).toEqual({
             className: '',
-            content: 'Sign Out ' + <Glyphicon glyph="log-out"/>
+            content: <span>Sign Out <Glyphicon glyph="log-out"/></span>
         });
     });
 
@@ -129,7 +129,7 @@ describe("map_state_to_signin_button_props", () => {
 
         expect(map_state_to_signin_button_props(state)).toEqual({
             className: 'disabled',
-            content: 'Logging Out ' + loading_spinner
+            content: <span>Logging Out {loading_spinner}</span>
         });
     });
 
@@ -141,14 +141,14 @@ describe("map_state_to_signin_button_props", () => {
 
         expect(map_state_to_signin_button_props(state)).toEqual({
             className: '',
-            content: 'Sign In ' + <Glyphicon glyph="log-in"/>
+            content: <span>Sign In <Glyphicon glyph="log-in"/></span>
         });
     });
 
     it('Should be a sign in button on initial state load', () => {
         expect(map_state_to_signin_button_props(state)).toEqual({
             className: '',
-            content: 'Sign In ' + <Glyphicon glyph="log-in"/>
+            content: <span>Sign In <Glyphicon glyph="log-in"/></span>
         });
     });
 });

@@ -6,6 +6,7 @@
 'use strict';
 import Reducer, {reducer_factory} from '../reducer';
 import store from '../store';
+import axios from 'axios';
 
 /**
  * Begins authentication on front end
@@ -177,8 +178,6 @@ export function login_user() {
             method: "POST",
             headers: state.omicron_api.headers
         }).then(
-            check_status(dispatch), handle_request_error(dispatch)
-        ).then(
             handle_request_success(
                 dispatch, state.auth.front_end.username
             ),
@@ -189,7 +188,7 @@ export function login_user() {
 
 export function check_status(dispatch){
     return function (response) {
-        let content_type = response.headers.get("Content-Type");
+        let content_type = response.headers["content-type"];
         if (response.status != 201){
             let error_message = "Unable to authenticate. " +
                 "API request returned status " + response.status
@@ -204,8 +203,6 @@ export function check_status(dispatch){
             dispatch(receive_token_error(error_message));
             dispatch(cleanup_auth(error_message));
         }
-
-        return response;
     }
 }
 
@@ -224,12 +221,9 @@ export function handle_request_error(dispatch){
 
 export function handle_request_success(dispatch, username){
     return function(response){
-        response.then(
-            (response) => {
-                dispatch(receive_token(response.data.token, response.data.expiration_date));
-                dispatch(finish_auth(username, response.data.token))
-            }
-        );
+        check_status(dispatch);
+        dispatch(receive_token(response.data.token, response.data.expiration_date));
+        dispatch(finish_auth(username, response.data.token));
     }
 }
 
