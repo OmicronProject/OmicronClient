@@ -54,16 +54,23 @@ Reducer.register(reducer_factory(LOGOUT_REQUEST_SUCCESS)(
 export const LOGOUT_REQUEST_FAILURE = "LOGOUT_REQUEST_FAILURE";
 
 export const logout_request_failure = (
-    error_message
-) => ({type: LOGOUT_REQUEST_FAILURE, error_message: error_message});
+    error
+) => ({type: LOGOUT_REQUEST_FAILURE, error: error});
 
 export const logout_request_failure_reducer = (state, action) => {
+    let error_message;
+    if (action.error.data !== undefined){
+        error_message = JSON.stringify(action.error.data);
+    } else {
+        error_message = action.error;
+    }
+
     state.auth.back_end = {
         username: undefined,
         password: undefined,
         is_authenticating: false,
         has_authenticated: false,
-        error_message: action.error_message,
+        error_message: error_message,
         is_logging_out: false,
         has_logged_out: false
     }
@@ -123,15 +130,16 @@ export function logout_user(){
                     dispatch(logout_request_success());
                 } else {
                     dispatch(logout_request_failure(
-                        response.data.error
+                        JSON.stringify(response.data)
                     ));
                 }
                 dispatch(finish_logout());
             }
         ).catch(
             (error) => {
+                console.log(error);
                 dispatch(logout_request_failure(error));
-                dispatch(finish_logout())
+                dispatch(finish_logout());
             }
         )
     }

@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 import {UsernameBox, PasswordBox} from '../components/login_form';
+import { ErrorReporter } from '../components/login_form';
 import SignInButton from '../components/user_control_button';
 import Reducer, {reducer_factory} from '../reducer';
 import {connect} from 'react-redux';
@@ -23,7 +24,14 @@ export const LoginFormTemplate = ({is_visible, on_hide}) => (
             </div>
         </Modal.Body>
         <Modal.Footer>
-            <SignInButton />
+            <div className="row">
+                <div className="col-xs-8">
+                    <ErrorReporter />
+                </div>
+                <div className="col-xs-4">
+                    <SignInButton />
+                </div>
+            </div>
         </Modal.Footer>
     </Modal>
 );

@@ -94,4 +94,28 @@ const PasswordBox = connect(map_state_to_password_props,
     map_dispatch_to_password_props)(PasswordBoxTemplate);
 
 
-export {UsernameBox, PasswordBox};
+const ErrorReporterTemplate = ({message}) => (
+    <div className="row error_reporter">
+        {message}
+    </div>
+);
+
+ErrorReporterTemplate.PropTypes = {
+    message: PropTypes.string
+};
+
+const map_state_to_error_reporter_props = (state) => {
+    let message;
+    if(state.auth.front_end.error_message === undefined){
+        message = '';
+    } else {
+        message = "Error: " + state.auth.front_end.error_message;
+    }
+
+    return({message: message})
+};
+
+const ErrorReporter = connect(map_state_to_error_reporter_props)(
+    ErrorReporterTemplate);
+
+export {UsernameBox, PasswordBox, ErrorReporter};
