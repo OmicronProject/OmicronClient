@@ -3,12 +3,11 @@
  */
 import { createStore, applyMiddleware, compose } from 'redux';
 import Reducer from './reducer';
-import LoginBox from './containers/login_form';
 import thunkMiddleware from 'redux-thunk';
 import {api_url} from '../master_config';
 
 
-const initial_state = {
+export const initial_state = {
     main_menu: {
         buttons:
         [
@@ -18,20 +17,28 @@ const initial_state = {
                 type:"internal"}
         ]
     },
-    authenticator:
-    {
-        username: undefined,
-        password: undefined,
-        is_authenticating: false,
-        authentication_failed: false,
-        error_message: undefined
+    auth: {
+        front_end: {
+            username: undefined,
+            password: undefined,
+            is_authenticating: false,
+            has_authenticated: false,
+            error_message: undefined,
+            is_logging_out: false,
+            has_logged_out: false
+        },
+        back_end: {
+            username: undefined,
+            password: undefined,
+            is_authenticating: false,
+            error_message: undefined,
+            auth_token: undefined,
+            token_expiry_date: undefined,
+            is_logging_out: false
+        }
     },
-    user:
-    {
-        username: undefined,
-        password: undefined,
-        auth_status: "not_authenticated",
-        token_expiry_date: undefined
+    login_form: {
+        is_visible: false
     },
     registration_form:
     {

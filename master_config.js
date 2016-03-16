@@ -5,7 +5,6 @@
  *
  */
 'use strict';
-
 let api_url = process.env.API_URL || 'https://omicronserver.herokuapp.com';
 let github_repo_url = 'https://github.com/MichalKononenko/OmicronClient';
 let waffle_url = "https://waffle.io/MichalKononenko/OmicronClient";
@@ -48,5 +47,5 @@ module.exports = {
     esdoc_url: esdoc_url,
     loaders: js_loaders.concat(non_js_loaders),
     js_loaders: js_loaders,
-    non_js_loaders: non_js_loaders
+    non_js_loaders: non_js_loaders,
 };

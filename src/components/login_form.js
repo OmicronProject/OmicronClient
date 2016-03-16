@@ -6,220 +6,116 @@
  */
 'use strict';
 import React, { PropTypes } from 'react';
-import Reducer from '../reducer';
+import Reducer, { reducer_factory } from '../reducer';
 import clone from '../object_cloning';
 import {connect} from 'react-redux';
+import {Input, Glyphicon} from 'react-bootstrap';
+import store from '../store';
 
 import '../../static/css/components/login_form.css';
+import spinner from '../../static/img/hourglass.svg';
 
-/**
- * Generic component for an input box. This is subclassed by other components
- * in the Login Form in order to render the username and password entries.
- */
-export class InputBox extends React.Component {
-    /**
-     * Constructs an instance of InputBox
-     * @param {Object} props The input box's static properties.
-     */
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
-    /**
-     * Render the component into React's virtual DOM.
-     *
-     * @returns {XML} The blueprint for an input box, with given properties
-     */
-    render() {
-        return(
-            <div className="form-group">
-                <label>{this.box_name}</label>
-                <input type={this.input_type}
-                       className="form-control"
-                       id={this.box_id}
-                       onChange={this.props.change_callback}
-                       placeholder={this.box_name}
-                       value={this.props.value}
-                       autoComplete="off"
-                       autoCorrect="off"
-                       autoCapitalize="off"
-                />
-            </div>
-        )
-    }
-}
-
-/**
- * Renders a username box
- */
-class UserNameBox extends InputBox {
-    constructor(props){
-        super(props);
-        this.box_name = 'Username';
-        this.box_id = 'username-entry';
-        this.input_type = 'text';
-    }
-}
-
-/**
- * Renders a password box with masked input characters.
- */
-class PasswordBox extends InputBox {
-    constructor(props){
-        super(props);
-        this.box_name = 'Password';
-        this.box_id = 'password-entry';
-        this.input_type = 'password';
-    }
-}
-
-/**
- * Constructs and renders a button enabling the user to sign in
- */
-class SignInButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-        this.get_class_name = this.get_class_name.bind(this);
-    }
-
-    /**
-     * Returns the appropriate name of the element class to which this
-     * button belongs. The "is_active" flag in the Props states whether this
-     * component should be grayed out or not. If the button is to be grayed
-     * out, the class of this button is changed to "disabled".
-     *
-     * @returns {String} The className of the button
-     */
-    get_class_name() {
-        let className;
-        if (this.props.is_active) {
-            className = "btn btn-primary"
-        } else {
-            className = 'btn btn-primary disabled'
-        }
-        return (className);
-    }
-
-    /**
-     * Render the component into the DOM.
-     *
-     * @returns {XML}
-     */
-    render() {
-        return (
-            <button className={this.get_class_name()} type="button"
-                    onClick={this.props.onClick}>{this.props.content}
-            </button>
-        );
-    }
-}
-
-class SignUpButton extends React.Component{
-    constructor(props){
-        super(props);
-        this.props = props;
-    }
-
-    render() {
-        return (
-            <button className="btn btn-primary" onClick={this.props.onClick}
-            type="button">
-                Sign Up
-            </button>
-        )
-    }
-}
-
-class SignInSpinner extends React.Component{
-    constructor(props){
-        super(props);
-        this.props = props;
-    }
-
-    render(){
-        if (this.props.is_active){
-            return (
-                <img src={this.props.source} id="loading_spinner"/>
-            )
-        } else {
-            return (
-                <div className="col-md-1 hidden">
-                    <img src={this.props.source} id="loading_spinner"/>
-                </div>
-
-            )
-        }
-    }
-
-}
-
-export const LogoutButtonTemplate = ({on_click, className}) => (
-    <button className={className} type="button" onClick={on_click}>
-        Log Out
-    </button>
+export const UsernameBoxTemplate = ({value, on_change}) => (
+    <Input type="text"
+           value={value}
+           onChange={on_change}
+           placeholder="Username"
+           autoCapitalize="off"
+           autoComplete="off"
+           autoCorrect="off"
+           label="Username"
+    />
 );
 
-LogoutButtonTemplate.propTypes = {
-    on_click: PropTypes.func.isRequired
+UsernameBoxTemplate.PropTypes = {
+    value: PropTypes.string,
+    on_change: PropTypes.func.isRequired
 };
 
-export function map_logout_state_to_props(state){
-    let is_active = true;
-    if (state.user.auth_status !== 'authenticated'){
-        is_active = false;
-    }
+const map_state_to_username_props = (state) => ({
+    value: state.auth.front_end.username
+});
 
-    let className;
-    if(is_active){
-        className = "btn btn-primary"
+const map_dispatch_to_username_props = (dispatch) => ({
+    on_change: (event) => {dispatch(username_changed(event.target.value))}
+});
+
+const USERNAME_CHANGED = "USERNAME_CHANGED";
+
+const username_changed = (new_username) => (
+    {type: USERNAME_CHANGED, username: new_username}
+);
+
+const username_changed_reducer = (state, action) => {
+    state.auth.front_end.username = action.username
+};
+
+Reducer.register(reducer_factory(USERNAME_CHANGED)(username_changed_reducer));
+
+const UsernameBox = connect(
+    map_state_to_username_props, map_dispatch_to_username_props
+)(UsernameBoxTemplate);
+
+const PasswordBoxTemplate = ({value, on_change}) => (
+    <Input type="password"
+           value={value}
+           label="Password"
+           onChange={on_change}
+           placeholder="Password"
+    />
+);
+
+PasswordBoxTemplate.PropTypes = {
+    value: PropTypes.string,
+    on_change: PropTypes.func.isRequired
+};
+
+const PASSWORD_CHANGED = "PASSWORD_CHANGED";
+
+const password_changed = (new_password) => (
+    {type: PASSWORD_CHANGED, password: new_password}
+);
+
+const password_changed_reducer = (state, action) => {
+    state.auth.front_end.password = action.password
+};
+
+Reducer.register(reducer_factory(PASSWORD_CHANGED)(password_changed_reducer));
+
+const map_state_to_password_props = (state) => (
+    {value: state.auth.front_end.password}
+);
+
+const map_dispatch_to_password_props = (dispatch) => ({
+    on_change: (event) => {dispatch(password_changed(event.target.value))}
+});
+
+const PasswordBox = connect(map_state_to_password_props,
+    map_dispatch_to_password_props)(PasswordBoxTemplate);
+
+
+const ErrorReporterTemplate = ({message}) => (
+    <div className="row error_reporter">
+        {message}
+    </div>
+);
+
+ErrorReporterTemplate.PropTypes = {
+    message: PropTypes.string
+};
+
+const map_state_to_error_reporter_props = (state) => {
+    let message;
+    if(state.auth.front_end.error_message === undefined){
+        message = '';
     } else {
-        className = "btn btn-primary disabled"
+        message = "Error: " + state.auth.front_end.error_message;
     }
 
-    return({
-        className: className
-    })
-}
+    return({message: message})
+};
 
-function map_logout_dispatch_to_props(dispatch){
-    return({
-        on_click: (event) => (dispatch(logout()))
-    })
-}
+const ErrorReporter = connect(map_state_to_error_reporter_props)(
+    ErrorReporterTemplate);
 
-export const LogoutButton = connect(
-    map_logout_state_to_props, map_logout_dispatch_to_props
-)(LogoutButtonTemplate);
-
-const USER_LOGOUT = "USER_LOGOUT";
-
-export function logout(){
-    return({
-        type: USER_LOGOUT
-    })
-}
-
-function logout_reducer(state, action){
-    if (action.type === USER_LOGOUT){
-        let new_state = clone(state);
-        new_state.user = {
-            username: undefined,
-            password: undefined,
-            auth_status: "not_authenticated",
-            token_expiry_date: undefined
-        };
-
-        delete new_state.omicron_api.headers["Authorization"];
-
-        return new_state;
-    } else {
-        return state;
-    }
-}
-
-Reducer.register(logout_reducer);
-
-
-export {UserNameBox, PasswordBox, SignInButton, SignUpButton, SignInSpinner};
+export {UsernameBox, PasswordBox, ErrorReporter};

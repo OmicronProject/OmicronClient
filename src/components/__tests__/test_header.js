@@ -24,9 +24,8 @@ describe("_make_button", () => {
 
     it("Should make an internal link if the button is internal", () => {
         expect(_make_button(internal_button)).toEqual(
-            <LinkContainer to={{pathname: internal_button.link}}>
-                <NavItem eventKey={internal_button.key}
-                         key={internal_button.key}>
+            <LinkContainer key={internal_button.key} to={{pathname: internal_button.link}}>
+                <NavItem eventKey={internal_button.key}>
                     {internal_button.name}
                 </NavItem>
             </LinkContainer>
