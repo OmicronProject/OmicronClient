@@ -67,7 +67,7 @@ export function map_header_state_to_props(state){
     return(
         {
             buttons: state.main_menu.buttons,
-            is_user_authenticated: state.auth.front_end.has_user_authenticated,
+            is_user_authenticated: state.auth.front_end.has_authenticated,
             username: state.auth.front_end.username
         }
     )
