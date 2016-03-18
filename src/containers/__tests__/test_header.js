@@ -18,7 +18,7 @@ describe("map_header_state_to_props", () => {
     beforeEach(() => {
         state = {
             main_menu: {buttons: "This is where an array of buttons would go"},
-            auth: {front_end: {has_user_authenticated: true, username: "foo"}}
+            auth: {front_end: {has_authenticated: true, username: "foo"}}
         }
     });
 
