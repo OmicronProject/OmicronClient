@@ -7,16 +7,17 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { HeaderNavBar, HelloBox } from '../components/header';
 import { LoginButton } from '../components/header';
-import { logout } from '../components/login_form';
 import { Link } from 'react-router';
 import { _make_button } from '../components/header';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import { show_login_form } from './login_modal';
+import logout_user from '../auth/logout';
 
 import "../../static/css/components/header.css";
 
 export const Header = ({
         buttons, is_user_authenticated,
-        username, on_logout_button_click
+        username, on_logout_button_click, on_login_button_click
     }) => {
     let login_component;
     if (is_user_authenticated){
@@ -25,7 +26,9 @@ export const Header = ({
             on_logout_button_click={on_logout_button_click}
             />;
     } else {
-        login_component = <LoginButton/>;
+        login_component = <LoginButton
+            on_login_button_click={on_login_button_click}
+        />;
     }
 
     return(
@@ -49,7 +52,8 @@ export const Header = ({
 };
 
 Header.propTypes = {
-    on_logout_button_click: PropTypes.func.isRequired
+    on_logout_button_click: PropTypes.func.isRequired,
+    on_login_button_click: PropTypes.func.isRequired
 };
 
 /**
@@ -63,16 +67,16 @@ export function map_header_state_to_props(state){
     return(
         {
             buttons: state.main_menu.buttons,
-            is_user_authenticated:
-                (state.user.auth_status === "authenticated"),
-            username: state.user.username
+            is_user_authenticated: state.auth.front_end.has_authenticated,
+            username: state.auth.front_end.username
         }
     )
 }
 
 export function map_dispatch_to_props(dispatch){
     return ({
-        on_logout_button_click: () => (dispatch(logout()))
+        on_logout_button_click: () => {dispatch(logout_user())},
+        on_login_button_click: () => {dispatch(show_login_form())}
     })
 }
 

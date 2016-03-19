@@ -10,10 +10,10 @@ import React, { PropTypes } from 'react';
 import Header from './header';
 import clone from '../object_cloning';
 import reducer from '../reducer';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import store from '../store';
 import {URLEntryForm, ResultsBox} from '../components/http_request';
+import axios from 'axios';
 
 /**
  * Template for running the asynchronous HTTP request test.
@@ -245,10 +245,11 @@ export function fetch_data() {
         let url = store.getState().http_test.url;
         dispatch(get_data_from_url(url));
 
-        let request = axios({
-            url: url,
-            method: "GET",
-            headers: {"content-type": "application/json"}
+        let request = axios(
+            {
+                url: url,
+                method: "GET",
+                headers: {"content-type": "application/json"}
         });
 
         let success_handler = (response) => (

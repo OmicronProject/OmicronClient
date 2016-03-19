@@ -102,3 +102,17 @@ var reducer = new Reducer();
 export default reducer;
 
 export {Reducer};
+
+export function reducer_factory(...target_action_types){
+    return (mutator) => (state, action) => {
+        if (target_action_types.indexOf(action.type) > -1){
+            let new_state = Object.assign({}, state);
+
+            mutator(new_state, action);
+
+            return new_state;
+        } else {
+            return state;
+        }
+    }
+}

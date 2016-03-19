@@ -1,0 +1,15 @@
+#loading_spinner {
+    height: 1.2em;
+}
+
+.error_reporter {
+    color: #FF0000;
+    font-weight: bold;
+    text-align: left;
+    position: relative;
+    left: 30px;
+}
+
+#SignInButton {
+    position: relative;
+}
