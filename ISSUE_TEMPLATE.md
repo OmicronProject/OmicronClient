@@ -14,12 +14,30 @@ Please state the criticality of the bug
 - [ ] critical, prevents a part of the site from functioning in a way that breaks the feature
 - [ ] annoying, mis-aligned images, bad CSS, text overflowing its container box
 
-**Provide a brief description of your bug below**
+**Provide a description of the bug below**
 
 ###Feature Requests###
 
-**Provide a description of your feature here**
+**Feature Title**
+
+Provide a brief title for your FR. This and the issue number will be used as shorthand to work on issues.
+
+*Title*: (Title Here)
+
+**Description**:
+
+(Provide a description of your feature. The more thorough, the better!)
+
+Please stay tuned to this issue. We may contact you through GitHub to ask you more questions about the feature, or to show you how the feature is progressing. If you like, we may also contact you through an alternate form of communication, i.e. email. If this is the case, *transcripts of these communiques may be posted* to the site, in order to allow all contributors to act on the information provided.
+
+*I can be contacted by*: (Please provide instructions for how to contact you)
+
+- [ ] I authorize the Omicron Project to publish transcripts of my interactions with the Omicron Project.
 
 ###General Inquiries###
 
-**Ask away! We won't bite!**
+*Ask away! We won't bite!*
+
+My question is: 
+
+(question here)
