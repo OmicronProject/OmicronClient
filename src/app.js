@@ -4,10 +4,10 @@
 'use strict';
 
 import React from 'react';
-import Logo from './components/logo';
 import HeaderBar from './containers/header';
 import HTTPTest from './containers/http_request';
 import HomePage from './containers/home_page';
+import ProjectPage from './containers/projects';
 import {Router, Route, Link, hashHistory} from 'react-router';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -36,6 +36,7 @@ class App extends React.Component {
             <Router history={hashHistory}>
                 <Route path="/" component={HomePage}/>
                 <Route path="/http_test" component={HTTPTest}/>
+                <Route path="/projects" component={ProjectPage}/>
             </Router>
         )
     }

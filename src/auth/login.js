@@ -83,11 +83,12 @@ Reducer.register(reducer_factory(RECEIVE_TOKEN)(receive_token_reducer));
  */
 export const FINISH_AUTH = 'FINISH_AUTH';
 
-export const finish_auth = (username, token) => ({
+export const finish_auth = (username, token, project_button) => ({
     type: FINISH_AUTH,
     username: username,
     token: token,
-    auth_header: "Basic " + btoa(token + ":")
+    auth_header: "Basic " + btoa(token + ":"),
+    project_button: project_button
 });
 
 export const finish_auth_reducer = (state, action) => {
@@ -100,6 +101,18 @@ export const finish_auth_reducer = (state, action) => {
     };
 
     state.omicron_api.headers["Authorization"] = action.auth_header;
+
+    let project_button;
+    if (action.project_button === undefined){
+        project_button = {
+            name: "Projects", link: "/projects", key: "header_button3",
+            type: "internal"
+        }
+    } else {
+        project_button = action.project_button;
+    }
+
+    state.main_menu.buttons.push(project_button);
 };
 
 Reducer.register(reducer_factory(FINISH_AUTH)(finish_auth_reducer));
@@ -174,7 +187,7 @@ export function login_user() {
         state = store.getState();
 
         axios({
-            url:state.omicron_api.url + '/api/v1/token',
+            url:state.omicron_api.url + '/tokens',
             method: "POST",
             headers: state.omicron_api.headers
         }).then(
