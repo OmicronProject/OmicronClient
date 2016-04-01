@@ -187,7 +187,7 @@ export function login_user() {
         state = store.getState();
 
         axios({
-            url:state.omicron_api.url + '/api/v1/token',
+            url:state.omicron_api.url + '/tokens',
             method: "POST",
             headers: state.omicron_api.headers
         }).then(

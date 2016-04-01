@@ -121,7 +121,7 @@ export function logout_user(){
         state = store.getState();
 
         axios({
-            url: state.omicron_api.url + '/api/v1/token',
+            url: state.omicron_api.url + '/tokens',
             method: "DELETE",
             headers: state.omicron_api.headers
         }).then(
