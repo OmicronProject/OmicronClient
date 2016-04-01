@@ -167,7 +167,8 @@ describe(FINISH_AUTH, () => {
                     type: FINISH_AUTH,
                     username: username,
                     token: token,
-                    auth_header: "Basic " + btoa(token + ":")
+                    auth_header: "Basic " + btoa(token + ":"),
+                    project_button: undefined
                 }
             )
         })
@@ -193,6 +194,9 @@ describe(FINISH_AUTH, () => {
                     headers: {
                         "Authorization": "Sordid details following"
                     }
+                },
+                main_menu: {
+                    buttons: []
                 }
             }
         });
