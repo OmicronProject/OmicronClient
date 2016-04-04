@@ -3,9 +3,9 @@
  */
 import React, {PropTypes} from 'react';
 import {Panel} from 'react-bootstrap';
-import Header from './header';
-import Footer from './footer';
-import {show_login_form} from './login_modal';
+import Header from './../containers/header';
+import Footer from './../containers/footer';
+import {show_login_form} from './../containers/login_modal';
 import { connect } from 'react-redux';
 
 import '../../static/css/components/homepage.css';

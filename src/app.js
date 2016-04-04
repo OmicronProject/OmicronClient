@@ -6,7 +6,7 @@
 import React from 'react';
 import HeaderBar from './containers/header';
 import HTTPTest from './containers/http_request';
-import HomePage from './containers/home_page';
+import HomePage from './homepage/home_page';
 import ProjectPage from './containers/projects';
 import {Router, Route, Link, hashHistory} from 'react-router';
 
