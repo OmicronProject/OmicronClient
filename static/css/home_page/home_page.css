@@ -11,6 +11,17 @@
     width:1000px;
 }
 
+.rbc-allday-cell{
+    position:absolute;
+    width:950px;
+}
+
+.rbc-time-view {
+    height: 500px;
+    position: absolute;
+    width: 1000px;
+}
+
 .rbc-date-cell {
     color: #000000;
 }

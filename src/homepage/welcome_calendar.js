@@ -27,17 +27,32 @@ export const CalendarTemplate = ({date, view, events, on_select_event}) => (
 CalendarTemplate.propTypes = {
     date: React.PropTypes.instanceOf(Date).isRequired,
     view: React.PropTypes.oneOf(['day', 'month', 'week', 'agenda']),
-    events: React.PropTypes.array.isRequired,
+    events: React.PropTypes.arrayOf(
+        React.PropTypes.shape({
+            title: React.PropTypes.string.isRequired,
+            allDay: React.PropTypes.bool.isRequired,
+            start: React.PropTypes.instanceOf(Date).isRequired,
+            end: React.PropTypes.instanceOf(Date).isRequired
+        })
+    ).isRequired,
     on_select_event: React.PropTypes.func.isRequired
 };
 
-export const map_calendar_state_to_props = (state) => (
+export const map_calendar_state_to_props = (state) => {
+    let events_from_state = state.home_page.events;
+
+    for(let i = 0; i < events_from_state.length; i++){
+        events_from_state[i].start = new Date(events_from_state[i].start);
+        events_from_state[i].end = new Date(events_from_state[i].end);
+    }
+
+    return(
     {
         date: new Date(state.home_page.selected_date),
         view: state.home_page.calendar_mode,
-        events: state.home_page.events
+        events: events_from_state
     }
-);
+)};
 
 export const map_dispatch_to_props = (dispatch) => ({
     on_select_event: (event) => {dispatch(event_selected(event))}
