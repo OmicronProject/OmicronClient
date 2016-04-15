@@ -6,7 +6,6 @@ import Reducer from './reducer';
 import thunkMiddleware from 'redux-thunk';
 import {api_url} from '../master_config';
 
-
 export const initial_state = {
     main_menu: {
         buttons:
@@ -60,6 +59,24 @@ export const initial_state = {
             last_updated: Date.now(),
             data: {}
         }
+    },
+    home_page: {
+        calendar_mode: "month",
+        selected_date: new Date(Date.now()),
+        events: [{
+                title: "All day event",
+                allDay: true,
+                start: new Date(2016, 4, 11),
+                end: new Date(2016, 4, 11)
+            },
+            {
+                title: "Another event",
+                allDay: false,
+                start: new Date(2016, 4, 11, 9, 52, 0),
+                end: new Date(2016, 4, 11, 10, 52, 0)
+            }
+        ],
+        selected_event: undefined
     },
     projects: {
         frontend: {

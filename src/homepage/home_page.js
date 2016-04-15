@@ -7,6 +7,7 @@ import Header from './../containers/header';
 import Footer from './../containers/footer';
 import {show_login_form} from './../containers/login_modal';
 import { connect } from 'react-redux';
+import Calendar from './welcome_calendar';
 
 import '../../static/css/components/homepage.css';
 
@@ -40,6 +41,7 @@ const HomePage = () => (
                 Omicron Home Page
             </Panel>
             <LoginButton />
+            <Calendar />
         </div>
         <Footer />
     </div>
