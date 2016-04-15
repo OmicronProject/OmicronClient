@@ -31,3 +31,7 @@
     float: left;
     position: fixed
 }
+
+.rbc-toolbar-label {
+    color: #000000;
+}

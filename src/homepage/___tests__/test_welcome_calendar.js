@@ -8,26 +8,35 @@ import {CalendarTemplate} from '../welcome_calendar';
 
 describe("Calendar Header Template", () => {
     let date;
-    let on_previous_button_click;
-    let previous_button_click_counter;
-    let on_next_button_click;
-    let next_button_click_counter;
+    let on_select_event;
+    let on_select_event_counter;
+    let events;
+    let view;
 
     beforeEach(() => {
         date = new Date("2016-01-01T12:00:00Z");
 
-        previous_button_click_counter = 0;
-        next_button_click_counter = 0;
+        on_select_event_counter = 0;
 
-        on_previous_button_click = () => { previous_button_click_counter++ };
-        on_next_button_click = () => { next_button_click_counter++ };
+        on_select_event = () => { on_select_event_counter++ };
+        events = [
+            {
+                title: "All Day",
+                desc: "How long you ball?",
+                allDay: true,
+                start: new Date(2016, 4, 1),
+                end: new Date(2016, 4, 1)
+            }
+        ];
+
+        view = "month";
+
 
     });
 
     it('Should render into the DOM', () => {
         let component = ReactTestUtils.renderIntoDocument(
-            CalendarTemplate({date, on_previous_button_click,
-            on_next_button_click})
+            CalendarTemplate({date, view, events, on_select_event})
         );
 
         expect(component).toExist();
