@@ -20,7 +20,7 @@
 }
 
 .homepage_calendar {
-    height: 600px;
+    height: 590px;
     position: relative;
     width: 1100px;
 }
@@ -34,4 +34,11 @@
 
 .rbc-toolbar-label {
     color: #000000;
+}
+
+.carousel-content {
+    position: relative;
+    width: 600px;
+    height: 500px;
+    left: 50%;
 }
