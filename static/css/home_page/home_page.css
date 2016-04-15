@@ -1,0 +1,55 @@
+.rbc-time-slot {
+    color: #000000;
+}
+.rbc-header {
+    color: #000000;
+}
+
+.rbc-month-view {
+    height: 500px;
+    position: absolute;
+    width:1000px;
+}
+
+.rbc-allday-cell{
+    position:absolute;
+    width:950px;
+}
+
+.rbc-time-view {
+    height: 500px;
+    position: absolute;
+    width: 1000px;
+}
+
+.rbc-date-cell {
+    color: #000000;
+}
+
+.rbc-off-range {
+    color: #9d9d9d;
+}
+
+.homepage_calendar {
+    height: 590px;
+    position: relative;
+    width: 1100px;
+}
+
+.footer {
+    bottom: 0;
+    display: inline;
+    float: left;
+    position: fixed
+}
+
+.rbc-toolbar-label {
+    color: #000000;
+}
+
+.carousel-content {
+    position: relative;
+    width: 600px;
+    height: 500px;
+    left: 50%;
+}

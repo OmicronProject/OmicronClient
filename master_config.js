@@ -23,6 +23,10 @@ let js_loaders = [
 
 let non_js_loaders = [
     { test: /\.css$/, loader: "style-loader!css-loader" },
+    {
+        test: /\.less$/,
+        loader: "style!css!less"
+    },
     { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
     { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
     {
