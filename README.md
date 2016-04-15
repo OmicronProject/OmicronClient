@@ -34,6 +34,7 @@ Each one is linked to their respective service.
     https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/badge.svg)
     ](https://doc.esdoc.org/github.com/MichalKononenko/OmicronClient/)
     Docs
+* [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Development Machine ##
 
