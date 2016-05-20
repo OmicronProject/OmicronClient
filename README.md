@@ -105,7 +105,7 @@ added to the output code.
     
 4. In this window, run 
     ```bash 
-    karma start --single-run=false
+    npm run continous_test
     ```
    
    and give it a few moments to spin up. This will run the unit test suite for
