@@ -5,17 +5,17 @@
 
 import expect from 'expect';
 import React from 'react';
-import {HTTPTestTemplate, map_state_to_props} from '../http_request';
-import {map_dispatch_to_props} from '../http_request';
-import {URL_CHANGED, url_changed, url_changed_reducer} from '../http_request';
-import {RUN_TEST, run_test, run_test_reducer} from '../http_request';
-import {GET_DATA_FROM_URL, get_data_from_url} from '../http_request';
-import {get_data_from_url_reducer} from '../http_request';
-import {RECEIVE_DATA_FROM_URL} from '../http_request';
-import {receive_data_from_url} from '../http_request';
-import {receive_data_from_url_reducer} from '../http_request';
-import Header from '../header';
-import {fetch_data} from '../http_request';
+import {HTTPTestTemplate, map_state_to_props} from '../http_test';
+import {map_dispatch_to_props} from '../http_test';
+import {URL_CHANGED, url_changed, url_changed_reducer} from '../http_test';
+import {RUN_TEST, run_test, run_test_reducer} from '../http_test';
+import {GET_DATA_FROM_URL, get_data_from_url} from '../http_test';
+import {get_data_from_url_reducer} from '../http_test';
+import {RECEIVE_DATA_FROM_URL} from '../http_test';
+import {receive_data_from_url} from '../http_test';
+import {receive_data_from_url_reducer} from '../http_test';
+import Header from '../../containers/header';
+import {fetch_data} from '../http_test';
 import store from '../../store';
 
 describe("HTTPTestTemplate", () => {

@@ -4,7 +4,7 @@
  */
 import React from 'react';
 import expect from 'expect';
-import {URLEntryForm, ResultsBox} from '../http_request';
+import {URLEntryForm, ResultsBox} from '../forms';
 
 /** @test {URLEntryForm} */
 describe("URLEntryForm", () => {

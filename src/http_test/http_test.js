@@ -7,12 +7,12 @@
  */
 'use strict';
 import React, { PropTypes } from 'react';
-import Header from './header';
+import Header from '../containers/header';
 import clone from '../object_cloning';
 import reducer from '../reducer';
 import {connect} from 'react-redux';
 import store from '../store';
-import {URLEntryForm, ResultsBox} from '../components/http_request';
+import {URLEntryForm, ResultsBox} from './forms';
 import axios from 'axios';
 
 /**
