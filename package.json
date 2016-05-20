@@ -10,7 +10,8 @@
     "fs": false
   },
   "scripts": {
-    "test": "karma start karma.conf.js",
+    "test": "node ./node_modules/karma/bin/karma start karma.conf.js",
+    "continuous_test": "node ./node_modules/karma/bin/karma start --single-run=false",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "postinstall": "npm run compile",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.production.js --host 0.0.0.0 --port $PORT --compress",
