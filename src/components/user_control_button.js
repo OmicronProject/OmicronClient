@@ -14,8 +14,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Glyphicon} from 'react-bootstrap';
 import store from '../store';
-import login_user from '../login/login';
-import logout_user from '../login/logout';
+import login_user from '../login/actions/login';
+import logout_user from '../login/actions/logout';
 
 import spinner from '../../static/img/user_control_spinner.gif';
 

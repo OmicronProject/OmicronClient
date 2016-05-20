@@ -1,243 +1,75 @@
 /**
- *
- * Contains all actions for authentications, as well as their reducers
- *
+ * Created by Michal on 2016-03-15.
  */
-'use strict';
+import React, { PropTypes } from 'react';
+import {UsernameBox, PasswordBox} from '../components/login_form';
+import { ErrorReporter } from '../components/login_form';
+import SignInButton from '../components/user_control_button';
 import Reducer, {reducer_factory} from '../reducer';
-import store from '../store';
-import axios from 'axios';
+import {connect} from 'react-redux';
 
-/**
- * Begins authentication on front end
- * @type {string}
- */
-export const START_LOGIN = "START_LOGIN";
+import { Modal } from 'react-bootstrap';
 
-/**
- * Begin the login process. This clears the user credentials and lets the front
- * end know that it's time to show a spinner.
- */
-export const start_login = () => (
-    {
-        type: START_LOGIN
-    }
+export const LoginFormTemplate = ({is_visible, on_hide}) => (
+    <Modal show={is_visible} onHide={on_hide}>
+        <Modal.Header closeButton>
+            <Modal.Title>Log In</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <div>
+                <form>
+                    <UsernameBox />
+                    <PasswordBox />
+                </form>
+            </div>
+        </Modal.Body>
+        <Modal.Footer>
+            <div className="row">
+                <div className="col-xs-8">
+                    <ErrorReporter />
+                </div>
+                <div className="col-xs-4">
+                    <SignInButton />
+                </div>
+            </div>
+        </Modal.Footer>
+    </Modal>
 );
 
-export const start_login_reducer = (state) => {
-    state.auth.front_end.is_authenticating = true;
-    state.auth.front_end.has_authenticated = false;
+LoginFormTemplate.PropTypes = {
+    is_visible: PropTypes.bool.isRequired,
+    on_hide: PropTypes.func.isRequired
 };
 
-Reducer.register(reducer_factory(START_LOGIN)(start_login_reducer));
-
-/**
- * Begin authentication on the back end
- *
- * @type {string}
- */
-export const REQUEST_TOKEN = "REQUEST_TOKEN";
-
-export const request_token = (username, password) => {
-    return({
-        type: REQUEST_TOKEN,
-        username: username,
-        password: password,
-        auth_header: "Basic " + btoa(username + ":" + password)
-    });
-};
-
-export const request_token_reducer = (state, action) => {
-    state.auth.back_end.username = action.username;
-    state.auth.back_end.password = action.password;
-    state.auth.back_end.is_authenticating = true;
-
-    state.omicron_api.headers["Authorization"] = action.auth_header;
-};
-
-Reducer.register(reducer_factory(REQUEST_TOKEN)(request_token_reducer));
-
-/**
- * Successfully receive the token, and clean up the back end authenticator
- */
-export const RECEIVE_TOKEN = "RECEIVE_TOKEN";
-
-export const receive_token = (token, expiry_date) => ({
-    type: RECEIVE_TOKEN,
-    token: token,
-    expiry_date: expiry_date
+const map_state_to_login_modal_props = (state) => ({
+    is_visible: state.login_form.is_visible
 });
 
-export const receive_token_reducer = (state, action) => {
-    state.auth.back_end.auth_token = action.token;
-    state.auth.back_end.password = undefined;
-    state.auth.back_end.token_expiry_date = action.expiry_date;
-    state.auth.back_end.is_authenticating = false;
-};
-
-Reducer.register(reducer_factory(RECEIVE_TOKEN)(receive_token_reducer));
-
-
-/**
- * Let the front end know that the authentication has finished
- */
-export const FINISH_AUTH = 'FINISH_AUTH';
-
-export const finish_auth = (username, token, project_button) => ({
-    type: FINISH_AUTH,
-    username: username,
-    token: token,
-    auth_header: "Basic " + btoa(token + ":"),
-    project_button: project_button
+const map_dispatch_to_login_modal_props = (dispatch) => ({
+    on_hide: () => {dispatch(hide_login_form())}
 });
 
-export const finish_auth_reducer = (state, action) => {
-    state.auth.front_end = {
-        username: action.username,
-        password: undefined,
-        is_authenticating: false,
-        has_authenticated: true,
-        error_message: undefined
-    };
+const HIDE_LOGIN_FORM = "HIDE_LOGIN_FORM";
 
-    state.omicron_api.headers["Authorization"] = action.auth_header;
+const hide_login_form = () => ({type: HIDE_LOGIN_FORM});
 
-    let project_button;
-    if (action.project_button === undefined){
-        project_button = {
-            name: "Projects", link: "/projects", key: "header_button3",
-            type: "internal"
-        }
-    } else {
-        project_button = action.project_button;
-    }
-
-    state.main_menu.buttons.push(project_button);
+const hide_login_form_reducer = (state) => {
+    state.login_form.is_visible = false;
 };
 
-Reducer.register(reducer_factory(FINISH_AUTH)(finish_auth_reducer));
+Reducer.register(reducer_factory(HIDE_LOGIN_FORM)(hide_login_form_reducer));
 
+const LoginForm = connect(map_state_to_login_modal_props,
+    map_dispatch_to_login_modal_props)(LoginFormTemplate);
 
-/**
- * Communicate that token request returned an error on back end.
- * Clear all login credentials from the back end, and write the error
- * message to the back end. The error message not being "undefined" is
- * this authenticator's error state.
- */
-export const RECEIVE_TOKEN_ERROR = "RECEIVE_TOKEN_ERROR";
+export default LoginForm;
 
-export const receive_token_error = (message) => ({
-    type: RECEIVE_TOKEN_ERROR,
-    message: message
-});
+const SHOW_LOGIN_FORM = 'SHOW_LOGIN_FORM';
 
-export const receive_token_error_reducer = (state, action) => {
-    state.auth.back_end = {
-        username: undefined,
-        password: undefined,
-        is_authenticating: false,
-        error_message: action.message,
-        auth_token: undefined,
-        token_expiry_date: undefined
-    };
+export const show_login_form = () => ({type: SHOW_LOGIN_FORM});
+
+const show_login_form_reducer = (state) => {
+    state.login_form.is_visible = true;
 };
 
-Reducer.register(reducer_factory(RECEIVE_TOKEN_ERROR)(
-    receive_token_error_reducer
-));
-
-/**
- * Clean up the faulty authentication on the front end
- */
-export const CLEANUP_AUTH = "CLEANUP_AUTH";
-
-export const cleanup_auth = (error_message) => ({
-    type: CLEANUP_AUTH,
-    message: error_message
-});
-
-export const cleanup_auth_reducer = (state, action) => {
-    state.auth.front_end = {
-        username: undefined,
-        password: undefined,
-        is_authenticating: false,
-        has_authenticated: false,
-        error_message: action.message
-    }
-};
-
-Reducer.register(reducer_factory(CLEANUP_AUTH)(cleanup_auth_reducer));
-
-/**
- *
- * Main authentication thunk that asynchronously initiates the authentication
- * when user presses the "Submit" button. This is what is dispatched by
- * the login form
- *
- */
-export function login_user() {
-    return function (dispatch) {
-        let state = store.getState();
-        dispatch(start_login());
-        dispatch(request_token(
-            state.auth.front_end.username,
-            state.auth.front_end.password
-        ));
-
-        state = store.getState();
-
-        axios({
-            url:state.omicron_api.url + '/tokens',
-            method: "POST",
-            headers: state.omicron_api.headers
-        }).then(
-            handle_request_success(
-                dispatch, state.auth.front_end.username
-            ),
-            handle_request_error(dispatch)
-        )
-    }
-}
-
-export function check_status(dispatch){
-    return function (response) {
-        let content_type = response.headers["content-type"];
-        if (response.status != 201){
-            let error_message = "Unable to authenticate. " +
-                "API request returned status " + response.status
-                + " instead of 201.";
-            dispatch(receive_token_error(error_message));
-            dispatch(cleanup_auth(error_message));
-        }
-        if (content_type != 'application/json'){
-            let error_message = "Unable to authenticate. " +
-                "API request did not return JSON. Content-type is " +
-                content_type + " instead.";
-            dispatch(receive_token_error(error_message));
-            dispatch(cleanup_auth(error_message));
-        }
-    }
-}
-
-/**
- * This function is called if a failure occurs on making the request
- * before it is sent off to the API. This could be a preflight error, or
- * something more serious.
- * @param dispatch
- */
-export function handle_request_error(dispatch){
-    return function(error){
-        dispatch(receive_token_error(error));
-        dispatch(cleanup_auth(error));
-    }
-}
-
-export function handle_request_success(dispatch, username){
-    return function(response){
-        check_status(dispatch);
-        dispatch(receive_token(response.data.token, response.data.expiration_date));
-        dispatch(finish_auth(username, response.data.token));
-    }
-}
-
-export default login_user;
+Reducer.register(reducer_factory(SHOW_LOGIN_FORM)(show_login_form_reducer));

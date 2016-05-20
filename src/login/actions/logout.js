@@ -1,9 +1,9 @@
 /**
  * Created by Michal on 2016-03-07.
  */
-import Reducer, {reducer_factory} from '../reducer';
+import Reducer, {reducer_factory} from '../../reducer';
 import axios from 'axios';
-import store from '../store';
+import store from '../../store';
 
 /**
  * Inform the UI that logout has started

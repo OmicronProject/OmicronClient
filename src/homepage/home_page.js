@@ -5,7 +5,7 @@ import React, {PropTypes} from 'react';
 import {Panel} from 'react-bootstrap';
 import Header from './../containers/header';
 import Footer from './../containers/footer';
-import {show_login_form} from './../containers/login_modal';
+import {show_login_form} from '../login/login';
 import { connect } from 'react-redux';
 import Calendar from './welcome_calendar';
 import Carousel from './welcome_carousel';

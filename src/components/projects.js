@@ -7,7 +7,7 @@ import { Glyphicon } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import Reducer from '../reducer';
-import {AUTH_SUCCESS} from '../login/login';
+import {AUTH_SUCCESS} from '../login/actions/login';
 
 export const ProjectEntry = ({project_name, description, owner,
     last_updated_message, is_expanded

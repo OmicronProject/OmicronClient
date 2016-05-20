@@ -10,8 +10,8 @@ import { LoginButton } from '../components/header';
 import { Link } from 'react-router';
 import { _make_button } from '../components/header';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import { show_login_form } from './login_modal';
-import logout_user from '../login/logout';
+import { show_login_form } from '../login/login';
+import logout_user from '../login/actions/logout';
 
 import "../../static/css/components/header.css";
 

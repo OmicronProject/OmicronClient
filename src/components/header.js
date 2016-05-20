@@ -5,7 +5,7 @@ import React from 'react';
 import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import LoginForm from '../containers/login_modal';
+import LoginForm from '../login/login';
 
 export const HeaderNavBar = ({buttons}) => (
     <ul className="nav navbar-fixed-top">
