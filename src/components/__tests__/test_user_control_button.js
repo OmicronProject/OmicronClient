@@ -17,8 +17,8 @@ import {loading_spinner} from '../user_control_button';
 import {map_dispatch_to_signin_button_props} from '../user_control_button';
 import SignInButton from '../user_control_button';
 
-import login_user from '../../auth/login';
-import logout_user from '../../auth/logout';
+import login_user from '../../login/login';
+import logout_user from '../../login/logout';
 
 describe("SignInButtonTemplate", () => {
     let on_click;

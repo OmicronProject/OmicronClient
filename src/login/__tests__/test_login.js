@@ -51,7 +51,7 @@ describe(REQUEST_TOKEN, () => {
 
     describe("action creator", () => {
 
-        it("should create a basic auth header", () => {
+        it("should create a basic login header", () => {
             expect(request_token(username, password)).toEqual(
                 {
                     type: REQUEST_TOKEN,

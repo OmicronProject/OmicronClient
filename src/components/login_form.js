@@ -7,13 +7,10 @@
 'use strict';
 import React, { PropTypes } from 'react';
 import Reducer, { reducer_factory } from '../reducer';
-import clone from '../object_cloning';
 import {connect} from 'react-redux';
-import {Input, Glyphicon} from 'react-bootstrap';
-import store from '../store';
+import {Input} from 'react-bootstrap';
 
 import '../../static/css/components/login_form.css';
-import spinner from '../../static/img/hourglass.svg';
 
 export const UsernameBoxTemplate = ({value, on_change}) => (
     <Input type="text"
