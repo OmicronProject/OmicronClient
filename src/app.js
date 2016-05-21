@@ -4,10 +4,10 @@
 'use strict';
 
 import React from 'react';
-import HeaderBar from './containers/header';
+import HeaderBar from './basic_page/header';
 import HTTPTest from './http_test/http_test';
 import HomePage from './homepage/home_page';
-import ProjectPage from './containers/projects';
+import ProjectPage from './projects/projects';
 import {Router, Route, Link, hashHistory} from 'react-router';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';

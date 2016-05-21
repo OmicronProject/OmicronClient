@@ -7,7 +7,7 @@
  */
 'use strict';
 import React, { PropTypes } from 'react';
-import Header from '../containers/header';
+import Header from '../basic_page/header';
 import clone from '../object_cloning';
 import reducer from '../reducer';
 import {connect} from 'react-redux';

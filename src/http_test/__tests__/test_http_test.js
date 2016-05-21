@@ -14,7 +14,7 @@ import {get_data_from_url_reducer} from '../http_test';
 import {RECEIVE_DATA_FROM_URL} from '../http_test';
 import {receive_data_from_url} from '../http_test';
 import {receive_data_from_url_reducer} from '../http_test';
-import Header from '../../containers/header';
+import Header from '../../basic_page/header';
 import {fetch_data} from '../http_test';
 import store from '../../store';
 

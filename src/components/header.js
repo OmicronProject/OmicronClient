@@ -2,7 +2,7 @@
  * Created by Michal on 2016-03-01.
  */
 import React from 'react';
-import { NavItem, NavDropdown, MenuItem, Navbar } from 'react-bootstrap';
+import { NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import LoginForm from '../login/login';

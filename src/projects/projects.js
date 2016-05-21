@@ -2,7 +2,7 @@
  * Created by Michal on 2016-03-03.
  */
 import React from 'react';
-import Header from './header';
+import Header from '../basic_page/header';
 import ProjectList from '../components/projects';
 import {ProjectControlPanel} from '../components/projects';
 import {Panel} from 'react-bootstrap';

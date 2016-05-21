@@ -3,8 +3,8 @@
  */
 import React, {PropTypes} from 'react';
 import {Panel} from 'react-bootstrap';
-import Header from './../containers/header';
-import Footer from './../containers/footer';
+import Header from '../basic_page/header';
+import Footer from '../basic_page/footer';
 import {show_login_form} from '../login/login';
 import { connect } from 'react-redux';
 import Calendar from './welcome_calendar';
